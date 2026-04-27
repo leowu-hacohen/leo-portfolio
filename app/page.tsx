@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Hero from '../components/Hero'
 import PreHero from '../components/PreHero'
+import WorkGrid from '../components/WorkGrid'
 
 export default function HomePage() {
   const [showHero, setShowHero] = useState(false)
@@ -10,7 +11,12 @@ export default function HomePage() {
   return (
     <>
       {!showHero && <PreHero onComplete={() => setShowHero(true)} />}
-      {showHero && <Hero />}
+      {showHero && (
+        <>
+          <Hero />
+          <WorkGrid />
+        </>
+      )}
     </>
   )
 }

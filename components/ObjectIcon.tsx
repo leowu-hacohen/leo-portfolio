@@ -2,16 +2,16 @@ interface ObjectIconProps {
   name: string
   rotation: number
   translateY: number
+  size?: number
 }
 
-export default function ObjectIcon({ name, rotation, translateY }: ObjectIconProps) {
+export default function ObjectIcon({ name, rotation, translateY, size = 80 }: ObjectIconProps) {
   return (
     <span
       style={{
         display: 'inline-block',
-        width: '140px',
-        height: '140px',
-        // translateY first keeps the vertical offset in screen space; rotate then tilts in place
+        width: `${size}px`,
+        height: `${size}px`,
         transform: `translateY(${translateY}px) rotate(${rotation}deg)`,
         flexShrink: 0,
       }}
@@ -20,9 +20,9 @@ export default function ObjectIcon({ name, rotation, translateY }: ObjectIconPro
       <img
         src={`/icons/${name}.svg`}
         alt={name}
-        width={140}
-        height={140}
-        style={{ display: 'block', width: '140px', height: '140px' }}
+        width={size}
+        height={size}
+        style={{ display: 'block', width: `${size}px`, height: `${size}px` }}
       />
     </span>
   )
