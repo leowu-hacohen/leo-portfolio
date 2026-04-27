@@ -275,8 +275,7 @@ export default function Hero() {
 
       {/* Centered text block.
           The wrapper is pointer-events: none so the empty flex area doesn't
-          block clicks on the icons sitting behind it. The actual text spans
-          re-enable pointer events on themselves. */}
+          block clicks on the icons. Inner card uses pointer events + hover. */}
       <motion.div
         variants={container}
         initial="hidden"
@@ -296,53 +295,66 @@ export default function Hero() {
       >
         <motion.div
           variants={item}
+          whileHover={{ scale: 1.02, y: -4 }}
+          whileTap={{ scale: 0.99 }}
+          transition={{ type: 'spring', stiffness: 420, damping: 24 }}
           style={{
-            ...displayStyle,
-            marginBottom: '8px',
             pointerEvents: 'auto',
+            display: 'inline-flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: '16px 28px',
+            borderRadius: '20px',
+            margin: -4,
+            cursor: 'default',
           }}
         >
-          <Link
-            href="/about"
-            data-cursor-pill="About me"
+          <div
             style={{
-              color: 'inherit',
-              textDecoration: 'none',
+              ...displayStyle,
+              marginBottom: '8px',
             }}
           >
-            Leo Wu-Hacohen
-          </Link>{' '}
-          is a PM
-        </motion.div>
-
-        <motion.div
-          variants={item}
-          style={{
-            position: 'relative',
-            width: '100%',
-            height: '44px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            pointerEvents: 'none',
-          }}
-        >
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={phraseIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
+            <Link
+              href="/about"
+              data-cursor-pill="About me"
               style={{
-                ...displayStyle,
-                whiteSpace: 'nowrap',
-                pointerEvents: 'auto',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              {PHRASES[phraseIndex]}
-            </motion.span>
-          </AnimatePresence>
+              Leo Wu-Hacohen
+            </Link>{' '}
+            is a PM
+          </div>
+
+          <div
+            style={{
+              position: 'relative',
+              minHeight: '44px',
+              width: '100%',
+              maxWidth: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={phraseIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                style={{
+                  ...displayStyle,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {PHRASES[phraseIndex]}
+              </motion.span>
+            </AnimatePresence>
+          </div>
         </motion.div>
       </motion.div>
 
