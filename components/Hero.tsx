@@ -102,14 +102,31 @@ const displayStyle: React.CSSProperties = {
   letterSpacing: '-0.03em',
 }
 
+const NAV_LINKS = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Work', href: '#work' },
+  { label: 'Extras', href: '/extras' },
+] as const
+
+const SCROLL_PILL_AT = 48
+
 export default function Hero() {
   const [phraseIndex, setPhraseIndex] = useState(0)
+  const [navPill, setNavPill] = useState(false)
 
   useEffect(() => {
     const id = setInterval(() => {
       setPhraseIndex(i => (i + 1) % PHRASES.length)
     }, 1800)
     return () => clearInterval(id)
+  }, [])
+
+  useEffect(() => {
+    const onScroll = () => setNavPill(window.scrollY > SCROLL_PILL_AT)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
@@ -123,37 +140,46 @@ export default function Hero() {
         overflow: 'hidden',
       }}
     >
-      {/* Nav locked to the top-center of the viewport.
-          Outer div handles absolute positioning + horizontal centering (translateX -50%);
-          inner motion.nav handles fade/slide-in without clobbering the transform. */}
+      {/* Top nav: fixed so it stays while scrolling. Past ~48px scroll it becomes
+          a glass pill (blur, shadow, rounded). */}
       <div
         style={{
-          position: 'absolute',
-          top: '28px',
+          position: 'fixed',
+          top: '24px',
           left: '50%',
           transform: 'translateX(-50%)',
-          zIndex: 3,
+          zIndex: 100,
         }}
       >
         <motion.nav
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            backgroundColor: navPill
+              ? 'rgba(255, 255, 255, 0.86)'
+              : 'rgba(255, 255, 255, 0)',
+            boxShadow: navPill
+              ? '0 2px 12px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.05)'
+              : '0 0 0 rgba(0,0,0,0)',
+            paddingLeft: navPill ? 20 : 4,
+            paddingRight: navPill ? 20 : 4,
+            paddingTop: navPill ? 10 : 2,
+            paddingBottom: navPill ? 10 : 2,
+          }}
+          transition={{ duration: 0.32, ease: [0.25, 0.1, 0.25, 1] }}
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: '40px',
+            gap: navPill ? 28 : 40,
+            borderRadius: 9999,
+            border: navPill ? '1px solid rgba(0,0,0,0.06)' : '1px solid transparent',
+            backdropFilter: navPill ? 'blur(14px) saturate(1.2)' : 'none',
+            WebkitBackdropFilter: navPill ? 'blur(14px) saturate(1.2)' : 'none',
           }}
         >
-          {(
-            [
-              { label: 'Home', href: '/' },
-              { label: 'About', href: '/about' },
-              { label: 'Work', href: '#work' },
-              { label: 'Extras', href: '/extras' },
-            ] as const
-          ).map(({ label, href }) => (
+          {NAV_LINKS.map(({ label, href }) => (
             <Link
               key={label}
               href={href}
@@ -162,9 +188,10 @@ export default function Hero() {
                 fontFamily: 'var(--font-jakarta), sans-serif',
                 fontSize: '13px',
                 fontWeight: 400,
-                color: '#b0b0b0',
+                color: navPill ? '#5c5c5c' : '#b0b0b0',
                 textDecoration: 'none',
                 letterSpacing: '0.02em',
+                transition: 'color 0.25s ease',
               }}
             >
               {label}

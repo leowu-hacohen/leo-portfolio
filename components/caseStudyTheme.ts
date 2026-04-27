@@ -2,6 +2,9 @@ import type { CSSProperties } from 'react'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
 
+/** Small caps labels (eyebrow, section tags, meta) */
+const caseStudyLabelAccent = '#b42318'
+
 export const caseStudyJakarta = jakarta
 
 /** Eyebrow (e.g. PRODUCT MARKETING · CASE STUDY) */
@@ -11,7 +14,7 @@ export const caseStudyEyebrow: CSSProperties = {
   fontWeight: 500,
   letterSpacing: '0.12em',
   textTransform: 'uppercase',
-  color: '#999',
+  color: caseStudyLabelAccent,
   marginBottom: '16px',
 }
 
@@ -22,7 +25,7 @@ export const caseStudyMetaLabel: CSSProperties = {
   fontWeight: 500,
   letterSpacing: '0.12em',
   textTransform: 'uppercase',
-  color: '#999',
+  color: caseStudyLabelAccent,
   marginBottom: '4px',
 }
 
@@ -56,7 +59,7 @@ export const caseStudySectionLabel: CSSProperties = {
   fontWeight: 500,
   letterSpacing: '0.14em',
   textTransform: 'uppercase',
-  color: '#bbb',
+  color: caseStudyLabelAccent,
   marginBottom: '12px',
 }
 

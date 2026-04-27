@@ -36,17 +36,26 @@ const fadeUp = (delay = 0) => ({
 
 /* TODO: confirm dates and titles */
 const experience: { company: string; role: string; year: string }[] = [
-  { company: 'CHAGEE', role: '0studio / product', year: '2026' },
+  { company: '0studio', role: 'Product', year: '2026' },
   { company: 'Beats by Dre', role: 'Data Analytics Extern', year: '2026' },
   { company: 'CHAGEE', role: 'Product Marketing Intern', year: '2024-2025' },
 ]
 
-/* TODO: confirm graduation year */
-const education: { school: string; detail: string; year: string }[] = [
+const education: {
+  school: string
+  detail: string
+  year: string
+  minor: string
+  /** Line below; starts with "Relevant coursework: …" */
+  relevantCoursework: string
+}[] = [
   {
     school: 'UC Irvine',
     detail: 'B.S. Business Information Management',
-    year: 'Expected 2026',
+    year: 'Expected 2027',
+    minor: 'Minor in Economics',
+    relevantCoursework:
+      'Relevant coursework: econometrics, intermediate micro, database & systems, product strategy & GTM, statistics for management',
   },
 ]
 
@@ -360,13 +369,39 @@ export default function AboutPage() {
           <div style={{ width: '100%', marginTop: 'auto', paddingTop: '28px' }}>
             <h2 style={aboutSideSectionTitle}>Education</h2>
             <div>
-              {education.map((row, i) => (
-                <ResumeRow
-                  key={`${row.school}-${row.detail}`}
-                  left={`${row.school} / ${row.detail}`}
-                  year={row.year}
-                  isLast={i === education.length - 1}
-                />
+              {education.map((row) => (
+                <div key={`${row.school}-${row.detail}`}>
+                  <ResumeRow
+                    left={`${row.school} / ${row.detail}`}
+                    year={row.year}
+                    isLast
+                  />
+                  <p
+                    style={{
+                      fontFamily: jakarta,
+                      fontSize: '14px',
+                      fontWeight: 400,
+                      color: '#4a4a4a',
+                      lineHeight: 1.55,
+                      margin: '0 0 6px 0',
+                      paddingTop: '4px',
+                    }}
+                  >
+                    {row.minor}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: jakarta,
+                      fontSize: '14px',
+                      fontWeight: 400,
+                      color: '#4a4a4a',
+                      lineHeight: 1.55,
+                      margin: 0,
+                    }}
+                  >
+                    {row.relevantCoursework}
+                  </p>
+                </div>
               ))}
             </div>
           </div>

@@ -83,6 +83,17 @@ const CARDS: CardData[] = [
     iconRotation: 10,
     pillText: 'See Case Study!',
   },
+  {
+    id: 'design-uci',
+    company: 'Design @ UCI',
+    meta: 'Product Team · UCI',
+    description:
+      'Student org bringing design education and community to campus — case study in progress.',
+    href: '/work/design-uci',
+    icon: 'briefcase',
+    iconRotation: 0,
+    pillText: 'Coming soon',
+  },
 ]
 
 // ─── WorkCard ─────────────────────────────────────────────────────────────────
@@ -97,6 +108,7 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
   const isLumina = card.id === 'lumina'
   const isInNOut = card.id === 'in-n-out'
   const isBcec = card.id === 'bcec'
+  const isDesignUci = card.id === 'design-uci'
   const isExternal = /^https?:\/\//i.test(card.href)
 
   const cardInner = (
@@ -114,7 +126,9 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
           height: `${imageH}px`,
           borderRadius: '12px',
           overflow: isChagee ? 'visible' : 'hidden',
-          ...(isNami
+          ...(isDesignUci
+            ? { background: '#000000' }
+            : isNami
             ? {
                 backgroundImage: 'url(/work-cards/namibackdrop.png)',
                 backgroundSize: 'cover',
@@ -146,7 +160,8 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
               !isChagee &&
               !isLumina &&
               !isInNOut &&
-              !isBcec
+              !isBcec &&
+              !isDesignUci
                 ? 1.03
                 : 1,
           }}
@@ -225,6 +240,19 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
             <img
               src="/work-cards/bceclogo.png"
               alt="BCEC"
+              style={{
+                maxHeight: '88%',
+                width: 'auto',
+                maxWidth: '88%',
+                display: 'block',
+                objectFit: 'contain',
+              }}
+            />
+          ) : isDesignUci ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src="/work-cards/design-uci.png"
+              alt="Design at UCI"
               style={{
                 maxHeight: '88%',
                 width: 'auto',
