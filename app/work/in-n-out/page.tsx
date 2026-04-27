@@ -2,48 +2,27 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import {
+  caseStudyBody,
+  caseStudyBulletChar,
+  caseStudyBulletList,
+  caseStudyContentMaxWidth,
+  caseStudyDescriptor,
+  caseStudyEyebrow,
+  caseStudyJakarta,
+  caseStudySectionBlock,
+  caseStudySectionHeading,
+  caseStudySectionLabel,
+  caseStudyTitle,
+} from '../../../components/caseStudyTheme'
 
-const jakarta = 'var(--font-jakarta), sans-serif'
-const noto = 'var(--font-noto), serif'
+const jakarta = caseStudyJakarta
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.55, ease: 'easeOut' as const, delay },
 })
-
-const sectionLabelStyle: React.CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '11px',
-  fontWeight: 500,
-  color: '#999',
-  letterSpacing: '0.14em',
-  textTransform: 'uppercase',
-  marginBottom: '14px',
-}
-
-const headingStyle: React.CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '24px',
-  fontWeight: 600,
-  color: '#111',
-  letterSpacing: '-0.01em',
-  margin: '0 0 16px',
-  lineHeight: 1.25,
-}
-
-const bodyStyle: React.CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '15px',
-  color: '#666',
-  lineHeight: 1.8,
-  margin: 0,
-  maxWidth: '680px',
-}
-
-const sectionWrap: React.CSSProperties = {
-  marginTop: '64px',
-}
 
 const Section = ({
   label,
@@ -59,10 +38,10 @@ const Section = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-40px' }}
     transition={{ duration: 0.55, ease: 'easeOut' }}
-    style={sectionWrap}
+    style={caseStudySectionBlock}
   >
-    <div style={sectionLabelStyle}>{label}</div>
-    <h2 style={headingStyle}>{heading}</h2>
+    <div style={caseStudySectionLabel}>{label}</div>
+    <h2 style={caseStudySectionHeading}>{heading}</h2>
     {children}
   </motion.section>
 )
@@ -79,8 +58,7 @@ export default function InNOutPage() {
     >
       <div
         style={{
-          maxWidth: '780px',
-          margin: '0 auto',
+          ...caseStudyContentMaxWidth,
           padding: '0 40px 120px',
         }}
       >
@@ -97,6 +75,7 @@ export default function InNOutPage() {
         >
           <Link
             href="/"
+            data-cursor-pill="Back"
             style={{
               fontFamily: jakarta,
               fontSize: '13px',
@@ -111,14 +90,16 @@ export default function InNOutPage() {
           <div style={{ display: 'flex', gap: '32px' }}>
             {(
               [
-                { label: 'About',  href: '/about' },
-                { label: 'Work',   href: '/#work' },
+                { label: 'Home', href: '/' },
+                { label: 'About', href: '/about' },
+                { label: 'Work', href: '/#work' },
                 { label: 'Extras', href: '/extras' },
               ] as const
             ).map(({ label, href }) => (
               <Link
                 key={label}
                 href={href}
+                data-cursor-pill={label}
                 style={{
                   fontFamily: jakarta,
                   fontSize: '13px',
@@ -135,50 +116,17 @@ export default function InNOutPage() {
         </motion.nav>
 
         {/* Eyebrow */}
-        <motion.div
-          {...fadeUp(0.05)}
-          style={{
-            fontFamily: jakarta,
-            fontSize: '12px',
-            fontWeight: 500,
-            color: '#999',
-            letterSpacing: '0.16em',
-            textTransform: 'uppercase',
-            marginBottom: '16px',
-          }}
-        >
+        <motion.div {...fadeUp(0.05)} style={caseStudyEyebrow}>
           Data Science · Case Study
         </motion.div>
 
         {/* Title */}
-        <motion.h1
-          {...fadeUp(0.1)}
-          style={{
-            fontFamily: jakarta,
-            fontSize: '44px',
-            fontWeight: 600,
-            color: '#111',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            margin: 0,
-          }}
-        >
+        <motion.h1 {...fadeUp(0.1)} style={caseStudyTitle}>
           In-N-Out Location Predictor: Data Heist 2026
         </motion.h1>
 
         {/* One-line description */}
-        <motion.p
-          {...fadeUp(0.15)}
-          style={{
-            fontFamily: noto,
-            fontStyle: 'italic',
-            fontSize: '17px',
-            color: '#888',
-            margin: '14px 0 0',
-            lineHeight: 1.5,
-            maxWidth: '640px',
-          }}
-        >
+        <motion.p {...fadeUp(0.15)} style={caseStudyDescriptor}>
           Reverse-engineering In-N-Out&apos;s site-selection strategy with a
           LambdaRank ML model, built in 36 hours.
         </motion.p>
@@ -188,14 +136,14 @@ export default function InNOutPage() {
           label="Problem"
           heading="Predict where In-N-Out opens next, without any of their data."
         >
-          <p style={{ ...bodyStyle, marginBottom: '14px' }}>
+          <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
             In-N-Out has 289 California locations and is famously strategic
             about expansion, but their decision-making is opaque. Site-level
             data isn&apos;t public. We started by trying to predict
             store-level revenue and hit a wall immediately. We actually called
             In-N-Out to request the data. They rejected us.
           </p>
-          <p style={bodyStyle}>
+          <p style={caseStudyBody}>
             With no labels and no cooperation from the company, the original
             problem was unsolvable. The real question wasn&apos;t whether we
             could predict revenue. It was whether we could reframe the
@@ -208,21 +156,14 @@ export default function InNOutPage() {
           label="My Role"
           heading="Team Member · 3-person team · 36 hours"
         >
-          <p style={{ ...bodyStyle, marginBottom: '14px' }}>
+          <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
             Built at Data Heist 2026 (April 3–5, 2026) alongside Justin Siek
             and Maximiliano Jose Garcia Gutierrez. I focused on problem
             framing, feature engineering across four independent datasets,
             and translating model output into something a non-technical
             stakeholder could read on a map.
           </p>
-          <ul
-            style={{
-              margin: 0,
-              padding: 0,
-              listStyle: 'none',
-              maxWidth: '680px',
-            }}
-          >
+          <ul style={caseStudyBulletList}>
             {[
               'Helped reframe the problem from revenue prediction to site ranking after the data request was rejected',
               'Engineered 14 features across geospatial, census, traffic, and competitor datasets',
@@ -233,31 +174,13 @@ export default function InNOutPage() {
                 key={item}
                 style={{
                   display: 'flex',
-                  gap: '10px',
+                  gap: '8px',
                   alignItems: 'flex-start',
                   marginBottom: i < arr.length - 1 ? '8px' : 0,
                 }}
               >
-                <span
-                  style={{
-                    marginTop: '9px',
-                    width: '5px',
-                    height: '5px',
-                    borderRadius: '50%',
-                    background: '#111',
-                    flexShrink: 0,
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: jakarta,
-                    fontSize: '15px',
-                    color: '#666',
-                    lineHeight: 1.7,
-                  }}
-                >
-                  {item}
-                </span>
+                <span style={caseStudyBulletChar}>·</span>
+                <span style={caseStudyBody}>{item}</span>
               </li>
             ))}
           </ul>
@@ -268,7 +191,7 @@ export default function InNOutPage() {
           label="Process"
           heading="Reframe the problem, build the dataset, ship a ranking model."
         >
-          <p style={{ ...bodyStyle, marginBottom: '28px' }}>
+          <p style={{ ...caseStudyBody, marginBottom: '28px' }}>
             We picked features for both predictive power and explainability,
             not black-box signal, and cleaned anomalies case-by-case rather
             than applying blanket imputation rules.
@@ -321,7 +244,7 @@ export default function InNOutPage() {
                   <div
                     style={{
                       fontFamily: jakarta,
-                      fontSize: '15px',
+                      fontSize: '16px',
                       fontWeight: 600,
                       color: '#111',
                       marginBottom: '6px',
@@ -329,14 +252,7 @@ export default function InNOutPage() {
                   >
                     {title}
                   </div>
-                  <p
-                    style={{
-                      ...bodyStyle,
-                      maxWidth: '620px',
-                    }}
-                  >
-                    {copy}
-                  </p>
+                  <p style={caseStudyBody}>{copy}</p>
                 </div>
               </div>
             ))}
@@ -395,12 +311,12 @@ export default function InNOutPage() {
               </div>
             ))}
           </div>
-          <p style={{ ...bodyStyle, marginBottom: '14px' }}>
+          <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
             Trained on 289 In-N-Out locations × 6 sites each, for 1,734 data
             points. The model surfaces a ranked list of candidate sites and
             reads as a map, not a confusion matrix.
           </p>
-          <p style={bodyStyle}>
+          <p style={caseStudyBody}>
             Data unavailability is a problem-reframing opportunity, not a
             dead end. Businesses rarely ask &ldquo;is this good?&rdquo;
             They ask &ldquo;is this better than the alternatives?&rdquo; The

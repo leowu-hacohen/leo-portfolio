@@ -2,6 +2,17 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import {
+  caseStudyBody,
+  caseStudyBulletChar,
+  caseStudyBulletList,
+  caseStudyDescriptor,
+  caseStudyJakarta,
+  caseStudyMetaLabel,
+  caseStudySectionHeading,
+  caseStudySectionLabel,
+  caseStudyTitle,
+} from './caseStudyTheme'
 
 export interface CaseStudySection {
   label: string
@@ -29,38 +40,19 @@ export interface CaseStudyProps {
   sections: CaseStudySection[]
   prevHref?: string
   nextHref?: string
+  /** Full-bleed background image for the area below the hero (e.g. Nami canvas) */
+  canvasBackdropSrc?: string
 }
 
 // ─── Shared style tokens ──────────────────────────────────────────────────────
 
-const jakarta = 'var(--font-jakarta), sans-serif'
-const noto = 'var(--font-noto), serif'
-
-const metaLabel: React.CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '11px',
-  fontWeight: 500,
-  color: '#999',
-  letterSpacing: '0.1em',
-  textTransform: 'uppercase',
-  marginBottom: '4px',
-}
+const jakarta = caseStudyJakarta
 
 const metaValue: React.CSSProperties = {
   fontFamily: jakarta,
   fontSize: '14px',
   color: '#111',
   fontWeight: 400,
-}
-
-const sectionLabelStyle: React.CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '11px',
-  fontWeight: 500,
-  color: '#999',
-  letterSpacing: '0.12em',
-  textTransform: 'uppercase',
-  marginBottom: '12px',
 }
 
 const cardStyle: React.CSSProperties = {
@@ -124,6 +116,7 @@ export default function CaseStudy({
   sections,
   prevHref,
   nextHref,
+  canvasBackdropSrc,
 }: CaseStudyProps) {
   const metaFields = [
     { label: 'Role', value: role },
@@ -141,11 +134,12 @@ export default function CaseStudy({
         color: '#111',
       }}
     >
+      {/* Top: nav + hero only (full-width band stays clean) */}
       <div
         style={{
           maxWidth: '960px',
           margin: '0 auto',
-          padding: '0 40px 120px',
+          padding: '0 40px 0',
         }}
       >
         {/* 1. NAV ─────────────────────────────────────────────────────────── */}
@@ -161,6 +155,7 @@ export default function CaseStudy({
         >
           <Link
             href="/"
+            data-cursor-pill="Back"
             style={{
               fontFamily: jakarta,
               fontSize: '13px',
@@ -175,14 +170,16 @@ export default function CaseStudy({
           <div style={{ display: 'flex', gap: '32px' }}>
             {(
               [
-                { label: 'About',  href: '/about' },
-                { label: 'Work',   href: '/#work' },
+                { label: 'Home', href: '/' },
+                { label: 'About', href: '/about' },
+                { label: 'Work', href: '/#work' },
                 { label: 'Extras', href: '/extras' },
               ] as const
             ).map(({ label, href }) => (
               <Link
                 key={label}
                 href={href}
+                data-cursor-pill={label}
                 style={{
                   fontFamily: jakarta,
                   fontSize: '13px',
@@ -226,13 +223,57 @@ export default function CaseStudy({
             Cover Image
           </span>
         </motion.div>
+      </div>
 
+      {/* Below hero: optional full-bleed backdrop, then same-width content column */}
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+        }}
+      >
+        {canvasBackdropSrc ? (
+          <div
+            aria-hidden
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              minHeight: '100%',
+              zIndex: 0,
+              backgroundColor: '#050a14',
+              backgroundImage: `url(${canvasBackdropSrc})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center center',
+              backgroundAttachment: 'scroll',
+            }}
+          />
+        ) : null}
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 1,
+          }}
+        >
+        <div
+            style={{
+              maxWidth: '960px',
+              margin: '0 auto',
+              padding: '0 40px 120px',
+              backgroundColor: canvasBackdropSrc
+                ? 'rgba(255, 255, 255, 0.94)'
+                : 'transparent',
+              borderRadius: canvasBackdropSrc ? '12px' : undefined,
+            }}
+        >
         {/* 3. METADATA ROW ─────────────────────────────────────────────────── */}
         <div
           style={{
             display: 'flex',
             gap: '64px',
-            marginTop: '48px',
+            marginTop: '64px',
             alignItems: 'flex-start',
           }}
         >
@@ -251,7 +292,7 @@ export default function CaseStudy({
           >
             {metaFields.map(({ label, value }) => (
               <motion.div key={label} variants={metaItem}>
-                <div style={metaLabel}>{label}</div>
+                <div style={caseStudyMetaLabel}>{label}</div>
                 <div style={metaValue}>{value}</div>
               </motion.div>
             ))}
@@ -264,31 +305,16 @@ export default function CaseStudy({
             animate="show"
             style={{ flex: 1 }}
           >
-            <motion.h1
-              variants={rightItem}
-              style={{
-                fontFamily: jakarta,
-                fontSize: '42px',
-                fontWeight: 600,
-                color: '#111',
-                letterSpacing: '-0.02em',
-                lineHeight: 1.1,
-                margin: 0,
-              }}
-            >
+            <motion.h1 variants={rightItem} style={caseStudyTitle}>
               {company}
             </motion.h1>
 
             <motion.p
               variants={rightItem}
               style={{
-                fontFamily: noto,
-                fontStyle: 'italic',
-                fontSize: '16px',
-                color: '#888',
+                ...caseStudyDescriptor,
                 marginTop: '10px',
                 marginBottom: '20px',
-                lineHeight: 1.5,
               }}
             >
               {descriptor}
@@ -322,7 +348,7 @@ export default function CaseStudy({
           style={{
             height: '1px',
             background: '#f0f0f0',
-            margin: '48px 0',
+            margin: '64px 0',
           }}
         />
 
@@ -335,18 +361,8 @@ export default function CaseStudy({
             transition={{ type: 'spring', stiffness: 120, damping: 20 }}
             style={cardStyle}
           >
-            <div style={sectionLabelStyle}>Context</div>
-            <p
-              style={{
-                fontFamily: jakarta,
-                fontSize: '15px',
-                color: '#444',
-                lineHeight: 1.75,
-                margin: 0,
-              }}
-            >
-              {context}
-            </p>
+            <div style={caseStudySectionLabel}>Context</div>
+            <p style={{ ...caseStudyBody, margin: '0 auto' }}>{context}</p>
           </motion.div>
 
           <motion.div
@@ -356,38 +372,20 @@ export default function CaseStudy({
             transition={{ type: 'spring', stiffness: 120, damping: 20 }}
             style={cardStyle}
           >
-            <div style={sectionLabelStyle}>My Contributions</div>
-            <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+            <div style={caseStudySectionLabel}>My Contributions</div>
+            <ul style={caseStudyBulletList}>
               {contributions.map((item, i) => (
                 <li
                   key={i}
                   style={{
                     display: 'flex',
-                    gap: '10px',
+                    gap: '8px',
                     alignItems: 'flex-start',
                     marginBottom: i < contributions.length - 1 ? '10px' : 0,
                   }}
                 >
-                  <span
-                    style={{
-                      marginTop: '7px',
-                      width: '5px',
-                      height: '5px',
-                      borderRadius: '50%',
-                      background: '#111',
-                      flexShrink: 0,
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontFamily: jakarta,
-                      fontSize: '14px',
-                      color: '#333',
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {item}
-                  </span>
+                  <span style={caseStudyBulletChar}>·</span>
+                  <span style={caseStudyBody}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -402,38 +400,21 @@ export default function CaseStudy({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            style={{ marginTop: '72px' }}
+            style={{ marginTop: '64px' }}
           >
-            <div style={sectionLabelStyle}>{section.label}</div>
-            <h2
-              style={{
-                fontFamily: jakarta,
-                fontSize: '24px',
-                fontWeight: 600,
-                color: '#111',
-                letterSpacing: '-0.01em',
-                margin: '0 0 16px',
-              }}
-            >
-              {section.heading}
-            </h2>
-            <p
-              style={{
-                fontFamily: jakarta,
-                fontSize: '15px',
-                color: '#555',
-                lineHeight: 1.8,
-                margin: 0,
-                maxWidth: '680px',
-              }}
-            >
-              {section.body}
-            </p>
+            <div style={{ maxWidth: '680px', width: '100%', margin: '0 auto' }}>
+              <div style={caseStudySectionLabel}>{section.label}</div>
+              <h2 style={caseStudySectionHeading}>{section.heading}</h2>
+              <p style={caseStudyBody}>{section.body}</p>
+            </div>
             {section.hasImage && (
               <div
                 style={{
                   marginTop: '32px',
                   width: '100%',
+                  maxWidth: '680px',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
                   height: '400px',
                   background: '#f5f5f5',
                   borderRadius: '12px',
@@ -468,7 +449,7 @@ export default function CaseStudy({
             style={{
               display: 'flex',
               gap: '16px',
-              marginTop: '72px',
+              marginTop: '64px',
             }}
           >
             {metrics.map((metric) => (
@@ -551,6 +532,8 @@ export default function CaseStudy({
               Next →
             </span>
           )}
+        </div>
+          </div>
         </div>
       </div>
     </div>

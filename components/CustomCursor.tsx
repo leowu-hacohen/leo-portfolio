@@ -13,8 +13,9 @@ interface CursorState {
 export default function CustomCursor() {
   const x = useMotionValue(-100)
   const y = useMotionValue(-100)
-  const springX = useSpring(x, { damping: 28, stiffness: 380, mass: 0.35 })
-  const springY = useSpring(y, { damping: 28, stiffness: 380, mass: 0.35 })
+  // Snappy follow so the cursor doesn’t trail the pointer
+  const springX = useSpring(x, { damping: 40, stiffness: 600, mass: 0.2 })
+  const springY = useSpring(y, { damping: 40, stiffness: 600, mass: 0.2 })
 
   const [cursor, setCursor] = useState<CursorState>({
     variant: 'default',
@@ -95,9 +96,10 @@ export default function CustomCursor() {
           paddingLeft: isPill ? 18 : 0,
           paddingRight: isPill ? 18 : 0,
           background: '#111111',
-          borderRadius: isPill ? 999 : 999,
+          borderRadius: 999,
         }}
-        transition={{ type: 'spring', stiffness: 380, damping: 30, mass: 0.5 }}
+        // Tween, not spring: spring on width/padding felt laggy on hover
+        transition={{ type: 'tween', duration: 0.08, ease: [0.25, 0.1, 0.25, 1] }}
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -108,14 +110,14 @@ export default function CustomCursor() {
           whiteSpace: 'nowrap',
         }}
       >
-        <AnimatePresence mode="wait" initial={false}>
+        <AnimatePresence initial={false} mode="sync">
           {isPill && (
             <motion.span
               key={cursor.text}
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.18, ease: 'easeOut' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.05, ease: 'linear' }}
               style={{
                 fontFamily: jakarta,
                 fontSize: '13px',

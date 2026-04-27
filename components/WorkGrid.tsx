@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import LuminaOrb from './LuminaOrb'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
 
@@ -88,7 +89,14 @@ const CARDS: CardData[] = [
 
 function WorkCard({ card, index }: { card: CardData; index: number }) {
   const [hovered, setHovered] = useState(false)
-  const imageH = card.featured ? 360 : 260
+  const imageH =
+    card.id === 'nami' ? 500 : card.featured ? 360 : 260
+  const isNami = card.id === 'nami'
+  const isBeats = card.id === 'beats'
+  const isChagee = card.id === 'chagee'
+  const isLumina = card.id === 'lumina'
+  const isInNOut = card.id === 'in-n-out'
+  const isBcec = card.id === 'bcec'
   const isExternal = /^https?:\/\//i.test(card.href)
 
   const cardInner = (
@@ -104,13 +112,44 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
           position: 'relative',
           width: '100%',
           height: `${imageH}px`,
-          overflow: 'hidden',
           borderRadius: '12px',
-          background: '#f5f5f5',
+          overflow: isChagee ? 'visible' : 'hidden',
+          ...(isNami
+            ? {
+                backgroundImage: 'url(/work-cards/namibackdrop.png)',
+                backgroundSize: 'cover',
+                /* Anchor top-left: strongest left + up shift for cover; tweak % if a sliver looks off */
+                backgroundPosition: '0% 0%',
+                backgroundRepeat: 'no-repeat',
+              }
+            : {
+                background: isBeats
+                  ? '#000000'
+                  : isInNOut
+                    ? '#fff4e0'
+                    : isChagee
+                      ? '#f4efe8'
+                      : isLumina
+                        ? '#f0f2f6'
+                        : isBcec
+                          ? '#91a0c0'
+                          : '#f5f5f5',
+              }),
         }}
       >
         <motion.div
-          animate={{ scale: hovered ? 1.03 : 1 }}
+          animate={{
+            scale:
+              hovered &&
+              !isNami &&
+              !isBeats &&
+              !isChagee &&
+              !isLumina &&
+              !isInNOut &&
+              !isBcec
+                ? 1.03
+                : 1,
+          }}
           transition={{ type: 'spring', stiffness: 280, damping: 22 }}
           style={{
             width: '100%',
@@ -120,37 +159,140 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
             justifyContent: 'center',
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={`/icons/${card.icon}.svg`}
-            alt=""
-            width={80}
-            height={80}
-            style={{
-              width: '80px',
-              height: '80px',
-              display: 'block',
-              transform: `rotate(${card.iconRotation}deg)`,
-            }}
-          />
+          {isNami ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{
+                maxHeight: '420px',
+                width: 'auto',
+                maxWidth: '90%',
+                display: 'block',
+                objectFit: 'contain',
+                borderRadius: '12px',
+                overflow: 'hidden',
+              }}
+            >
+              <source src="/Nami.mp4" type="video/mp4" />
+            </video>
+          ) : isBeats ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src="/work-cards/beats-logo.png"
+              alt="Beats by Dre"
+              style={{
+                maxHeight: '58%',
+                width: 'auto',
+                maxWidth: '60%',
+                display: 'block',
+                objectFit: 'contain',
+              }}
+            />
+          ) : isChagee ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src="/work-cards/chageenew.png"
+              alt=""
+              style={{
+                maxHeight: '88%',
+                width: 'auto',
+                maxWidth: '82%',
+                display: 'block',
+                objectFit: 'contain',
+                transform: 'scale(2.5)',
+                transformOrigin: 'center center',
+              }}
+            />
+          ) : isLumina ? (
+            <LuminaOrb size={112} />
+          ) : isInNOut ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src="/work-cards/in-n-out-location-predictor-logo.png"
+              alt="In-N-Out Location Predictor"
+              style={{
+                maxHeight: '90%',
+                width: 'auto',
+                maxWidth: '92%',
+                display: 'block',
+                objectFit: 'contain',
+              }}
+            />
+          ) : isBcec ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src="/work-cards/bceclogo.png"
+              alt="BCEC"
+              style={{
+                maxHeight: '88%',
+                width: 'auto',
+                maxWidth: '88%',
+                display: 'block',
+                objectFit: 'contain',
+              }}
+            />
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={`/icons/${card.icon}.svg`}
+              alt=""
+              width={80}
+              height={80}
+              style={{
+                width: '80px',
+                height: '80px',
+                display: 'block',
+                transform: `rotate(${card.iconRotation}deg)`,
+              }}
+            />
+          )}
         </motion.div>
 
         {card.badge && (
           <span
-            style={{
-              position: 'absolute',
-              top: '16px',
-              left: '16px',
-              fontFamily: jakarta,
-              fontSize: '11px',
-              fontWeight: 600,
-              color: '#111',
-              background: '#ffffff',
-              border: '1px solid #e0e0e0',
-              borderRadius: '999px',
-              padding: '4px 10px',
-              letterSpacing: '0.04em',
-            }}
+            style={
+              isNami
+                ? {
+                    position: 'absolute',
+                    top: '16px',
+                    left: '16px',
+                    zIndex: 2,
+                    fontFamily: jakarta,
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    color: '#0d0d0f',
+                    letterSpacing: '0.05em',
+                    padding: '6px 14px',
+                    borderRadius: '999px',
+                    background:
+                      'linear-gradient(145deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.82) 45%, rgba(255,255,255,0.9) 100%)',
+                    backdropFilter: 'blur(12px) saturate(150%)',
+                    WebkitBackdropFilter: 'blur(12px) saturate(150%)',
+                    border: '1px solid rgba(255,255,255,0.95)',
+                    boxShadow: `
+                      0 2px 4px rgba(0,0,0,0.12),
+                      0 6px 20px rgba(0,0,0,0.1),
+                      0 1px 0 rgba(255,255,255,0.85) inset
+                    `,
+                    textShadow: '0 1px 0 rgba(255,255,255,0.9)',
+                  }
+                : {
+                    position: 'absolute',
+                    top: '16px',
+                    left: '16px',
+                    fontFamily: jakarta,
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    color: '#111',
+                    background: '#ffffff',
+                    border: '1px solid #e0e0e0',
+                    borderRadius: '999px',
+                    padding: '4px 10px',
+                    letterSpacing: '0.04em',
+                  }
+            }
           >
             {card.badge}
           </span>

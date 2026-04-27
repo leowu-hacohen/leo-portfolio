@@ -3,6 +3,7 @@ import CaseStudy from '../../components/CaseStudy'
 export default function NamiPage() {
   return (
     <CaseStudy
+      canvasBackdropSrc="/case-study/nami-canvas-backdrop.png"
       company="Nami"
       descriptor="AI-powered college counseling, built in 24 hours."
       role="Product Manager & Designer"

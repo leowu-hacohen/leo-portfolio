@@ -26,11 +26,11 @@ type RingIcon = {
 // Layout mirrors a top / mid-side / bottom arrangement on each side.
 const ringIcons: RingIcon[] = [
   {
-    name: 'headphones',
-    rotation: -8,
+    name: 'teacup',
+    rotation: -10,
     top: '18%',
     left: '18%',
-    href: '/beats',
+    href: '/work/chagee',
     external: false,
     pillText: 'See Case Study!',
   },
@@ -62,11 +62,11 @@ const ringIcons: RingIcon[] = [
     pillText: 'See Website!',
   },
   {
-    name: 'teacup',
-    rotation: -10,
+    name: 'headphones',
+    rotation: -8,
     top: '74%',
     left: '20%',
-    href: '/work/chagee',
+    href: '/beats',
     external: false,
     pillText: 'See Case Study!',
   },
@@ -148,14 +148,16 @@ export default function Hero() {
         >
           {(
             [
-              { label: 'About',  href: '/about' },
-              { label: 'Work',   href: '#work' },
+              { label: 'Home', href: '/' },
+              { label: 'About', href: '/about' },
+              { label: 'Work', href: '#work' },
               { label: 'Extras', href: '/extras' },
             ] as const
           ).map(({ label, href }) => (
             <Link
               key={label}
               href={href}
+              data-cursor-pill={label}
               style={{
                 fontFamily: 'var(--font-jakarta), sans-serif',
                 fontSize: '13px',
@@ -186,20 +188,26 @@ export default function Hero() {
 
         const iconNode = (
           <motion.div
-            animate={{ y: [0, -10, 0, 10, 0] }}
-            transition={{
-              duration: 4 + (i % 3) * 0.6,
-              ease: 'easeInOut',
-              repeat: Infinity,
-              delay: i * 0.25,
-            }}
+            whileHover={{ scale: 1.12 }}
+            transition={{ type: 'spring', stiffness: 420, damping: 18 }}
+            style={{ display: 'inline-block', cursor: 'pointer' }}
           >
-            <ObjectIcon
-              name={icon.name}
-              rotation={icon.rotation}
-              translateY={0}
-              size={ICON_SIZE}
-            />
+            <motion.div
+              animate={{ y: [0, -10, 0, 10, 0] }}
+              transition={{
+                duration: 4 + (i % 3) * 0.6,
+                ease: 'easeInOut',
+                repeat: Infinity,
+                delay: i * 0.25,
+              }}
+            >
+              <ObjectIcon
+                name={icon.name}
+                rotation={icon.rotation}
+                translateY={0}
+                size={ICON_SIZE}
+              />
+            </motion.div>
           </motion.div>
         )
 
@@ -261,9 +269,23 @@ export default function Hero() {
       >
         <motion.div
           variants={item}
-          style={{ ...displayStyle, marginBottom: '8px', pointerEvents: 'auto' }}
+          style={{
+            ...displayStyle,
+            marginBottom: '8px',
+            pointerEvents: 'auto',
+          }}
         >
-          Leo Wu-Hacohen is a PM
+          <Link
+            href="/about"
+            data-cursor-pill="About me"
+            style={{
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            Leo Wu-Hacohen
+          </Link>{' '}
+          is a PM
         </motion.div>
 
         <motion.div
@@ -296,6 +318,56 @@ export default function Hero() {
           </AnimatePresence>
         </motion.div>
       </motion.div>
+
+      {/* Scroll cue — bounces at the bottom of the viewport */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '28px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 3,
+          pointerEvents: 'auto',
+        }}
+      >
+        <motion.div
+          animate={{ y: [0, 7, 0] }}
+          transition={{
+            duration: 1.15,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <Link
+            href="#work"
+            scroll
+            data-cursor-pill="Work"
+            aria-label="Scroll to selected work"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#b0b0b0',
+              textDecoration: 'none',
+              opacity: 0.85,
+            }}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </Link>
+        </motion.div>
+      </div>
     </div>
   )
 }

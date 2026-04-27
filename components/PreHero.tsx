@@ -7,8 +7,6 @@ const ICONS = ['teacup', 'submarine', 'microphone', 'burger', 'headphones', 'bri
 const ICON_DURATION = 0.6
 const TOTAL_DURATION = ICONS.length * ICON_DURATION // 3.6s
 
-const jakarta = 'var(--font-jakarta), sans-serif'
-
 interface PreHeroProps {
   onComplete: () => void
 }
@@ -137,24 +135,6 @@ export default function PreHero({ onComplete }: PreHeroProps) {
               )
             })}
           </div>
-
-          {/* Subtle caption */}
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.4, ease: 'easeOut' }}
-            style={{
-              marginTop: '20px',
-              fontFamily: jakarta,
-              fontSize: '11px',
-              fontWeight: 500,
-              color: '#999',
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Warming up
-          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "tint-work-cards": "node scripts/tint-work-card-backgrounds.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",
@@ -19,6 +20,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.27",
+    "jimp": "^0.22.12",
     "postcss": "^8.5.8",
     "tailwindcss": "^3.4.19",
     "typescript": "^5"

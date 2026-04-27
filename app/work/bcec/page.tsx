@@ -2,48 +2,27 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import {
+  caseStudyBody,
+  caseStudyBulletChar,
+  caseStudyBulletList,
+  caseStudyContentMaxWidth,
+  caseStudyDescriptor,
+  caseStudyEyebrow,
+  caseStudyJakarta,
+  caseStudySectionBlock,
+  caseStudySectionHeading,
+  caseStudySectionLabel,
+  caseStudyTitle,
+} from '../../../components/caseStudyTheme'
 
-const jakarta = 'var(--font-jakarta), sans-serif'
-const noto = 'var(--font-noto), serif'
+const jakarta = caseStudyJakarta
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.55, ease: 'easeOut' as const, delay },
 })
-
-const sectionLabelStyle: React.CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '11px',
-  fontWeight: 500,
-  color: '#999',
-  letterSpacing: '0.14em',
-  textTransform: 'uppercase',
-  marginBottom: '14px',
-}
-
-const headingStyle: React.CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '24px',
-  fontWeight: 600,
-  color: '#111',
-  letterSpacing: '-0.01em',
-  margin: '0 0 16px',
-  lineHeight: 1.25,
-}
-
-const bodyStyle: React.CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '15px',
-  color: '#666',
-  lineHeight: 1.8,
-  margin: 0,
-  maxWidth: '680px',
-}
-
-const sectionWrap: React.CSSProperties = {
-  marginTop: '64px',
-}
 
 const Section = ({
   label,
@@ -59,10 +38,10 @@ const Section = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-40px' }}
     transition={{ duration: 0.55, ease: 'easeOut' }}
-    style={sectionWrap}
+    style={caseStudySectionBlock}
   >
-    <div style={sectionLabelStyle}>{label}</div>
-    <h2 style={headingStyle}>{heading}</h2>
+    <div style={caseStudySectionLabel}>{label}</div>
+    <h2 style={caseStudySectionHeading}>{heading}</h2>
     {children}
   </motion.section>
 )
@@ -79,8 +58,7 @@ export default function BcecPage() {
     >
       <div
         style={{
-          maxWidth: '780px',
-          margin: '0 auto',
+          ...caseStudyContentMaxWidth,
           padding: '0 40px 120px',
         }}
       >
@@ -97,6 +75,7 @@ export default function BcecPage() {
         >
           <Link
             href="/"
+            data-cursor-pill="Back"
             style={{
               fontFamily: jakarta,
               fontSize: '13px',
@@ -111,14 +90,16 @@ export default function BcecPage() {
           <div style={{ display: 'flex', gap: '32px' }}>
             {(
               [
-                { label: 'About',  href: '/about' },
-                { label: 'Work',   href: '/#work' },
+                { label: 'Home', href: '/' },
+                { label: 'About', href: '/about' },
+                { label: 'Work', href: '/#work' },
                 { label: 'Extras', href: '/extras' },
               ] as const
             ).map(({ label, href }) => (
               <Link
                 key={label}
                 href={href}
+                data-cursor-pill={label}
                 style={{
                   fontFamily: jakarta,
                   fontSize: '13px',
@@ -135,50 +116,17 @@ export default function BcecPage() {
         </motion.nav>
 
         {/* Eyebrow */}
-        <motion.div
-          {...fadeUp(0.05)}
-          style={{
-            fontFamily: jakarta,
-            fontSize: '12px',
-            fontWeight: 500,
-            color: '#999',
-            letterSpacing: '0.16em',
-            textTransform: 'uppercase',
-            marginBottom: '16px',
-          }}
-        >
+        <motion.div {...fadeUp(0.05)} style={caseStudyEyebrow}>
           Brand Strategy · Case Study
         </motion.div>
 
         {/* Title */}
-        <motion.h1
-          {...fadeUp(0.1)}
-          style={{
-            fontFamily: jakarta,
-            fontSize: '44px',
-            fontWeight: 600,
-            color: '#111',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            margin: 0,
-          }}
-        >
+        <motion.h1 {...fadeUp(0.1)} style={caseStudyTitle}>
           Business Careers in Entertainment Club: Brand Strategy
         </motion.h1>
 
         {/* One-line description */}
-        <motion.p
-          {...fadeUp(0.15)}
-          style={{
-            fontFamily: noto,
-            fontStyle: 'italic',
-            fontSize: '17px',
-            color: '#888',
-            margin: '14px 0 0',
-            lineHeight: 1.5,
-            maxWidth: '640px',
-          }}
-        >
+        <motion.p {...fadeUp(0.15)} style={caseStudyDescriptor}>
           Repositioning a niche club from &ldquo;industry insiders only&rdquo;
           into a business-skills hub for students who didn&apos;t know
           entertainment was an option.
@@ -189,7 +137,7 @@ export default function BcecPage() {
           label="Problem"
           heading="Seen as the club for people who already knew they wanted in."
         >
-          <p style={{ ...bodyStyle, marginBottom: '14px' }}>
+          <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
             BCEC was read as a club for students who already knew they wanted
             to work at Disney or Warner Bros. The reality: most business
             students don&apos;t know that Netflix has product managers,
@@ -198,7 +146,7 @@ export default function BcecPage() {
             world, but it reads as &ldquo;creative roles only&rdquo; to most
             students.
           </p>
-          <p style={bodyStyle}>
+          <p style={caseStudyBody}>
             Every student who dismissed us as &ldquo;not for me&rdquo; was a
             member we never recruited. The positioning was leaving real
             opportunity on the table.
@@ -210,20 +158,13 @@ export default function BcecPage() {
           label="My Role"
           heading="VP of Marketing · March 2025 – Present (1 year)"
         >
-          <p style={{ ...bodyStyle, marginBottom: '14px' }}>
+          <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
             Led the marketing committee in coordination with the executive
             board, event coordinators, and industry partners. Owned the
             positioning shift, the workshop curriculum direction, and content
             and messaging across channels.
           </p>
-          <ul
-            style={{
-              margin: 0,
-              padding: 0,
-              listStyle: 'none',
-              maxWidth: '680px',
-            }}
-          >
+          <ul style={caseStudyBulletList}>
             {[
               'Drove the brand repositioning from "entertainment networking" to "business careers at companies you use every day"',
               'Designed and led 5+ marketing workshops on branding, social strategy, and content',
@@ -234,31 +175,13 @@ export default function BcecPage() {
                 key={item}
                 style={{
                   display: 'flex',
-                  gap: '10px',
+                  gap: '8px',
                   alignItems: 'flex-start',
                   marginBottom: i < arr.length - 1 ? '8px' : 0,
                 }}
               >
-                <span
-                  style={{
-                    marginTop: '9px',
-                    width: '5px',
-                    height: '5px',
-                    borderRadius: '50%',
-                    background: '#111',
-                    flexShrink: 0,
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: jakarta,
-                    fontSize: '15px',
-                    color: '#666',
-                    lineHeight: 1.7,
-                  }}
-                >
-                  {item}
-                </span>
+                <span style={caseStudyBulletChar}>·</span>
+                <span style={caseStudyBody}>{item}</span>
               </li>
             ))}
           </ul>
@@ -269,7 +192,7 @@ export default function BcecPage() {
           label="Process"
           heading="Reposition the brand, teach over gatekeep, lower the barrier."
         >
-          <p style={{ ...bodyStyle, marginBottom: '28px' }}>
+          <p style={{ ...caseStudyBody, marginBottom: '28px' }}>
             We led with roles instead of industry glamour, made workshops
             tactical instead of aspirational, and treated entertainment as
             the case-study lens, not the endpoint.
@@ -322,7 +245,7 @@ export default function BcecPage() {
                   <div
                     style={{
                       fontFamily: jakarta,
-                      fontSize: '15px',
+                      fontSize: '16px',
                       fontWeight: 600,
                       color: '#111',
                       marginBottom: '6px',
@@ -330,14 +253,7 @@ export default function BcecPage() {
                   >
                     {title}
                   </div>
-                  <p
-                    style={{
-                      ...bodyStyle,
-                      maxWidth: '620px',
-                    }}
-                  >
-                    {copy}
-                  </p>
+                  <p style={caseStudyBody}>{copy}</p>
                 </div>
               </div>
             ))}
@@ -396,7 +312,7 @@ export default function BcecPage() {
               </div>
             ))}
           </div>
-          <p style={bodyStyle}>
+          <p style={caseStudyBody}>
             Brand positioning isn&apos;t just about what you say. It&apos;s
             about who feels welcome when they hear it. Lowering the barrier
             to entry didn&apos;t dilute the brand; it expanded the impact.

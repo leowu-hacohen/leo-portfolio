@@ -39,6 +39,7 @@ export default function BeatsPage() {
       >
         <Link
           href="/"
+          data-cursor-pill="Back"
           style={{
             fontFamily: jakarta,
             fontSize: '13px',
@@ -53,14 +54,16 @@ export default function BeatsPage() {
         <div style={{ display: 'flex', gap: '32px' }}>
           {(
             [
-              { label: 'About',  href: '/about' },
-              { label: 'Work',   href: '/#work' },
+              { label: 'Home', href: '/' },
+              { label: 'About', href: '/about' },
+              { label: 'Work', href: '/#work' },
               { label: 'Extras', href: '/extras' },
             ] as const
           ).map(({ label, href }) => (
             <Link
               key={label}
               href={href}
+              data-cursor-pill={label}
               style={{
                 fontFamily: jakarta,
                 fontSize: '13px',

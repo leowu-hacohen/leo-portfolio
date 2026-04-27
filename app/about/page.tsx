@@ -2,14 +2,30 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useEffect, useState, type CSSProperties } from 'react'
+import AboutPhotoCycle from '../../components/AboutPhotoCycle'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
 const noto = 'var(--font-noto), serif'
 
 const navLinks = [
+  { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Work', href: '/#work' },
   { label: 'Extras', href: '/extras' },
+] as const
+
+/** Exact filenames under public/aboutme/ (case-sensitive on deploy) */
+const VERT_IMAGES = [
+  '/aboutme/Ver1.JPG',
+  '/aboutme/Ver2.jpeg',
+  '/aboutme/Ver3.jpeg',
+] as const
+
+const HORIZ_IMAGES = [
+  '/aboutme/Horz1.JPG',
+  '/aboutme/Horz2.jpeg',
+  '/aboutme/Horz3.JPG',
 ] as const
 
 const fadeUp = (delay = 0) => ({
@@ -18,115 +34,115 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.55, ease: 'easeOut' as const, delay },
 })
 
-const sectionEyebrow: React.CSSProperties = {
+/* TODO: confirm dates and titles */
+const experience: { company: string; role: string; year: string }[] = [
+  { company: 'CHAGEE', role: '0studio / product', year: '2026' },
+  { company: 'Beats by Dre', role: 'Data Analytics Extern', year: '2026' },
+  { company: 'CHAGEE', role: 'Product Marketing Intern', year: '2024-2025' },
+]
+
+/* TODO: confirm graduation year */
+const education: { school: string; detail: string; year: string }[] = [
+  {
+    school: 'UC Irvine',
+    detail: 'B.S. Business Information Management',
+    year: 'Expected 2026',
+  },
+]
+
+const skills: string[] = [
+  'Product & GTM (research, scoping, launch)',
+  'Data: SQL, dashboards, A/B readouts',
+  'Design: Figma, systems thinking',
+  'Writing for execs, users, and docs',
+  'Tooling: Cursor, Notion, light automation',
+]
+
+/** Right column: two stacked images — middle column portrait height matches this block (ref layout). */
+const HORIZ_SLOT_H = 300
+const HORIZ_STACK_GAP = 16
+const TALL_PORTRAIT_PX = HORIZ_SLOT_H * 2 + HORIZ_STACK_GAP
+
+/** Slower, gentler cross-fades; horizontals use one shared tick so the two never show the same image */
+const PHOTO_INTERVAL_MS = 8000
+const PHOTO_FADE_SEC = 1.4
+
+const imageCaptionBase = {
   fontFamily: jakarta,
-  fontSize: '11px',
-  fontWeight: 500,
-  color: '#999',
-  letterSpacing: '0.12em',
-  textTransform: 'uppercase',
-  marginBottom: '20px',
+  fontSize: '12px' as const,
+  lineHeight: 1.65,
+  color: '#9a9a9a',
+  marginTop: '14px',
+  fontStyle: 'italic' as const,
+  maxWidth: '100%',
 }
 
-const headingStyle: React.CSSProperties = {
+const aboutSideSectionTitle: CSSProperties = {
   fontFamily: jakarta,
-  fontSize: '28px',
+  fontSize: '20px',
   fontWeight: 600,
   color: '#111',
   letterSpacing: '-0.02em',
-  lineHeight: 1.2,
-  margin: '0 0 32px 0',
+  margin: '0 0 4px 0',
 }
 
-const statRows: { label: string; value: number; max: number }[] = [
-  { label: 'Communication', value: 9, max: 10 },
-  { label: 'Creativity', value: 9, max: 10 },
-  { label: 'Strategic Thinking', value: 9, max: 10 },
-  { label: 'Execution', value: 8, max: 10 },
-  { label: 'Technical Ability', value: 7, max: 10 },
-]
-
-const hobbies: { emoji: string; name: string; level: string }[] = [
-  { emoji: '🏃', name: 'Morning runs', level: 'LVL 3' },
-  { emoji: '🎧', name: 'DJing', level: 'INTERMEDIATE' },
-  { emoji: '🎸', name: 'Guitar', level: 'LVL 2' },
-  { emoji: '🏀', name: 'Basketball', level: 'LVL 4' },
-  { emoji: '📷', name: 'Concert Photography', level: 'INTERMEDIATE' },
-  { emoji: '🎲', name: 'Board Games', level: 'LVL 3' },
-  { emoji: '🎾', name: 'Squash', level: 'LVL 1' },
-  { emoji: '⭐', name: 'Beli Ratings', level: 'INTERMEDIATE' },
-  { emoji: '💻', name: 'Vibe Coding', level: 'LVL 2' },
-]
-
-function StatRow({
-  label,
-  value,
-  max,
+function ResumeRow({
+  left,
+  year,
+  isLast = false,
 }: {
-  label: string
-  value: number
-  max: number
+  left: string
+  year: string
+  isLast?: boolean
 }) {
-  const pct = (value / max) * 100
   return (
     <div
       style={{
         display: 'flex',
-        flexDirection: 'column',
-        gap: '8px',
+        justifyContent: 'space-between',
+        alignItems: 'baseline',
+        gap: '16px',
+        padding: '12px 0',
+        borderBottom: isLast ? 'none' : '0.5px solid #e8e8e8',
+        fontFamily: jakarta,
+        fontSize: '15px',
+        color: '#111',
+        lineHeight: 1.45,
       }}
     >
-      <div
+      <span style={{ fontWeight: 400 }}>{left}</span>
+      <span
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
+          fontSize: '14px',
+          fontWeight: 400,
+          color: '#666',
+          flexShrink: 0,
         }}
       >
-        <span
-          style={{
-            fontFamily: jakarta,
-            fontSize: '15px',
-            fontWeight: 500,
-            color: '#111',
-          }}
-        >
-          {label}
-        </span>
-        <span
-          style={{
-            fontFamily: jakarta,
-            fontSize: '13px',
-            fontWeight: 400,
-            color: '#666',
-          }}
-        >
-          {value}/{max} {/* TODO */}
-        </span>
-      </div>
-      <div
-        style={{
-          height: '4px',
-          background: '#f0f0f0',
-          borderRadius: '9999px',
-          overflow: 'hidden',
-        }}
-      >
-        <div
-          style={{
-            width: `${pct}%`,
-            height: '100%',
-            background: '#111',
-            borderRadius: '9999px',
-            transition: 'width 0.5s ease-out',
-          }}
-        />
-      </div>
+        {year}
+      </span>
     </div>
   )
 }
 
 export default function AboutPage() {
+  const nHoriz = HORIZ_IMAGES.length
+  const [hIndex, setHIndex] = useState(0)
+
+  useEffect(() => {
+    console.log('[About] vertical image paths:', [...VERT_IMAGES])
+    console.log('[About] horizontal image paths:', [...HORIZ_IMAGES])
+  }, [])
+
+  useEffect(() => {
+    if (nHoriz < 2) return
+    const t = window.setInterval(
+      () => setHIndex((i) => (i + 1) % nHoriz),
+      PHOTO_INTERVAL_MS,
+    )
+    return () => window.clearInterval(t)
+  }, [nHoriz])
+
   return (
     <div
       style={{
@@ -134,196 +150,308 @@ export default function AboutPage() {
         minHeight: '100vh',
         fontFamily: jakarta,
         color: '#111',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
-      <div
+      <motion.nav
+        {...fadeUp(0)}
         style={{
-          maxWidth: '800px',
-          margin: '0 auto',
-          padding: '0 40px 120px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '40px',
+          padding: '28px 40px 0',
+          flexShrink: 0,
         }}
       >
-        {/* Top nav: same as homepage (About · Work · Extras) */}
-        <motion.nav
-          {...fadeUp(0)}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '40px',
-            paddingTop: '28px',
-            paddingBottom: '64px',
-          }}
-        >
-          {navLinks.map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              style={{
-                fontFamily: jakarta,
-                fontSize: '13px',
-                fontWeight: 400,
-                color: '#b0b0b0',
-                textDecoration: 'none',
-                letterSpacing: '0.02em',
-              }}
-            >
-              {label}
-            </Link>
-          ))}
-        </motion.nav>
+        {navLinks.map(({ label, href }) => (
+          <Link
+            key={label}
+            href={href}
+            data-cursor-pill={label}
+            style={{
+              fontFamily: jakarta,
+              fontSize: '13px',
+              fontWeight: 400,
+              color: '#b0b0b0',
+              textDecoration: 'none',
+              letterSpacing: '0.02em',
+            }}
+          >
+            {label}
+          </Link>
+        ))}
+      </motion.nav>
 
-        {/* Page title */}
-        <motion.h1
+      <div
+        style={{
+          flex: 1,
+          maxWidth: '1200px',
+          width: '100%',
+          margin: '0 auto',
+          minHeight: 0,
+          padding: '0 24px 80px',
+        }}
+      >
+        {/* Three columns: copy | tall portrait | two stacked (Emmi-style grid) */}
+        <div
+          className="about-page-grid"
+          style={{ paddingTop: '8px' }}
+        >
+        <motion.aside
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: 'easeOut' }}
+          transition={{ duration: 0.55, ease: 'easeOut' as const }}
+          className="about-side-column"
           style={{
-            fontFamily: jakarta,
-            fontSize: '44px',
-            fontWeight: 600,
-            color: '#111',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            margin: '0 0 64px 0',
-            textAlign: 'center',
+            minWidth: 0,
+            boxSizing: 'border-box',
+            padding: '60px 8px 60px 0',
+            height: '100%',
+            alignSelf: 'stretch',
+            minHeight: 0,
           }}
         >
-          About
-        </motion.h1>
-
-        {/* Section 1: Character sheet */}
-        <motion.section
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          <div style={sectionEyebrow}>Character sheet</div>
-          <h2 style={headingStyle}>How I work</h2>
-          {/* TODO */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr',
-              gap: '24px',
-            }}
-          >
-            {statRows.map((row) => (
-              <div
-                key={row.label}
-                style={{
-                  background: '#fafafa',
-                  border: '1px solid #f0f0f0',
-                  borderRadius: '12px',
-                  padding: '20px 24px',
-                }}
-              >
-                <StatRow label={row.label} value={row.value} max={row.max} />
-              </div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Section 2: Leveling up */}
-        <motion.section
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          style={{ marginTop: '96px' }}
-        >
-          <div style={sectionEyebrow}>Leveling up</div>
-          <h2 style={headingStyle}>Off the clock</h2>
-          {/* TODO */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '12px',
-            }}
-          >
-            {hobbies.map((h) => (
-              <div
-                key={h.name}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '14px',
-                  padding: '18px 20px',
-                  background: '#ffffff',
-                  border: '1px solid #e8e8e8',
-                  borderRadius: '12px',
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: '28px',
-                    lineHeight: 1,
-                    flexShrink: 0,
-                  }}
-                  role="img"
-                  aria-hidden
-                >
-                  {h.emoji}
-                </span>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div
-                    style={{
-                      fontFamily: jakarta,
-                      fontSize: '15px',
-                      fontWeight: 500,
-                      color: '#111',
-                    }}
-                  >
-                    {h.name}
-                  </div>
-                </div>
-                <span
-                  style={{
-                    fontFamily: jakarta,
-                    fontSize: '10px',
-                    fontWeight: 600,
-                    color: '#666',
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase',
-                    whiteSpace: 'nowrap',
-                    flexShrink: 0,
-                  }}
-                >
-                  {h.level} {/* TODO */}
-                </span>
-              </div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Section 3: Philosophy */}
-        <motion.section
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          style={{ marginTop: '96px', textAlign: 'center' }}
-        >
-          <div style={sectionEyebrow}>Philosophy</div>
-          <p
+          <h1
             style={{
               fontFamily: noto,
-              fontSize: '22px',
-              fontStyle: 'italic',
-              fontWeight: 400,
-              color: '#666',
-              lineHeight: 1.6,
-              maxWidth: '520px',
-              margin: '0 auto',
+              fontSize: '40px',
+              fontWeight: 600,
+              color: '#111',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.15,
+              margin: '0 0 24px 0',
             }}
           >
-            {/* TODO */}
-            I don&apos;t move on a problem until I understand the why.
-            Everything else follows.
+            Hi, I&apos;m Leo.
+          </h1>
+
+          <p
+            style={{
+              fontFamily: jakarta,
+              fontSize: '16px',
+              fontWeight: 400,
+              color: '#4a4a4a',
+              lineHeight: 1.75,
+              margin: '0 0 22px 0',
+            }}
+          >
+            I&apos;m a third-year Business Information Management student at UC
+            Irvine, focused on product management. Over the past two years
+            I&apos;ve worked across marketing, data, and product, at a tea brand
+            scaling across the US, a data analytics externship at Beats by Dre,
+            and a handful of hackathons where I learned to ship fast and figure
+            things out under pressure.
           </p>
-        </motion.section>
+
+          <p
+            style={{
+              fontFamily: jakarta,
+              fontSize: '16px',
+              fontWeight: 400,
+              color: '#4a4a4a',
+              lineHeight: 1.75,
+              margin: '0 0 22px 0',
+            }}
+          >
+            I&apos;m drawn to the early stages of problems, when things
+            aren&apos;t fully defined yet and the most important thing is asking
+            the right question. I try to understand people before I try to solve
+            anything.
+          </p>
+
+          <p
+            style={{
+              fontFamily: jakarta,
+              fontSize: '16px',
+              fontWeight: 400,
+              color: '#4a4a4a',
+              lineHeight: 1.75,
+              margin: '0 0 32px 0',
+            }}
+          >
+            Outside of work I&apos;m running toward a half marathon, shooting
+            concerts, playing board games too seriously, rating every restaurant
+            on Beli, and building things with Claude and Cursor.
+          </p>
+
+          <p
+            style={{
+              fontFamily: jakarta,
+              fontSize: '15px',
+              fontWeight: 400,
+              color: '#4a4a4a',
+              margin: '0 0 0 0',
+              lineHeight: 1.6,
+            }}
+          >
+            {/* TODO: set real LinkedIn URL */}
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#111', textDecoration: 'underline' }}
+            >
+              LinkedIn
+            </a>
+            <span style={{ color: '#ccc', margin: '0 10px' }}>·</span>
+            {/* TODO: confirm email */}
+            <a
+              href="mailto:leowuhacohen@gmail.com"
+              style={{ color: '#111', textDecoration: 'underline' }}
+            >
+              Email
+            </a>
+            <span style={{ color: '#ccc', margin: '0 10px' }}>·</span>
+            {/* TODO: replace with your real E.164 number in href */}
+            <a
+              href="tel:+15555550100"
+              style={{ color: '#111', textDecoration: 'underline' }}
+            >
+              Phone
+            </a>
+          </p>
+
+          <div style={{ marginTop: '40px', marginBottom: '0' }}>
+            <h2 style={aboutSideSectionTitle}>Experience</h2>
+            <div>
+              {experience.map((row, i) => (
+                <ResumeRow
+                  key={`${row.company}-${row.role}`}
+                  left={`${row.company} / ${row.role}`}
+                  year={row.year}
+                  isLast={i === experience.length - 1}
+                />
+              ))}
+            </div>
+          </div>
+
+        </motion.aside>
+
+        <motion.aside
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: 'easeOut' as const, delay: 0.06 }}
+          className="about-side-column"
+          style={{
+            minWidth: 0,
+            boxSizing: 'border-box',
+            padding: '60px 4px 60px 4px',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            height: '100%',
+            alignSelf: 'stretch',
+          }}
+        >
+          <AboutPhotoCycle
+            images={VERT_IMAGES}
+            heightPx={TALL_PORTRAIT_PX}
+            intervalMs={PHOTO_INTERVAL_MS}
+            fadeSec={PHOTO_FADE_SEC}
+            sizes="(max-width: 900px) 100vw, 33vw"
+          />
+          <p style={imageCaptionBase}>
+            Vertical slice of life. Shuffles on a timer so one particular hair day
+            can&apos;t monopolize the page.
+          </p>
+          <div style={{ width: '100%', marginTop: 'auto', paddingTop: '28px' }}>
+            <h2 style={aboutSideSectionTitle}>Education</h2>
+            <div>
+              {education.map((row, i) => (
+                <ResumeRow
+                  key={`${row.school}-${row.detail}`}
+                  left={`${row.school} / ${row.detail}`}
+                  year={row.year}
+                  isLast={i === education.length - 1}
+                />
+              ))}
+            </div>
+          </div>
+        </motion.aside>
+
+        <motion.aside
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: 'easeOut' as const, delay: 0.12 }}
+          className="about-side-column"
+          style={{
+            minWidth: 0,
+            boxSizing: 'border-box',
+            padding: '60px 0 60px 4px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: `${HORIZ_STACK_GAP}px`,
+            width: '100%',
+            minHeight: 0,
+            height: '100%',
+            alignSelf: 'stretch',
+            alignItems: 'stretch',
+          }}
+        >
+          <AboutPhotoCycle
+            images={HORIZ_IMAGES}
+            heightPx={HORIZ_SLOT_H}
+            activeIndex={hIndex}
+            fadeSec={PHOTO_FADE_SEC}
+            sizes="(max-width: 900px) 100vw, 33vw"
+          />
+          <AboutPhotoCycle
+            images={HORIZ_IMAGES}
+            heightPx={HORIZ_SLOT_H}
+            activeIndex={(hIndex + 1) % nHoriz}
+            fadeSec={PHOTO_FADE_SEC}
+            sizes="(max-width: 900px) 100vw, 33vw"
+          />
+          <p style={imageCaptionBase}>
+            Widescreen evidence. Cycles in sync-ish pairs because singling out one
+            frame would be rude to the other two. Not to scale. No refunds. If
+            they load slow, the pixels are just shy.
+          </p>
+          <div style={{ width: '100%', marginTop: 'auto', paddingTop: '28px' }}>
+            <h2 style={aboutSideSectionTitle}>Skills</h2>
+            <ul
+              style={{
+                listStyle: 'none',
+                margin: 0,
+                padding: 0,
+                fontFamily: jakarta,
+                fontSize: '15px',
+                color: '#111',
+                lineHeight: 1.5,
+              }}
+            >
+              {skills.map((skill, i) => (
+                <li
+                  key={skill}
+                  style={{
+                    display: 'flex',
+                    gap: '8px',
+                    alignItems: 'flex-start',
+                    padding: '8px 0',
+                    borderBottom:
+                      i < skills.length - 1 ? '0.5px solid #e8e8e8' : 'none',
+                  }}
+                >
+                  <span
+                    style={{
+                      color: '#b0b0b0',
+                      flexShrink: 0,
+                      lineHeight: 1.45,
+                    }}
+                    aria-hidden
+                  >
+                    ·
+                  </span>
+                  <span style={{ lineHeight: 1.45 }}>{skill}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.aside>
+        </div>
       </div>
     </div>
   )

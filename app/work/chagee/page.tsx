@@ -1,49 +1,29 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import {
+  caseStudyBody,
+  caseStudyBulletChar,
+  caseStudyBulletList,
+  caseStudyContentMaxWidth,
+  caseStudyDescriptor,
+  caseStudyEyebrow,
+  caseStudyJakarta,
+  caseStudySectionBlock,
+  caseStudySectionHeading,
+  caseStudySectionLabel,
+  caseStudyTitle,
+} from '../../../components/caseStudyTheme'
 
-const jakarta = 'var(--font-jakarta), sans-serif'
-const noto = 'var(--font-noto), serif'
+const jakarta = caseStudyJakarta
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.55, ease: 'easeOut' as const, delay },
 })
-
-const sectionLabelStyle: React.CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '11px',
-  fontWeight: 500,
-  color: '#999',
-  letterSpacing: '0.14em',
-  textTransform: 'uppercase',
-  marginBottom: '14px',
-}
-
-const headingStyle: React.CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '24px',
-  fontWeight: 600,
-  color: '#111',
-  letterSpacing: '-0.01em',
-  margin: '0 0 16px',
-  lineHeight: 1.25,
-}
-
-const bodyStyle: React.CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '15px',
-  color: '#666',
-  lineHeight: 1.8,
-  margin: 0,
-  maxWidth: '680px',
-}
-
-const sectionWrap: React.CSSProperties = {
-  marginTop: '64px',
-}
 
 const Section = ({
   label,
@@ -59,10 +39,10 @@ const Section = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-40px' }}
     transition={{ duration: 0.55, ease: 'easeOut' }}
-    style={sectionWrap}
+    style={caseStudySectionBlock}
   >
-    <div style={sectionLabelStyle}>{label}</div>
-    <h2 style={headingStyle}>{heading}</h2>
+    <div style={caseStudySectionLabel}>{label}</div>
+    <h2 style={caseStudySectionHeading}>{heading}</h2>
     {children}
   </motion.section>
 )
@@ -79,8 +59,7 @@ export default function ChageePage() {
     >
       <div
         style={{
-          maxWidth: '780px',
-          margin: '0 auto',
+          ...caseStudyContentMaxWidth,
           padding: '0 40px 120px',
         }}
       >
@@ -97,6 +76,7 @@ export default function ChageePage() {
         >
           <Link
             href="/"
+            data-cursor-pill="Back"
             style={{
               fontFamily: jakarta,
               fontSize: '13px',
@@ -111,14 +91,16 @@ export default function ChageePage() {
           <div style={{ display: 'flex', gap: '32px' }}>
             {(
               [
-                { label: 'About',  href: '/about' },
-                { label: 'Work',   href: '/#work' },
+                { label: 'Home', href: '/' },
+                { label: 'About', href: '/about' },
+                { label: 'Work', href: '/#work' },
                 { label: 'Extras', href: '/extras' },
               ] as const
             ).map(({ label, href }) => (
               <Link
                 key={label}
                 href={href}
+                data-cursor-pill={label}
                 style={{
                   fontFamily: jakarta,
                   fontSize: '13px',
@@ -134,51 +116,52 @@ export default function ChageePage() {
           </div>
         </motion.nav>
 
-        {/* Eyebrow */}
+        {/* Hero canvas: warm tea-paper (matches work card) */}
         <motion.div
-          {...fadeUp(0.05)}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           style={{
-            fontFamily: jakarta,
-            fontSize: '12px',
-            fontWeight: 500,
-            color: '#999',
-            letterSpacing: '0.16em',
-            textTransform: 'uppercase',
-            marginBottom: '16px',
+            width: 'calc(100% + 80px)',
+            marginLeft: '-40px',
+            marginRight: '-40px',
+            minHeight: 'min(48vh, 480px)',
+            background: '#f4efe8',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: '40px',
+            padding: '48px 40px',
+            boxSizing: 'border-box',
           }}
         >
+          <Image
+            src="/work-cards/chageenew.png"
+            alt="CHAGEE"
+            width={1080}
+            height={1350}
+            priority
+            style={{
+              width: 'min(82vw, 420px)',
+              maxWidth: '100%',
+              height: 'auto',
+              objectFit: 'contain',
+            }}
+          />
+        </motion.div>
+
+        {/* Eyebrow */}
+        <motion.div {...fadeUp(0.05)} style={caseStudyEyebrow}>
           Product Marketing · Case Study
         </motion.div>
 
         {/* Title */}
-        <motion.h1
-          {...fadeUp(0.1)}
-          style={{
-            fontFamily: jakarta,
-            fontSize: '44px',
-            fontWeight: 600,
-            color: '#111',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            margin: 0,
-          }}
-        >
+        <motion.h1 {...fadeUp(0.1)} style={caseStudyTitle}>
           CHAGEE USA: First Market Launch
         </motion.h1>
 
         {/* One-line description */}
-        <motion.p
-          {...fadeUp(0.15)}
-          style={{
-            fontFamily: noto,
-            fontStyle: 'italic',
-            fontSize: '17px',
-            color: '#888',
-            margin: '14px 0 0',
-            lineHeight: 1.5,
-            maxWidth: '640px',
-          }}
-        >
+        <motion.p {...fadeUp(0.15)} style={caseStudyDescriptor}>
           Launching a brand from zero in a saturated US market, and turning
           opening day into an event people couldn&apos;t miss.
         </motion.p>
@@ -188,7 +171,7 @@ export default function ChageePage() {
           label="Problem"
           heading="A massive brand in Asia. A complete unknown in Orange County."
         >
-          <p style={bodyStyle}>
+          <p style={caseStudyBody}>
             CHAGEE has Starbucks-level recognition across Asia. In the US, we
             were starting from zero. The boba market here is crowded and runs
             on word-of-mouth: people try a new shop because a friend posted
@@ -203,20 +186,13 @@ export default function ChageePage() {
           label="My Role"
           heading="Product Marketing Intern · 4 months"
         >
-          <p style={{ ...bodyStyle, marginBottom: '14px' }}>
+          <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
             Embedded with the Marketing Manager, Social Media Lead, the
             operations team, and an external creative agency. Owned creator
             strategy, soft-opening choreography, and cross-functional launch
             coordination across marketing, ops, and agency partners.
           </p>
-          <ul
-            style={{
-              margin: 0,
-              padding: 0,
-              listStyle: 'none',
-              maxWidth: '680px',
-            }}
-          >
+          <ul style={caseStudyBulletList}>
             {[
               'Mapped and managed 100+ local OC creator relationships end-to-end',
               'Built the soft-opening guest list, briefs, and on-site shot list',
@@ -227,31 +203,13 @@ export default function ChageePage() {
                 key={item}
                 style={{
                   display: 'flex',
-                  gap: '10px',
+                  gap: '8px',
                   alignItems: 'flex-start',
                   marginBottom: i < arr.length - 1 ? '8px' : 0,
                 }}
               >
-                <span
-                  style={{
-                    marginTop: '9px',
-                    width: '5px',
-                    height: '5px',
-                    borderRadius: '50%',
-                    background: '#111',
-                    flexShrink: 0,
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: jakarta,
-                    fontSize: '15px',
-                    color: '#666',
-                    lineHeight: 1.7,
-                  }}
-                >
-                  {item}
-                </span>
+                <span style={caseStudyBulletChar}>·</span>
+                <span style={caseStudyBody}>{item}</span>
               </li>
             ))}
           </ul>
@@ -262,7 +220,7 @@ export default function ChageePage() {
           label="Process"
           heading="Three phases: build buzz, manufacture FOMO, sustain momentum."
         >
-          <p style={{ ...bodyStyle, marginBottom: '28px' }}>
+          <p style={{ ...caseStudyBody, marginBottom: '28px' }}>
             We treated the launch like a product, not a campaign. Every
             touchpoint (DMs, preview events, packaging, store design) was
             optimized for shareability. If it wasn&apos;t Instagram-worthy, we
@@ -316,7 +274,7 @@ export default function ChageePage() {
                   <div
                     style={{
                       fontFamily: jakarta,
-                      fontSize: '15px',
+                      fontSize: '16px',
                       fontWeight: 600,
                       color: '#111',
                       marginBottom: '6px',
@@ -324,14 +282,7 @@ export default function ChageePage() {
                   >
                     {title}
                   </div>
-                  <p
-                    style={{
-                      ...bodyStyle,
-                      maxWidth: '620px',
-                    }}
-                  >
-                    {copy}
-                  </p>
+                  <p style={caseStudyBody}>{copy}</p>
                 </div>
               </div>
             ))}
@@ -390,7 +341,7 @@ export default function ChageePage() {
               </div>
             ))}
           </div>
-          <p style={bodyStyle}>
+          <p style={caseStudyBody}>
             GTM isn&apos;t about the biggest budget. It&apos;s about reading
             the audience, picking the right channels, and creating moments
             worth talking about. In a crowded market, momentum is everything;

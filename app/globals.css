@@ -21,6 +21,25 @@ body {
   font-family: var(--font-jakarta), sans-serif;
 }
 
+/* About: three equal columns (text | portrait | two stacked) — see Emmi-style layout */
+.about-page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: stretch;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .about-page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-side-column {
+    height: auto !important;
+  }
+}
+
 .font-jakarta {
   font-family: var(--font-jakarta), sans-serif;
 }
