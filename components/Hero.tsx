@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import ObjectIcon from './ObjectIcon'
 
 const icons = [
@@ -9,6 +12,16 @@ const icons = [
   { name: 'burger',     rotation: -12, translateY:  12 },
   { name: 'briefcase',  rotation:  10, translateY:  -8 },
 ]
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+}
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+}
 
 const displayStyle: React.CSSProperties = {
   fontFamily: 'var(--font-jakarta), sans-serif',
@@ -29,8 +42,11 @@ export default function Hero() {
         flexDirection: 'column',
       }}
     >
-      {/* Nav */}
-      <nav
+      {/* Nav animates in as one unit */}
+      <motion.nav
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -54,10 +70,13 @@ export default function Hero() {
             {label}
           </Link>
         ))}
-      </nav>
+      </motion.nav>
 
-      {/* Hero — paddingBottom offsets center upward */}
-      <div
+      {/* Hero — stagger container */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
         style={{
           flex: 1,
           display: 'flex',
@@ -68,21 +87,6 @@ export default function Hero() {
           overflow: 'visible',
         }}
       >
-        {/* Name tag */}
-        <p
-          style={{
-            fontFamily: 'var(--font-jakarta), sans-serif',
-            fontSize: '10px',
-            fontWeight: 500,
-            color: '#c0c0c0',
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-            margin: '0 0 24px 0',
-          }}
-        >
-          Leo Wu-Hacohen
-        </p>
-
         {/* Line 1: product [submarine] manager [headphones] */}
         <div
           style={{
@@ -92,13 +96,17 @@ export default function Hero() {
             overflow: 'visible',
           }}
         >
-          <span style={displayStyle}>product</span>
-          <ObjectIcon {...icons[0]} />
-          <span style={displayStyle}>manager</span>
-          <ObjectIcon {...icons[1]} />
+          <motion.span variants={item} style={displayStyle}>product</motion.span>
+          <motion.span variants={item} style={{ display: 'inline-block', flexShrink: 0 }}>
+            <ObjectIcon {...icons[0]} />
+          </motion.span>
+          <motion.span variants={item} style={displayStyle}>manager</motion.span>
+          <motion.span variants={item} style={{ display: 'inline-block', flexShrink: 0 }}>
+            <ObjectIcon {...icons[1]} />
+          </motion.span>
         </div>
 
-        {/* Line 2: [teacup] [microphone] who ships. [burger] [briefcase] */}
+        {/* Line 2: [teacup] [microphone] who ships with taste. [burger] [briefcase] */}
         <div
           style={{
             display: 'flex',
@@ -108,38 +116,21 @@ export default function Hero() {
             overflow: 'visible',
           }}
         >
-          <ObjectIcon {...icons[2]} />
-          <ObjectIcon {...icons[3]} />
-          <span style={displayStyle}>who ships.</span>
-          <ObjectIcon {...icons[4]} />
-          <ObjectIcon {...icons[5]} />
+          <motion.span variants={item} style={{ display: 'inline-block', flexShrink: 0 }}>
+            <ObjectIcon {...icons[2]} />
+          </motion.span>
+          <motion.span variants={item} style={{ display: 'inline-block', flexShrink: 0 }}>
+            <ObjectIcon {...icons[3]} />
+          </motion.span>
+          <motion.span variants={item} style={displayStyle}>who ships with taste.</motion.span>
+          <motion.span variants={item} style={{ display: 'inline-block', flexShrink: 0 }}>
+            <ObjectIcon {...icons[4]} />
+          </motion.span>
+          <motion.span variants={item} style={{ display: 'inline-block', flexShrink: 0 }}>
+            <ObjectIcon {...icons[5]} />
+          </motion.span>
         </div>
-
-        {/* Divider */}
-        <div
-          style={{
-            width: '320px',
-            height: '1px',
-            background: '#e5e5e5',
-            margin: '40px 0 20px',
-          }}
-        />
-
-        {/* Subtitle */}
-        <p
-          style={{
-            fontFamily: 'var(--font-jakarta), sans-serif',
-            fontSize: '11px',
-            fontWeight: 400,
-            color: '#b5b5b5',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            margin: 0,
-          }}
-        >
-          Product Manager · UC Irvine · Class of &apos;27
-        </p>
-      </div>
+      </motion.div>
     </div>
   )
 }
