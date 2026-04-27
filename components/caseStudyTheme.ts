@@ -2,30 +2,40 @@ import type { CSSProperties } from 'react'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
 
-/** Small caps labels (eyebrow, section tags, meta) */
-const caseStudyLabelAccent = '#b42318'
+/** Per-project accent for small-caps labels (eyebrow, PROBLEM, Role, etc.) */
+export const CASE_STUDY_LABEL_COLORS = {
+  chagee: '#a82620',
+  bcec: '#2a4a7a',
+  inNOut: '#c40000',
+  nami: '#0d5a9a',
+  designUci: '#2563eb',
+} as const
+
+export type CaseStudyLabelKey = keyof typeof CASE_STUDY_LABEL_COLORS
 
 export const caseStudyJakarta = jakarta
 
-/** Eyebrow (e.g. PRODUCT MARKETING · CASE STUDY) */
+const DEFAULT_LABEL = '#6b6b6b'
+
+/** Eyebrow (e.g. PRODUCT MARKETING · CASE STUDY) — prefer `caseStudyLabelStyles(accent).eyebrow` */
 export const caseStudyEyebrow: CSSProperties = {
   fontFamily: jakarta,
   fontSize: '11px',
   fontWeight: 500,
   letterSpacing: '0.12em',
   textTransform: 'uppercase',
-  color: caseStudyLabelAccent,
+  color: DEFAULT_LABEL,
   marginBottom: '16px',
 }
 
-/** Meta sidebar labels (Role, Timeline, …) — same treatment as eyebrow, tighter spacing */
+/** Meta sidebar labels (Role, Timeline, …) */
 export const caseStudyMetaLabel: CSSProperties = {
   fontFamily: jakarta,
   fontSize: '11px',
   fontWeight: 500,
   letterSpacing: '0.12em',
   textTransform: 'uppercase',
-  color: caseStudyLabelAccent,
+  color: DEFAULT_LABEL,
   marginBottom: '4px',
 }
 
@@ -59,8 +69,17 @@ export const caseStudySectionLabel: CSSProperties = {
   fontWeight: 500,
   letterSpacing: '0.14em',
   textTransform: 'uppercase',
-  color: caseStudyLabelAccent,
+  color: DEFAULT_LABEL,
   marginBottom: '12px',
+}
+
+/** Set label accent color (hex) for eyebrow, meta, and section small-caps. */
+export function caseStudyLabelStyles(accent: string) {
+  return {
+    eyebrow: { ...caseStudyEyebrow, color: accent } as CSSProperties,
+    metaLabel: { ...caseStudyMetaLabel, color: accent } as CSSProperties,
+    sectionLabel: { ...caseStudySectionLabel, color: accent } as CSSProperties,
+  }
 }
 
 /** Section H2 (Problem, My Role, …) */

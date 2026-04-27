@@ -3,20 +3,21 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
+  CASE_STUDY_LABEL_COLORS,
   caseStudyBody,
   caseStudyBulletChar,
   caseStudyBulletList,
   caseStudyContentMaxWidth,
   caseStudyDescriptor,
-  caseStudyEyebrow,
   caseStudyJakarta,
+  caseStudyLabelStyles,
   caseStudySectionBlock,
   caseStudySectionHeading,
-  caseStudySectionLabel,
   caseStudyTitle,
 } from '../../../components/caseStudyTheme'
 
 const jakarta = caseStudyJakarta
+const L = caseStudyLabelStyles(CASE_STUDY_LABEL_COLORS.inNOut)
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
@@ -40,7 +41,7 @@ const Section = ({
     transition={{ duration: 0.55, ease: 'easeOut' }}
     style={caseStudySectionBlock}
   >
-    <div style={caseStudySectionLabel}>{label}</div>
+    <div style={L.sectionLabel}>{label}</div>
     <h2 style={caseStudySectionHeading}>{heading}</h2>
     {children}
   </motion.section>
@@ -116,7 +117,7 @@ export default function InNOutPage() {
         </motion.nav>
 
         {/* Eyebrow */}
-        <motion.div {...fadeUp(0.05)} style={caseStudyEyebrow}>
+        <motion.div {...fadeUp(0.05)} style={L.eyebrow}>
           Data Science · Case Study
         </motion.div>
 
@@ -257,6 +258,56 @@ export default function InNOutPage() {
               </div>
             ))}
           </div>
+        </Section>
+
+        {/* Datathon / final deck */}
+        <Section
+          label="Presentation"
+          heading="Datathon deck — problem, approach, and results in one place."
+        >
+          <p style={{ ...caseStudyBody, marginBottom: '24px' }}>
+            Below is the slide deck we presented for the datathon (Figma Slides).
+            It walks through the narrative from the dead-end revenue ask to the
+            ranking model and maps.
+          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            style={{
+              width: '100%',
+              maxWidth: '800px',
+              margin: '0 auto',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
+              boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
+              background: '#fafafa',
+              lineHeight: 0,
+            }}
+          >
+            <div
+              style={{
+                position: 'relative',
+                width: '100%',
+                aspectRatio: '800 / 450',
+              }}
+            >
+              <iframe
+                title="Datathon 26 — In-N-Out location predictor slides"
+                src="https://embed.figma.com/slides/SIYvTOEJ6oBbFXRnUYAVVI/DATATHON26?node-id=139-7&embed-host=share"
+                allowFullScreen
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  border: 'none',
+                }}
+              />
+            </div>
+          </motion.div>
         </Section>
 
         {/* Outcome */}

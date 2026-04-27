@@ -41,7 +41,7 @@ const CARDS: CardData[] = [
     href: '/beats',
     icon: 'headphones',
     iconRotation: 12,
-    pillText: 'See Case Study!',
+    pillText: 'Coming soon',
   },
   {
     id: 'chagee',

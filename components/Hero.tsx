@@ -68,7 +68,7 @@ const ringIcons: RingIcon[] = [
     left: '20%',
     href: '/beats',
     external: false,
-    pillText: 'See Case Study!',
+    pillText: 'Coming soon',
   },
   {
     name: 'burger',
@@ -346,11 +346,11 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll cue — bounces at the bottom of the viewport */}
+      {/* Scroll down — black chevron, gentle vertical bob at bottom of hero */}
       <div
         style={{
           position: 'absolute',
-          bottom: '28px',
+          bottom: '24px',
           left: '50%',
           transform: 'translateX(-50%)',
           zIndex: 3,
@@ -358,9 +358,9 @@ export default function Hero() {
         }}
       >
         <motion.div
-          animate={{ y: [0, 7, 0] }}
+          animate={{ y: [0, 9, 0] }}
           transition={{
-            duration: 1.15,
+            duration: 1.25,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
@@ -368,24 +368,23 @@ export default function Hero() {
           <Link
             href="#work"
             scroll
-            data-cursor-pill="Work"
-            aria-label="Scroll to selected work"
+            data-cursor-pill="Scroll to see work!"
+            aria-label="Scroll to see work"
             style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#b0b0b0',
+              color: '#111111',
               textDecoration: 'none',
-              opacity: 0.85,
             }}
           >
             <svg
-              width="18"
-              height="18"
+              width="28"
+              height="28"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="2.35"
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden

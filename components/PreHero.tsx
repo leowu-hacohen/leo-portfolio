@@ -4,8 +4,10 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const ICONS = ['teacup', 'submarine', 'microphone', 'burger', 'headphones', 'briefcase']
-const ICON_DURATION = 0.6
-const TOTAL_DURATION = ICONS.length * ICON_DURATION // 3.6s
+/** ~10% snappier than default (0.9× all timed values). */
+const T = 0.9
+const ICON_DURATION = 0.6 * T
+const TOTAL_DURATION = ICONS.length * ICON_DURATION
 
 interface PreHeroProps {
   onComplete: () => void
@@ -41,7 +43,7 @@ export default function PreHero({ onComplete }: PreHeroProps) {
       {visible && (
         <motion.div
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
+          transition={{ duration: 0.4 * T, ease: 'easeOut' }}
           style={{
             position: 'fixed',
             inset: 0,
@@ -67,13 +69,13 @@ export default function PreHero({ onComplete }: PreHeroProps) {
                   scale: 1.18,
                   y: -18,
                   rotate: 12,
-                  transition: { duration: 0.28, ease: 'easeOut' },
+                  transition: { duration: 0.28 * T, ease: 'easeOut' },
                 }}
                 transition={{
-                  opacity: { duration: 0.22 },
-                  scale: { type: 'spring', stiffness: 320, damping: 14 },
-                  y: { type: 'spring', stiffness: 260, damping: 16 },
-                  rotate: { type: 'spring', stiffness: 220, damping: 14 },
+                  opacity: { duration: 0.22 * T },
+                  scale: { type: 'spring', stiffness: 360, damping: 13 },
+                  y: { type: 'spring', stiffness: 290, damping: 15 },
+                  rotate: { type: 'spring', stiffness: 245, damping: 13 },
                 }}
                 style={{ position: 'absolute', inset: 0 }}
               >
@@ -85,10 +87,10 @@ export default function PreHero({ onComplete }: PreHeroProps) {
                     rotate: [0, -4, 0, 4, 0],
                   }}
                   transition={{
-                    duration: 2.4,
+                    duration: 2.4 * T,
                     ease: 'easeInOut',
                     repeat: Infinity,
-                    delay: 0.18,
+                    delay: 0.18 * T,
                   }}
                   width={160}
                   height={160}

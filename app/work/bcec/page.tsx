@@ -3,20 +3,21 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
+  CASE_STUDY_LABEL_COLORS,
   caseStudyBody,
   caseStudyBulletChar,
   caseStudyBulletList,
   caseStudyContentMaxWidth,
   caseStudyDescriptor,
-  caseStudyEyebrow,
   caseStudyJakarta,
+  caseStudyLabelStyles,
   caseStudySectionBlock,
   caseStudySectionHeading,
-  caseStudySectionLabel,
   caseStudyTitle,
 } from '../../../components/caseStudyTheme'
 
 const jakarta = caseStudyJakarta
+const L = caseStudyLabelStyles(CASE_STUDY_LABEL_COLORS.bcec)
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
@@ -40,7 +41,7 @@ const Section = ({
     transition={{ duration: 0.55, ease: 'easeOut' }}
     style={caseStudySectionBlock}
   >
-    <div style={caseStudySectionLabel}>{label}</div>
+    <div style={L.sectionLabel}>{label}</div>
     <h2 style={caseStudySectionHeading}>{heading}</h2>
     {children}
   </motion.section>
@@ -116,7 +117,7 @@ export default function BcecPage() {
         </motion.nav>
 
         {/* Eyebrow */}
-        <motion.div {...fadeUp(0.05)} style={caseStudyEyebrow}>
+        <motion.div {...fadeUp(0.05)} style={L.eyebrow}>
           Brand Strategy · Case Study
         </motion.div>
 

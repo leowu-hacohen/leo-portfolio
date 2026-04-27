@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { CASE_STUDY_LABEL_COLORS } from '../../../components/caseStudyTheme'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
 const noto = 'var(--font-noto), serif'
@@ -124,7 +125,7 @@ export default function DesignUciComingSoonPage() {
             fontFamily: jakarta,
             fontSize: '11px',
             fontWeight: 500,
-            color: '#999',
+            color: CASE_STUDY_LABEL_COLORS.designUci,
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
             margin: '0 0 16px',

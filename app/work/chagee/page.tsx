@@ -3,21 +3,36 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import type { CSSProperties } from 'react'
 import {
+  CASE_STUDY_LABEL_COLORS,
   caseStudyBody,
   caseStudyBulletChar,
   caseStudyBulletList,
   caseStudyContentMaxWidth,
   caseStudyDescriptor,
-  caseStudyEyebrow,
   caseStudyJakarta,
+  caseStudyLabelStyles,
   caseStudySectionBlock,
   caseStudySectionHeading,
-  caseStudySectionLabel,
   caseStudyTitle,
 } from '../../../components/caseStudyTheme'
 
 const jakarta = caseStudyJakarta
+const L = caseStudyLabelStyles(CASE_STUDY_LABEL_COLORS.chagee)
+
+/** Hero line: same string as the H1 (mirrors Lumina-style hero where label matches headline). */
+const CHAGEE_HERO_TITLE = 'CHAGEE USA: First Market Launch'
+
+/** Eyebrow uses the hero title; keep casing identical to the H1 (no uppercase transform). */
+const chageeHeroEyebrow: CSSProperties = {
+  ...L.eyebrow,
+  textTransform: 'none',
+  letterSpacing: '-0.02em',
+  fontSize: '13px',
+  lineHeight: 1.25,
+  fontWeight: 600,
+}
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
@@ -41,7 +56,7 @@ const Section = ({
     transition={{ duration: 0.55, ease: 'easeOut' }}
     style={caseStudySectionBlock}
   >
-    <div style={caseStudySectionLabel}>{label}</div>
+    <div style={L.sectionLabel}>{label}</div>
     <h2 style={caseStudySectionHeading}>{heading}</h2>
     {children}
   </motion.section>
@@ -150,14 +165,14 @@ export default function ChageePage() {
           />
         </motion.div>
 
-        {/* Eyebrow */}
-        <motion.div {...fadeUp(0.05)} style={caseStudyEyebrow}>
-          Product Marketing · Case Study
+        {/* Top line: same copy as H1 (Lumina-style hero sync) */}
+        <motion.div {...fadeUp(0.05)} style={chageeHeroEyebrow}>
+          {CHAGEE_HERO_TITLE}
         </motion.div>
 
         {/* Title */}
         <motion.h1 {...fadeUp(0.1)} style={caseStudyTitle}>
-          CHAGEE USA: First Market Launch
+          {CHAGEE_HERO_TITLE}
         </motion.h1>
 
         {/* One-line description */}

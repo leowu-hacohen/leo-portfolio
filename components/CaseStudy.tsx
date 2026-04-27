@@ -3,14 +3,14 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
+  CASE_STUDY_LABEL_COLORS,
   caseStudyBody,
   caseStudyBulletChar,
   caseStudyBulletList,
   caseStudyDescriptor,
   caseStudyJakarta,
-  caseStudyMetaLabel,
+  caseStudyLabelStyles,
   caseStudySectionHeading,
-  caseStudySectionLabel,
   caseStudyTitle,
 } from './caseStudyTheme'
 
@@ -42,6 +42,8 @@ export interface CaseStudyProps {
   nextHref?: string
   /** Full-bleed background image for the area below the hero (e.g. Nami canvas) */
   canvasBackdropSrc?: string
+  /** Small-caps label color (Role, PROBLEM, …). Defaults to Nami blue. */
+  labelAccent?: string
 }
 
 // ─── Shared style tokens ──────────────────────────────────────────────────────
@@ -117,7 +119,9 @@ export default function CaseStudy({
   prevHref,
   nextHref,
   canvasBackdropSrc,
+  labelAccent = CASE_STUDY_LABEL_COLORS.nami,
 }: CaseStudyProps) {
+  const L = caseStudyLabelStyles(labelAccent)
   const metaFields = [
     { label: 'Role', value: role },
     { label: 'Timeline', value: timeline },
@@ -292,7 +296,7 @@ export default function CaseStudy({
           >
             {metaFields.map(({ label, value }) => (
               <motion.div key={label} variants={metaItem}>
-                <div style={caseStudyMetaLabel}>{label}</div>
+                <div style={L.metaLabel}>{label}</div>
                 <div style={metaValue}>{value}</div>
               </motion.div>
             ))}
@@ -361,7 +365,7 @@ export default function CaseStudy({
             transition={{ type: 'spring', stiffness: 120, damping: 20 }}
             style={cardStyle}
           >
-            <div style={caseStudySectionLabel}>Context</div>
+            <div style={L.sectionLabel}>Context</div>
             <p style={{ ...caseStudyBody, margin: '0 auto' }}>{context}</p>
           </motion.div>
 
@@ -372,7 +376,7 @@ export default function CaseStudy({
             transition={{ type: 'spring', stiffness: 120, damping: 20 }}
             style={cardStyle}
           >
-            <div style={caseStudySectionLabel}>My Contributions</div>
+            <div style={L.sectionLabel}>My Contributions</div>
             <ul style={caseStudyBulletList}>
               {contributions.map((item, i) => (
                 <li
@@ -403,7 +407,7 @@ export default function CaseStudy({
             style={{ marginTop: '64px' }}
           >
             <div style={{ maxWidth: '680px', width: '100%', margin: '0 auto' }}>
-              <div style={caseStudySectionLabel}>{section.label}</div>
+              <div style={L.sectionLabel}>{section.label}</div>
               <h2 style={caseStudySectionHeading}>{section.heading}</h2>
               <p style={caseStudyBody}>{section.body}</p>
             </div>

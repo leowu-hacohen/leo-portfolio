@@ -1,8 +1,10 @@
 import CaseStudy from '../../components/CaseStudy'
+import { CASE_STUDY_LABEL_COLORS } from '../../components/caseStudyTheme'
 
 export default function NamiPage() {
   return (
     <CaseStudy
+      labelAccent={CASE_STUDY_LABEL_COLORS.nami}
       canvasBackdropSrc="/case-study/nami-canvas-backdrop.png"
       company="Nami"
       descriptor="AI-powered college counseling, built in 24 hours."
