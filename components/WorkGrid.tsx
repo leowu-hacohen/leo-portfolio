@@ -34,14 +34,14 @@ const CARDS: CardData[] = [
     pillText: 'See Website!',
   },
   {
-    id: 'beats',
-    company: 'Beats by Dre',
-    meta: 'Data Analytics Extern',
-    description: 'Surfacing consumer listening patterns to inform product and brand strategy.',
-    href: '/beats',
-    icon: 'headphones',
-    iconRotation: 12,
-    pillText: 'Coming soon',
+    id: 'lumina',
+    company: 'Lumina',
+    meta: 'Voice AI · Solo Build',
+    description: 'A voice-first AI tool designed to help people think out loud and get unstuck.',
+    href: 'https://lumina-lac-chi.vercel.app/',
+    icon: 'microphone',
+    iconRotation: 8,
+    pillText: 'See Website!',
   },
   {
     id: 'chagee',
@@ -54,14 +54,14 @@ const CARDS: CardData[] = [
     pillText: 'See Case Study!',
   },
   {
-    id: 'lumina',
-    company: 'Lumina',
-    meta: 'Voice AI · Solo Build',
-    description: 'A voice-first AI tool designed to help people think out loud and get unstuck.',
-    href: 'https://lumina-lac-chi.vercel.app/',
-    icon: 'microphone',
-    iconRotation: 8,
-    pillText: 'See Website!',
+    id: 'beats',
+    company: 'Beats by Dre',
+    meta: 'Data Analytics Extern',
+    description: 'Surfacing consumer listening patterns to inform product and brand strategy.',
+    href: '/beats',
+    icon: 'headphones',
+    iconRotation: 12,
+    pillText: 'Coming soon',
   },
   {
     id: 'in-n-out',
@@ -241,9 +241,9 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
               src="/work-cards/bceclogo.png"
               alt="BCEC"
               style={{
-                maxHeight: '88%',
+                maxHeight: '96%',
                 width: 'auto',
-                maxWidth: '88%',
+                maxWidth: '96%',
                 display: 'block',
                 objectFit: 'contain',
               }}

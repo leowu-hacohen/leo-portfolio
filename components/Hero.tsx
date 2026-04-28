@@ -391,12 +391,12 @@ export default function Hero() {
             }}
           >
             <svg
-              width="28"
-              height="28"
+              width="34"
+              height="34"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2.35"
+              strokeWidth="2.7"
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden
