@@ -59,7 +59,7 @@ const metaValue: React.CSSProperties = {
 
 const cardStyle: React.CSSProperties = {
   background: '#fafafa',
-  borderRadius: '12px',
+  borderRadius: '0px',
   padding: '28px',
   flex: 1,
 }
@@ -208,7 +208,7 @@ export default function CaseStudy({
             width: '100%',
             height: '480px',
             background: '#f5f5f5',
-            borderRadius: '16px',
+            borderRadius: '0px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -269,7 +269,7 @@ export default function CaseStudy({
               backgroundColor: canvasBackdropSrc
                 ? 'rgba(255, 255, 255, 0.94)'
                 : 'transparent',
-              borderRadius: canvasBackdropSrc ? '12px' : undefined,
+              borderRadius: '0px',
             }}
         >
         {/* 3. METADATA ROW ─────────────────────────────────────────────────── */}
@@ -421,7 +421,7 @@ export default function CaseStudy({
                   marginRight: 'auto',
                   height: '400px',
                   background: '#f5f5f5',
-                  borderRadius: '12px',
+                  borderRadius: '0px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',

@@ -1,11 +1,17 @@
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans, Noto_Serif } from 'next/font/google'
+import { Plus_Jakarta_Sans, Noto_Serif, Instrument_Sans } from 'next/font/google'
 import './globals.css'
 import CustomCursor from '../components/CustomCursor'
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-jakarta',
+  display: 'swap',
+})
+
+const instrumentSans = Instrument_Sans({
+  subsets: ['latin'],
+  variable: '--font-instrument',
   display: 'swap',
 })
 
@@ -27,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} ${notoSerif.variable}`}>
+    <html lang="en" className={`${plusJakarta.variable} ${notoSerif.variable} ${instrumentSans.variable}`}>
       <body style={{ background: '#ffffff', color: '#111111', margin: 0 }}>
         <CustomCursor />
         {children}

@@ -111,7 +111,7 @@ const NAV_LINKS = [
 
 const SCROLL_PILL_AT = 48
 
-export default function Hero() {
+export default function Hero({ fromPreHero = false }: { fromPreHero?: boolean }) {
   const [phraseIndex, setPhraseIndex] = useState(0)
   const [navPill, setNavPill] = useState(false)
 
@@ -188,7 +188,7 @@ export default function Hero() {
                 fontFamily: 'var(--font-jakarta), sans-serif',
                 fontSize: '13px',
                 fontWeight: 400,
-                color: navPill ? '#5c5c5c' : '#b0b0b0',
+                color: '#111',
                 textDecoration: 'none',
                 letterSpacing: '0.02em',
                 transition: 'color 0.25s ease',
@@ -241,9 +241,9 @@ export default function Hero() {
         return (
           <motion.div
             key={icon.name}
-            initial={{ opacity: 0, scale: 0.7 }}
+            initial={fromPreHero ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 + i * 0.07 }}
+            transition={fromPreHero ? {} : { duration: 0.6, ease: 'easeOut', delay: 0.15 + i * 0.07 }}
             style={{
               position: 'absolute',
               top: icon.top,
@@ -362,13 +362,32 @@ export default function Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: '24px',
+          bottom: '44px',
           left: '50%',
           transform: 'translateX(-50%)',
           zIndex: 3,
           pointerEvents: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '10px',
         }}
       >
+        <p
+          style={{
+            fontFamily: 'var(--font-jakarta), sans-serif',
+            fontSize: '13px',
+            fontWeight: 400,
+            color: '#111',
+            letterSpacing: '0.01em',
+            textAlign: 'center',
+            lineHeight: 1.6,
+            margin: 0,
+            whiteSpace: 'nowrap',
+          }}
+        >
+          Click around to see my work!
+        </p>
         <motion.div
           animate={{ y: [0, 9, 0] }}
           transition={{
