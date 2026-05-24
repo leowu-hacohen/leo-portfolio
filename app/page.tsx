@@ -10,29 +10,41 @@ let heroHasPlayed = false
 
 export default function HomePage() {
   const [showHero, setShowHero] = useState(false)
-  const [fromPreHero, setFromPreHero] = useState(false)
+  const [showPreHero, setShowPreHero] = useState(false)
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {
-    if (heroHasPlayed) setShowHero(true)
+    if (heroHasPlayed) {
+      setShowHero(true)
+    } else {
+      setShowPreHero(true)
+    }
     setChecked(true)
   }, [])
 
-  const handleComplete = () => {
+  // Fires when PreHero starts fading. Mounts Hero behind it so the
+  // icons + text animate in *during* the white overlay fade — no dead frame.
+  const handleReveal = () => {
     heroHasPlayed = true
-    setFromPreHero(true)
     setShowHero(true)
   }
 
+  // Fires after PreHero's fade is fully complete; tear it out of the tree.
+  const handleExit = () => {
+    setShowPreHero(false)
+  }
+
+  if (!checked) return null
+
   return (
     <>
-      {checked && !showHero && <PreHero onComplete={handleComplete} />}
       {showHero && (
         <>
-          <Hero fromPreHero={fromPreHero} />
+          <Hero />
           <WorkGrid />
         </>
       )}
+      {showPreHero && <PreHero onReveal={handleReveal} onExit={handleExit} />}
     </>
   )
 }

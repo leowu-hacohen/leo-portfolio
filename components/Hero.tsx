@@ -83,14 +83,17 @@ const ringIcons: RingIcon[] = [
 
 const ICON_SIZE = 160
 
+// `delayChildren` lets the centered text start AFTER the icons have begun
+// fading in, so the sequence reads as: icons-arrive → text-arrives, without
+// a perceptible dead frame between them.
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
+  show: { transition: { delayChildren: 0.22, staggerChildren: 0.08 } },
 }
 
 const item = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
 }
 
 const displayStyle: React.CSSProperties = {
@@ -111,7 +114,7 @@ const NAV_LINKS = [
 
 const SCROLL_PILL_AT = 48
 
-export default function Hero({ fromPreHero = false }: { fromPreHero?: boolean }) {
+export default function Hero() {
   const [phraseIndex, setPhraseIndex] = useState(0)
   const [navPill, setNavPill] = useState(false)
 
@@ -241,9 +244,9 @@ export default function Hero({ fromPreHero = false }: { fromPreHero?: boolean })
         return (
           <motion.div
             key={icon.name}
-            initial={fromPreHero ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.7 }}
+            initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={fromPreHero ? {} : { duration: 0.6, ease: 'easeOut', delay: 0.15 + i * 0.07 }}
+            transition={{ duration: 0.45, ease: 'easeOut', delay: 0.05 + i * 0.05 }}
             style={{
               position: 'absolute',
               top: icon.top,
@@ -358,13 +361,18 @@ export default function Hero({ fromPreHero = false }: { fromPreHero?: boolean })
         </motion.div>
       </motion.div>
 
-      {/* Scroll down — black chevron, gentle vertical bob at bottom of hero */}
-      <div
+      {/* Scroll down — black chevron, gentle vertical bob at bottom of hero.
+          Fades in after the centered text so the whole hero settles together.
+          We animate `y` here, so centering is done via `x: '-50%'` rather than
+          a CSS transform (which framer-motion's transform would clobber). */}
+      <motion.div
+        initial={{ opacity: 0, y: 12, x: '-50%' }}
+        animate={{ opacity: 1, y: 0, x: '-50%' }}
+        transition={{ duration: 0.45, ease: 'easeOut', delay: 0.55 }}
         style={{
           position: 'absolute',
           bottom: '44px',
           left: '50%',
-          transform: 'translateX(-50%)',
           zIndex: 3,
           pointerEvents: 'auto',
           display: 'flex',
@@ -424,7 +432,7 @@ export default function Hero({ fromPreHero = false }: { fromPreHero?: boolean })
             </svg>
           </Link>
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   )
 }
