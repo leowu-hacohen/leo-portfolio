@@ -113,7 +113,6 @@ function HeroSection() {
     target: ref,
     offset: ['start start', 'end start'],
   })
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.12])
   const yText = useTransform(scrollYProgress, [0, 1], [0, -60])
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
@@ -125,40 +124,9 @@ function HeroSection() {
         width: '100%',
         height: '100vh',
         overflow: 'hidden',
-        background: '#000',
+        background: '#0a0a0a',
       }}
     >
-      <motion.div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          scale,
-        }}
-      >
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            opacity: 0.85,
-          }}
-        >
-          <source src="/case-study/findy/introslidevideo.mp4" type="video/mp4" />
-        </video>
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background:
-              'linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.55) 100%)',
-          }}
-        />
-      </motion.div>
-
       <motion.div
         style={{
           position: 'absolute',
