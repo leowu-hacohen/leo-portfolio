@@ -404,7 +404,7 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
   const cardBody = (
     <div
       style={{
-        padding: '18px 24px 0',
+        padding: '18px 0 0',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -582,7 +582,7 @@ export default function WorkGrid() {
       id="work"
       style={{
         width: '100%',
-        padding: '80px 0 120px',
+        padding: '80px 40px 120px',
         background: '#F4F4F4',
       }}
     >
@@ -590,7 +590,7 @@ export default function WorkGrid() {
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '4px',
+          gap: '40px',
           width: '100%',
           margin: 0,
         }}

@@ -15,6 +15,7 @@ type RingIcon = {
   name: string
   ext?: 'svg' | 'png'
   rotation: number
+  scale?: number
   top: string
   left?: string
   right?: string
@@ -66,6 +67,7 @@ const ringIcons: RingIcon[] = [
     name: 'iheart',
     ext: 'png',
     rotation: -8,
+    scale: 0.75,
     top: '74%',
     left: '20%',
     href: '/work/iheart',
@@ -238,7 +240,7 @@ export default function Hero() {
                 ext={icon.ext}
                 rotation={icon.rotation}
                 translateY={0}
-                size={ICON_SIZE}
+                size={Math.round(ICON_SIZE * (icon.scale ?? 1))}
               />
             </motion.div>
           </motion.div>
