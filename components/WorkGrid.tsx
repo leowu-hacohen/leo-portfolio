@@ -31,6 +31,28 @@ interface CardData {
 
 const CARDS: CardData[] = [
   {
+    id: 'findy',
+    company: 'Findy',
+    meta: 'UCI Project Teams · 1st Place',
+    description: 'An AI guide that lives inside iOS and helps seniors use their phones without feeling overwhelmed.',
+    href: '/work/findy',
+    icon: 'briefcase',
+    iconRotation: 0,
+    badge: '1st Place',
+    pillText: 'See Case Study!',
+  },
+  {
+    id: 'clair',
+    company: 'Clair',
+    meta: 'HackDavis · Anthropic Track Winner',
+    description: 'A clinical AI scribe that turns the messiest part of a doctor’s day into a clean handoff.',
+    href: '/work/clair',
+    icon: 'briefcase',
+    iconRotation: 0,
+    badge: 'Anthropic Track',
+    pillText: 'See Case Study!',
+  },
+  {
     id: 'nami',
     company: 'Nami',
     meta: 'Fullyhacks 2026 · Hackathon Winner',
@@ -38,13 +60,8 @@ const CARDS: CardData[] = [
     href: 'https://nami.mykm.dev/',
     icon: 'submarine',
     iconRotation: -15,
-    featured: true,
     badge: '1st Place',
     pillText: 'See Website!',
-    buttons: [
-      { label: 'View Devpost', href: 'https://devpost.com/software/advisr', pillText: 'View Devpost' },
-      { label: 'View Website', href: 'https://nami.mykm.dev/', primary: true, pillText: 'See Website!' },
-    ],
   },
   {
     id: 'lumina',
@@ -114,13 +131,14 @@ const CARDS: CardData[] = [
 function WorkCard({ card, index }: { card: CardData; index: number }) {
   const [hovered, setHovered] = useState(false)
   const isNami = card.id === 'nami'
-  const imageH = isNami ? 500 : undefined
   const isBeats = card.id === 'beats'
   const isChagee = card.id === 'chagee'
   const isLumina = card.id === 'lumina'
   const isInNOut = card.id === 'in-n-out'
   const isBcec = card.id === 'bcec'
   const isDesignUci = card.id === 'design-uci'
+  const isFindy = card.id === 'findy'
+  const isClair = card.id === 'clair'
   const isExternal = /^https?:\/\//i.test(card.href)
   const hasButtons = !!card.buttons?.length
 
@@ -129,29 +147,28 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
       style={{
         position: 'relative',
         width: '100%',
-        height: imageH ? `${imageH}px` : undefined,
-        aspectRatio: isNami ? undefined : '4/3',
+        aspectRatio: '4/3',
         borderRadius: '0px',
         overflow: isChagee ? 'visible' : 'hidden',
-        ...(isDesignUci
-          ? { background: '#000000' }
+        background: isDesignUci
+          ? '#000000'
           : isNami
-          ? {
-              background: 'linear-gradient(135deg, #05080f 0%, #0b1120 60%, #0d1528 100%)',
-            }
-          : {
-              background: isBeats
-                ? '#000000'
-                : isInNOut
-                  ? '#fff4e0'
-                  : isChagee
-                    ? '#f4efe8'
-                    : isLumina
-                      ? '#f0f2f6'
-                      : isBcec
-                        ? '#91a0c0'
-                        : '#f5f5f5',
-            }),
+            ? 'linear-gradient(135deg, #05080f 0%, #0b1120 60%, #0d1528 100%)'
+            : isBeats
+              ? '#000000'
+              : isInNOut
+                ? '#fff4e0'
+                : isChagee
+                  ? '#f4efe8'
+                  : isLumina
+                    ? '#f0f2f6'
+                    : isBcec
+                      ? '#91a0c0'
+                      : isFindy
+                        ? '#eaf2ff'
+                        : isClair
+                          ? '#ffffff'
+                          : '#f5f5f5',
       }}
     >
       <motion.div
@@ -184,9 +201,9 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
             loop
             playsInline
             style={{
-              maxHeight: '420px',
+              maxHeight: '90%',
               width: 'auto',
-              maxWidth: '90%',
+              maxWidth: '92%',
               display: 'block',
               objectFit: 'contain',
               borderRadius: '0px',
@@ -195,6 +212,32 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
           >
             <source src="/Nami.mp4" type="video/mp4" />
           </video>
+        ) : isFindy ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src="/case-study/findy/lil-finder-guy.png"
+            alt="Findy"
+            style={{
+              maxHeight: '78%',
+              width: 'auto',
+              maxWidth: '78%',
+              display: 'block',
+              objectFit: 'contain',
+            }}
+          />
+        ) : isClair ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src="/work-cards/clair-logo.png"
+            alt="Clair"
+            style={{
+              maxHeight: '52%',
+              width: 'auto',
+              maxWidth: '72%',
+              display: 'block',
+              objectFit: 'contain',
+            }}
+          />
         ) : isBeats ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
