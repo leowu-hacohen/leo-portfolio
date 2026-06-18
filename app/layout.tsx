@@ -34,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${plusJakarta.variable} ${notoSerif.variable} ${instrumentSans.variable}`}>
-      <body style={{ background: '#ffffff', color: '#111111', margin: 0 }}>
+      <body style={{ background: '#faf8f3', color: '#111111', margin: 0 }}>
         <CustomCursor />
         {children}
       </body>

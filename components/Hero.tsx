@@ -137,7 +137,7 @@ export default function Hero() {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        background: '#ffffff',
+        background: '#faf8f3',
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',

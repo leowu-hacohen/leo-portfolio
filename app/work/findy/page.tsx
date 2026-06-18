@@ -35,8 +35,8 @@ function Beat({
       }}
     >
       <motion.div
-        initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
-        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         style={{
@@ -52,8 +52,8 @@ function Beat({
         {label}
       </motion.div>
       <motion.h2
-        initial={{ opacity: 0, y: 22, filter: 'blur(8px)' }}
-        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        initial={{ opacity: 0, y: 22 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
         style={{
@@ -94,8 +94,8 @@ function Beat({
       )}
       {media && (
         <motion.div
-          initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
           style={{ marginTop: '56px' }}
@@ -157,8 +157,8 @@ function HeroSection() {
           Findy · UCI Project Teams · 2026
         </motion.div>
         <motion.h1
-          initial={{ opacity: 0, y: 36, filter: 'blur(12px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 36 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
           style={{
             fontFamily: jakarta,
@@ -283,8 +283,8 @@ function StickyVideoBlock({
       }}
     >
       <motion.div
-        initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
-        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         style={{
@@ -331,7 +331,7 @@ function StickyVideoBlock({
 // ─── page ────────────────────────────────────────────────────────────────────
 export default function FindyPage() {
   return (
-    <div style={{ background: '#ffffff', color: '#0a0a0a', minHeight: '100vh' }}>
+    <div style={{ background: '#faf8f3', color: '#0a0a0a', minHeight: '100vh' }}>
       {/* Top nav */}
       <nav
         style={{
@@ -491,8 +491,8 @@ export default function FindyPage() {
           ].map((v, i) => (
             <motion.div
               key={v.src}
-              initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
             >
@@ -545,8 +545,8 @@ export default function FindyPage() {
           The Guiding Question
         </motion.div>
         <motion.h2
-          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
           style={{
@@ -647,8 +647,8 @@ export default function FindyPage() {
       <section style={{ padding: '14vh 7vw' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <motion.div
-            initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7 }}
             style={{
@@ -664,8 +664,8 @@ export default function FindyPage() {
             The Product
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 22, filter: 'blur(8px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             style={{
@@ -720,8 +720,8 @@ export default function FindyPage() {
             ].map((f, i) => (
               <motion.div
                 key={f.t}
-                initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 style={{
@@ -831,8 +831,8 @@ export default function FindyPage() {
             ].map((l, i) => (
               <motion.div
                 key={l.h}
-                initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               >
@@ -886,8 +886,8 @@ export default function FindyPage() {
             Acknowledgments
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 22, filter: 'blur(8px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.8 }}
             style={{

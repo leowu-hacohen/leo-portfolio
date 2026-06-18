@@ -10,7 +10,7 @@ export default function ClairPage() {
   return (
     <div
       style={{
-        background: '#ffffff',
+        background: '#faf8f3',
         minHeight: '100vh',
         position: 'relative',
         overflow: 'hidden',
@@ -79,8 +79,8 @@ export default function ClairPage() {
         }}
       >
         <motion.img
-          initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           src="/work-cards/clair-logo.png"
           alt="Clair"

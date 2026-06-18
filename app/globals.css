@@ -16,7 +16,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background: #ffffff;
+  background: #faf8f3;
   color: #111111;
   font-family: var(--font-jakarta), sans-serif;
 }
