@@ -213,18 +213,20 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
             <source src="/Nami.mp4" type="video/mp4" />
           </video>
         ) : isFindy ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src="/case-study/findy/lil-finder-guy.png"
-            alt="Findy"
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
             style={{
-              maxHeight: '78%',
-              width: 'auto',
-              maxWidth: '78%',
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
               display: 'block',
-              objectFit: 'contain',
             }}
-          />
+          >
+            <source src="/case-study/findy/introslidevideo.mp4" type="video/mp4" />
+          </video>
         ) : isClair ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
