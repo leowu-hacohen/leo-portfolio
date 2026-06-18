@@ -331,7 +331,7 @@ function StickyVideoBlock({
 // ─── page ────────────────────────────────────────────────────────────────────
 export default function FindyPage() {
   return (
-    <div style={{ background: '#faf8f3', color: '#0a0a0a', minHeight: '100vh' }}>
+    <div style={{ background: '#f9f8f6', color: '#0a0a0a', minHeight: '100vh' }}>
       {/* Top nav */}
       <nav
         style={{

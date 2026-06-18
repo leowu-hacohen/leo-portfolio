@@ -10,7 +10,7 @@ export default function ClairPage() {
   return (
     <div
       style={{
-        background: '#faf8f3',
+        background: '#f9f8f6',
         minHeight: '100vh',
         position: 'relative',
         overflow: 'hidden',

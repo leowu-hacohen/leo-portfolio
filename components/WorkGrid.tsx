@@ -558,7 +558,7 @@ export default function WorkGrid() {
       style={{
         width: '100%',
         padding: '80px 7vw',
-        background: '#faf8f3',
+        background: '#f9f8f6',
       }}
     >
       <div
