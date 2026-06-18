@@ -13,6 +13,7 @@ const PHRASES = [
 
 type RingIcon = {
   name: string
+  ext?: 'svg' | 'png'
   rotation: number
   top: string
   left?: string
@@ -22,8 +23,6 @@ type RingIcon = {
   pillText: string
 }
 
-// Six icons placed symmetrically around the centered text in an outer ring.
-// Layout mirrors a top / mid-side / bottom arrangement on each side.
 const ringIcons: RingIcon[] = [
   {
     name: 'teacup',
@@ -44,40 +43,43 @@ const ringIcons: RingIcon[] = [
     pillText: 'See Website!',
   },
   {
-    name: 'briefcase',
+    name: 'findy',
+    ext: 'png',
     rotation: -6,
     top: '46%',
     left: '10%',
-    href: '/work/bcec',
+    href: '/work/findy',
+    external: false,
+    pillText: 'See Case Study!',
+  },
+  {
+    name: 'clair',
+    ext: 'png',
+    rotation: 6,
+    top: '46%',
+    right: '10%',
+    href: '/work/clair',
+    external: false,
+    pillText: 'See Case Study!',
+  },
+  {
+    name: 'iheart',
+    ext: 'png',
+    rotation: -8,
+    top: '74%',
+    left: '20%',
+    href: '/work/iheart',
     external: false,
     pillText: 'See Case Study!',
   },
   {
     name: 'microphone',
-    rotation: 6,
-    top: '46%',
-    right: '10%',
-    href: 'https://lumina-lac-chi.vercel.app/',
-    external: true,
-    pillText: 'See Website!',
-  },
-  {
-    name: 'headphones',
-    rotation: -8,
-    top: '74%',
-    left: '20%',
-    href: '/beats',
-    external: false,
-    pillText: 'Coming soon',
-  },
-  {
-    name: 'burger',
     rotation: 10,
     top: '74%',
     right: '20%',
-    href: '/work/in-n-out',
-    external: false,
-    pillText: 'See Case Study!',
+    href: 'https://lumina-lac-chi.vercel.app/',
+    external: true,
+    pillText: 'See Website!',
   },
 ]
 
@@ -137,7 +139,7 @@ export default function Hero() {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        background: '#f9f8f6',
+        background: '#F4F4F4',
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
@@ -233,6 +235,7 @@ export default function Hero() {
             >
               <ObjectIcon
                 name={icon.name}
+                ext={icon.ext}
                 rotation={icon.rotation}
                 translateY={0}
                 size={ICON_SIZE}

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import LuminaOrb from './LuminaOrb'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
-const instrument = 'var(--font-instrument), Helvetica Neue, Helvetica, Arial, sans-serif'
+const instrument = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
 
 interface CardButton {
   label: string
@@ -31,9 +31,19 @@ interface CardData {
 
 const CARDS: CardData[] = [
   {
+    id: 'iheart',
+    company: 'iHeartMedia',
+    meta: 'Product Design Intern / Summer 2026',
+    description: 'Designing inside America’s largest audio media company across iHeartRadio and broadcast properties.',
+    href: '/work/iheart',
+    icon: 'briefcase',
+    iconRotation: 0,
+    pillText: 'See Case Study!',
+  },
+  {
     id: 'findy',
     company: 'Findy',
-    meta: 'UCI Project Teams · 1st Place',
+    meta: 'UCI Project Teams / 1st Place',
     description: 'An AI guide that lives inside iOS and helps seniors use their phones without feeling overwhelmed.',
     href: '/work/findy',
     icon: 'briefcase',
@@ -44,7 +54,7 @@ const CARDS: CardData[] = [
   {
     id: 'clair',
     company: 'Clair',
-    meta: 'HackDavis · Anthropic Track Winner',
+    meta: 'HackDavis / Anthropic Track Winner',
     description: 'A clinical AI scribe that turns the messiest part of a doctor’s day into a clean handoff.',
     href: '/work/clair',
     icon: 'briefcase',
@@ -55,7 +65,7 @@ const CARDS: CardData[] = [
   {
     id: 'nami',
     company: 'Nami',
-    meta: 'Fullyhacks 2026 · Hackathon Winner',
+    meta: 'Fullyhacks 2026 / Hackathon Winner',
     description: 'AI college counselor that gives every student a personal advisor, built in 24 hours.',
     href: 'https://nami.mykm.dev/',
     icon: 'submarine',
@@ -66,7 +76,7 @@ const CARDS: CardData[] = [
   {
     id: 'lumina',
     company: 'Lumina',
-    meta: 'Voice AI · Solo Build',
+    meta: 'Voice AI / Solo Build',
     description: 'A voice-first AI tool designed to help people think out loud and get unstuck.',
     href: 'https://lumina-lac-chi.vercel.app/',
     icon: 'microphone',
@@ -96,7 +106,7 @@ const CARDS: CardData[] = [
   {
     id: 'in-n-out',
     company: 'In-N-Out',
-    meta: 'DataThon 2026 · ML Project',
+    meta: 'DataThon 2026 / ML Project',
     description: 'ML model predicting In-N-Out location performance using foot traffic data.',
     href: '/work/in-n-out',
     icon: 'burger',
@@ -116,7 +126,7 @@ const CARDS: CardData[] = [
   {
     id: 'design-uci',
     company: 'Design @ UCI',
-    meta: 'Product Team · UCI',
+    meta: 'Product Team / UCI',
     description:
       'Student org bringing design education and community to campus — case study in progress.',
     href: '/work/design-uci',
@@ -139,6 +149,7 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
   const isDesignUci = card.id === 'design-uci'
   const isFindy = card.id === 'findy'
   const isClair = card.id === 'clair'
+  const isIheart = card.id === 'iheart'
   const isExternal = /^https?:\/\//i.test(card.href)
   const hasButtons = !!card.buttons?.length
 
@@ -168,7 +179,9 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
                         ? '#eaf2ff'
                         : isClair
                           ? '#ffffff'
-                          : '#f5f5f5',
+                          : isIheart
+                            ? '#c8102e'
+                            : '#f5f5f5',
       }}
     >
       <motion.div
@@ -238,6 +251,18 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
               maxWidth: '72%',
               display: 'block',
               objectFit: 'contain',
+            }}
+          />
+        ) : isIheart ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src="/work-cards/iheart-logo.jpeg"
+            alt="iHeartMedia"
+            style={{
+              width: '100%',
+              height: '100%',
+              display: 'block',
+              objectFit: 'cover',
             }}
           />
         ) : isBeats ? (
@@ -379,7 +404,7 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
   const cardBody = (
     <div
       style={{
-        paddingTop: '18px',
+        padding: '18px 24px 0',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -557,15 +582,17 @@ export default function WorkGrid() {
       id="work"
       style={{
         width: '100%',
-        padding: '80px 7vw',
-        background: '#f9f8f6',
+        padding: '80px 0 120px',
+        background: '#F4F4F4',
       }}
     >
       <div
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '16px',
+          gap: '4px',
+          width: '100%',
+          margin: 0,
         }}
       >
         {CARDS.map((card, i) => (

@@ -19,10 +19,10 @@ const DEFAULT_LABEL = '#6b6b6b'
 
 /** Eyebrow (e.g. PRODUCT MARKETING · CASE STUDY) — prefer `caseStudyLabelStyles(accent).eyebrow` */
 export const caseStudyEyebrow: CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '11px',
-  fontWeight: 500,
-  letterSpacing: '0.12em',
+  fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
+  fontSize: '13px',
+  fontWeight: 400,
+  letterSpacing: '0.14em',
   textTransform: 'uppercase',
   color: DEFAULT_LABEL,
   marginBottom: '16px',
@@ -30,10 +30,10 @@ export const caseStudyEyebrow: CSSProperties = {
 
 /** Meta sidebar labels (Role, Timeline, …) */
 export const caseStudyMetaLabel: CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '11px',
-  fontWeight: 500,
-  letterSpacing: '0.12em',
+  fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
+  fontSize: '13px',
+  fontWeight: 400,
+  letterSpacing: '0.14em',
   textTransform: 'uppercase',
   color: DEFAULT_LABEL,
   marginBottom: '4px',
@@ -64,9 +64,9 @@ export const caseStudyDescriptor: CSSProperties = {
 
 /** PROBLEM, MY ROLE, Context sidebar labels, etc. */
 export const caseStudySectionLabel: CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '11px',
-  fontWeight: 500,
+  fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
+  fontSize: '13px',
+  fontWeight: 400,
   letterSpacing: '0.14em',
   textTransform: 'uppercase',
   color: DEFAULT_LABEL,

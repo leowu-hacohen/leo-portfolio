@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
-const instrument = 'var(--font-instrument), Helvetica Neue, Helvetica, Arial, sans-serif'
+const instrument = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
 
 const ACCENT = '#2563eb'
 
@@ -331,7 +331,7 @@ function StickyVideoBlock({
 // ─── page ────────────────────────────────────────────────────────────────────
 export default function FindyPage() {
   return (
-    <div style={{ background: '#f9f8f6', color: '#0a0a0a', minHeight: '100vh' }}>
+    <div style={{ background: '#F4F4F4', color: '#0a0a0a', minHeight: '100vh' }}>
       {/* Top nav */}
       <nav
         style={{

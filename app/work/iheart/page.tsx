@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
-const instrument = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
+const instrumentSerif = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
 
-export default function ClairPage() {
+export default function IHeartPage() {
   return (
     <div
       style={{
@@ -32,12 +32,7 @@ export default function ClairPage() {
         <Link
           href="/"
           data-cursor-pill="Back"
-          style={{
-            fontFamily: jakarta,
-            fontSize: '13px',
-            color: '#666',
-            textDecoration: 'none',
-          }}
+          style={{ fontFamily: jakarta, fontSize: '13px', color: '#666', textDecoration: 'none' }}
         >
           ← Back
         </Link>
@@ -54,12 +49,7 @@ export default function ClairPage() {
               key={label}
               href={href}
               data-cursor-pill={label}
-              style={{
-                fontFamily: jakarta,
-                fontSize: '13px',
-                color: '#888',
-                textDecoration: 'none',
-              }}
+              style={{ fontFamily: jakarta, fontSize: '13px', color: '#888', textDecoration: 'none' }}
             >
               {label}
             </Link>
@@ -79,16 +69,18 @@ export default function ClairPage() {
         }}
       >
         <motion.img
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          src="/work-cards/clair-logo.png"
-          alt="Clair"
+          src="/work-cards/iheart-logo.jpeg"
+          alt="iHeartMedia"
           style={{
-            maxWidth: '420px',
+            maxWidth: '360px',
             width: '60%',
             height: 'auto',
             marginBottom: '48px',
+            borderRadius: '24px',
+            boxShadow: '0 30px 80px rgba(200, 16, 46, 0.18)',
           }}
         />
         <motion.div
@@ -96,16 +88,16 @@ export default function ClairPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
           style={{
-            fontFamily: instrument,
-            fontSize: '12px',
-            fontWeight: 500,
+            fontFamily: instrumentSerif,
+            fontSize: '14px',
+            fontWeight: 400,
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
             color: '#666',
             marginBottom: '14px',
           }}
         >
-          Case Study · In Progress
+          Case Study / In Progress
         </motion.div>
         <motion.p
           initial={{ opacity: 0, y: 12 }}

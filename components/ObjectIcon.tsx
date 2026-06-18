@@ -3,9 +3,16 @@ interface ObjectIconProps {
   rotation: number
   translateY: number
   size?: number
+  ext?: 'svg' | 'png'
 }
 
-export default function ObjectIcon({ name, rotation, translateY, size = 80 }: ObjectIconProps) {
+export default function ObjectIcon({
+  name,
+  rotation,
+  translateY,
+  size = 80,
+  ext = 'svg',
+}: ObjectIconProps) {
   return (
     <span
       style={{
@@ -18,11 +25,11 @@ export default function ObjectIcon({ name, rotation, translateY, size = 80 }: Ob
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={`/icons/${name}.svg`}
+        src={`/icons/${name}.${ext}`}
         alt={name}
         width={size}
         height={size}
-        style={{ display: 'block', width: `${size}px`, height: `${size}px` }}
+        style={{ display: 'block', width: `${size}px`, height: `${size}px`, objectFit: 'contain' }}
       />
     </span>
   )

@@ -66,7 +66,7 @@ export default function ChageePage() {
   return (
     <div
       style={{
-        background: '#f9f8f6',
+        background: '#F4F4F4',
         minHeight: '100vh',
         fontFamily: jakarta,
         color: '#111',

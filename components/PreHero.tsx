@@ -50,7 +50,7 @@ export default function PreHero({ onReveal, onExit }: PreHeroProps) {
           style={{
             position: 'fixed',
             inset: 0,
-            background: '#f9f8f6',
+            background: '#F4F4F4',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
