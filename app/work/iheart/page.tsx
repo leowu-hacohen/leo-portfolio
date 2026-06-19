@@ -91,9 +91,8 @@ export default function IHeartPage() {
             fontFamily: instrumentSerif,
             fontSize: '14px',
             fontWeight: 400,
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: '#666',
+            letterSpacing: '0.01em',
+                        color: '#666',
             marginBottom: '14px',
           }}
         >

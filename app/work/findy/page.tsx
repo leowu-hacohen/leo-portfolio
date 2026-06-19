@@ -43,9 +43,8 @@ function Beat({
           fontFamily: instrument,
           fontSize: '12px',
           fontWeight: 500,
-          letterSpacing: '0.16em',
-          textTransform: 'uppercase',
-          color: ACCENT,
+          letterSpacing: '0.01em',
+                    color: ACCENT,
           marginBottom: '24px',
         }}
       >
@@ -148,9 +147,8 @@ function HeroSection() {
             fontFamily: instrument,
             fontSize: '12px',
             fontWeight: 500,
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.75)',
+            letterSpacing: '0.01em',
+                        color: 'rgba(255,255,255,0.75)',
             marginBottom: '24px',
           }}
         >
@@ -536,9 +534,8 @@ export default function FindyPage() {
             fontFamily: instrument,
             fontSize: '12px',
             fontWeight: 500,
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: ACCENT,
+            letterSpacing: '0.01em',
+                        color: ACCENT,
             marginBottom: '32px',
           }}
         >
@@ -655,9 +652,8 @@ export default function FindyPage() {
               fontFamily: instrument,
               fontSize: '12px',
               fontWeight: 500,
-              letterSpacing: '0.16em',
-              textTransform: 'uppercase',
-              color: ACCENT,
+              letterSpacing: '0.01em',
+                            color: ACCENT,
               marginBottom: '24px',
             }}
           >
@@ -806,9 +802,8 @@ export default function FindyPage() {
               fontFamily: instrument,
               fontSize: '12px',
               fontWeight: 500,
-              letterSpacing: '0.16em',
-              textTransform: 'uppercase',
-              color: ACCENT,
+              letterSpacing: '0.01em',
+                            color: ACCENT,
               marginBottom: '24px',
             }}
           >
@@ -877,9 +872,8 @@ export default function FindyPage() {
               fontFamily: instrument,
               fontSize: '12px',
               fontWeight: 500,
-              letterSpacing: '0.16em',
-              textTransform: 'uppercase',
-              color: ACCENT,
+              letterSpacing: '0.01em',
+                            color: ACCENT,
               marginBottom: '24px',
             }}
           >

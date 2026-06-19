@@ -123,17 +123,6 @@ const CARDS: CardData[] = [
     iconRotation: 10,
     pillText: 'See Case Study!',
   },
-  {
-    id: 'design-uci',
-    company: 'Design @ UCI',
-    meta: 'Product Team / UCI',
-    description:
-      'Student org bringing design education and community to campus — case study in progress.',
-    href: '/work/design-uci',
-    icon: 'briefcase',
-    iconRotation: 0,
-    pillText: 'Coming soon',
-  },
 ]
 
 // ─── WorkCard ─────────────────────────────────────────────────────────────────
@@ -160,7 +149,7 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
         width: '100%',
         aspectRatio: '4/3',
         borderRadius: '0px',
-        overflow: isChagee ? 'visible' : 'hidden',
+        overflow: 'hidden',
         background: isDesignUci
           ? '#000000'
           : isNami
@@ -170,9 +159,9 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
               : isInNOut
                 ? '#fff4e0'
                 : isChagee
-                  ? '#f4efe8'
+                  ? '#a82620'
                   : isLumina
-                    ? '#f0f2f6'
+                    ? '#ffffff'
                     : isBcec
                       ? '#91a0c0'
                       : isFindy
@@ -281,20 +270,17 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
         ) : isChagee ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
-            src="/work-cards/chageenew.png"
-            alt=""
+            src="/work-cards/chagee-new.png"
+            alt="CHAGEE"
             style={{
-              maxHeight: '88%',
-              width: 'auto',
-              maxWidth: '82%',
+              width: '100%',
+              height: '100%',
               display: 'block',
-              objectFit: 'contain',
-              transform: 'scale(2.5)',
-              transformOrigin: 'center center',
+              objectFit: 'cover',
             }}
           />
         ) : isLumina ? (
-          <LuminaOrb size={112} />
+          <LuminaOrb size={280} />
         ) : isInNOut ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
@@ -416,12 +402,11 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
         <div
           style={{
             fontFamily: instrument,
-            fontSize: '11px',
+            fontSize: '13px',
             fontWeight: 500,
-            color: '#111',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            marginBottom: '6px',
+            color: '#666',
+            letterSpacing: '0.01em',
+            marginBottom: '8px',
           }}
         >
           {card.meta}

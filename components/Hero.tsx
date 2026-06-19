@@ -121,6 +121,7 @@ const SCROLL_PILL_AT = 48
 export default function Hero() {
   const [phraseIndex, setPhraseIndex] = useState(0)
   const [navPill, setNavPill] = useState(false)
+  const [nameHover, setNameHover] = useState(false)
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -323,16 +324,57 @@ export default function Hero() {
               marginBottom: '8px',
             }}
           >
-            <Link
-              href="/about"
-              data-cursor-pill="About me"
-              style={{
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
+            <span
+              onMouseEnter={() => setNameHover(true)}
+              onMouseLeave={() => setNameHover(false)}
+              style={{ position: 'relative', display: 'inline-block' }}
             >
-              Leo Wu-Hacohen
-            </Link>{' '}
+              <Link
+                href="/about"
+                data-cursor-pill="About me"
+                style={{
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
+                Leo Wu-Hacohen
+              </Link>
+              <AnimatePresence>
+                {nameHover && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.92 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                    style={{
+                      position: 'absolute',
+                      bottom: 'calc(100% + 14px)',
+                      left: '50%',
+                      x: '-50%',
+                      width: '220px',
+                      height: '280px',
+                      borderRadius: '18px',
+                      overflow: 'hidden',
+                      boxShadow: '0 18px 48px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.08)',
+                      pointerEvents: 'none',
+                      zIndex: 10,
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/aboutme/Ver1.JPG"
+                      alt="Leo"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block',
+                      }}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </span>{' '}
             is a PM
           </div>
 

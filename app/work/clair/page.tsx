@@ -99,9 +99,8 @@ export default function ClairPage() {
             fontFamily: instrument,
             fontSize: '12px',
             fontWeight: 500,
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: '#666',
+            letterSpacing: '0.01em',
+                        color: '#666',
             marginBottom: '14px',
           }}
         >

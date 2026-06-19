@@ -20,10 +20,9 @@ const DEFAULT_LABEL = '#6b6b6b'
 /** Eyebrow (e.g. PRODUCT MARKETING · CASE STUDY) — prefer `caseStudyLabelStyles(accent).eyebrow` */
 export const caseStudyEyebrow: CSSProperties = {
   fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
-  fontSize: '13px',
+  fontSize: '14px',
   fontWeight: 400,
-  letterSpacing: '0.14em',
-  textTransform: 'uppercase',
+  letterSpacing: '0.01em',
   color: DEFAULT_LABEL,
   marginBottom: '16px',
 }
@@ -32,9 +31,8 @@ export const caseStudyEyebrow: CSSProperties = {
 export const caseStudyMetaLabel: CSSProperties = {
   fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
   fontSize: '13px',
-  fontWeight: 400,
-  letterSpacing: '0.14em',
-  textTransform: 'uppercase',
+  fontWeight: 500,
+  letterSpacing: '0.01em',
   color: DEFAULT_LABEL,
   marginBottom: '4px',
 }
@@ -66,9 +64,8 @@ export const caseStudyDescriptor: CSSProperties = {
 export const caseStudySectionLabel: CSSProperties = {
   fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
   fontSize: '13px',
-  fontWeight: 400,
-  letterSpacing: '0.14em',
-  textTransform: 'uppercase',
+  fontWeight: 500,
+  letterSpacing: '0.01em',
   color: DEFAULT_LABEL,
   marginBottom: '12px',
 }
