@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { CASE_STUDY_LABEL_COLORS, caseStudyRadius } from '../../../components/caseStudyTheme'
+import type { CSSProperties } from 'react'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
 const noto = 'var(--font-noto), serif'
@@ -13,7 +13,24 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.55, ease: 'easeOut' as const, delay },
 })
 
-export default function DesignUciComingSoonPage() {
+const navLinkStyle: CSSProperties = {
+  fontFamily: jakarta,
+  fontSize: '13px',
+  fontWeight: 400,
+  color: '#b0b0b0',
+  textDecoration: 'none',
+  letterSpacing: '0.02em',
+}
+
+const NAV_LINKS = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Work', href: '/#work' },
+  { label: 'Extras', href: '/extras' },
+  { label: 'Vibe Playground', href: '/vibe-playground' },
+] as const
+
+export default function VibePlaygroundPage() {
   return (
     <div
       style={{
@@ -28,7 +45,7 @@ export default function DesignUciComingSoonPage() {
       <motion.nav
         {...fadeUp(0)}
         style={{
-          maxWidth: '780px',
+          maxWidth: '900px',
           width: '100%',
           margin: '0 auto',
           padding: '28px 40px 0',
@@ -51,28 +68,17 @@ export default function DesignUciComingSoonPage() {
         >
           ← Back
         </Link>
-        <div style={{ display: 'flex', gap: '32px' }}>
-          {(
-            [
-              { label: 'Home', href: '/' },
-              { label: 'About', href: '/about' },
-              { label: 'Work', href: '/#work' },
-              { label: 'Extras', href: '/extras' },
-              { label: 'Vibe Playground', href: '/vibe-playground' },
-            ] as const
-          ).map(({ label, href }) => (
+        <div style={{ display: 'flex', gap: '28px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+          {NAV_LINKS.map(({ label, href }) => (
             <Link
               key={label}
               href={href}
               data-cursor-pill={label}
-              style={{
-                fontFamily: jakarta,
-                fontSize: '13px',
-                fontWeight: 400,
-                color: '#b0b0b0',
-                textDecoration: 'none',
-                letterSpacing: '0.02em',
-              }}
+              style={
+                label === 'Vibe Playground'
+                  ? { ...navLinkStyle, color: '#111' }
+                  : navLinkStyle
+              }
             >
               {label}
             </Link>
@@ -85,73 +91,45 @@ export default function DesignUciComingSoonPage() {
           flex: 1,
           maxWidth: '640px',
           margin: '0 auto',
-          padding: '80px 40px 120px',
+          padding: '100px 40px 120px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
         }}
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          style={{
-            width: '120px',
-            height: '120px',
-            borderRadius: caseStudyRadius,
-            background: '#000',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '32px',
-            overflow: 'hidden',
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/work-cards/design-uci.png"
-            alt=""
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
-          />
-        </motion.div>
-
         <motion.p
-          {...fadeUp(0.08)}
+          {...fadeUp(0.06)}
           style={{
             fontFamily: jakarta,
             fontSize: '11px',
             fontWeight: 500,
-            color: CASE_STUDY_LABEL_COLORS.designUci,
+            color: '#999',
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
             margin: '0 0 16px',
           }}
         >
-          Case study
+          Experiments
         </motion.p>
 
         <motion.h1
-          {...fadeUp(0.12)}
+          {...fadeUp(0.1)}
           style={{
             fontFamily: noto,
-            fontSize: '36px',
+            fontSize: '40px',
             fontWeight: 600,
             color: '#111',
             letterSpacing: '-0.02em',
             lineHeight: 1.15,
-            margin: '0 0 16px',
+            margin: '0 0 20px',
           }}
         >
-          Design @ UCI
+          Vibe Playground
         </motion.h1>
 
         <motion.p
-          {...fadeUp(0.18)}
+          {...fadeUp(0.16)}
           style={{
             fontFamily: jakarta,
             fontSize: '17px',
@@ -162,7 +140,8 @@ export default function DesignUciComingSoonPage() {
             margin: 0,
           }}
         >
-          This case study is on the way. Check back soon.
+          A sandbox for motion, UI ideas, and things that feel good before they
+          ship anywhere else. More coming soon.
         </motion.p>
       </div>
     </div>

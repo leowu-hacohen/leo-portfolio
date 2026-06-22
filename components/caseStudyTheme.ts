@@ -15,6 +15,9 @@ export type CaseStudyLabelKey = keyof typeof CASE_STUDY_LABEL_COLORS
 
 export const caseStudyJakarta = jakarta
 
+/** Smallest corner round — shared by cards, heroes, and media on case study pages */
+export const caseStudyRadius = '4px'
+
 const DEFAULT_LABEL = '#6b6b6b'
 
 /** Eyebrow (e.g. PRODUCT MARKETING · CASE STUDY) — prefer `caseStudyLabelStyles(accent).eyebrow` */

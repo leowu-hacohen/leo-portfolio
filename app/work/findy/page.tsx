@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import { caseStudyRadius } from '../../../components/caseStudyTheme'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
 const instrument = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
@@ -123,7 +124,7 @@ function HeroSection() {
         width: '100%',
         height: '100vh',
         overflow: 'hidden',
-        background: '#0a0a0a',
+        background: '#ffffff',
       }}
     >
       <motion.div
@@ -134,7 +135,7 @@ function HeroSection() {
           flexDirection: 'column',
           justifyContent: 'flex-end',
           padding: '0 7vw 10vh',
-          color: '#fff',
+          color: '#0a0a0a',
           y: yText,
           opacity,
         }}
@@ -148,7 +149,7 @@ function HeroSection() {
             fontSize: '12px',
             fontWeight: 500,
             letterSpacing: '0.01em',
-                        color: 'rgba(255,255,255,0.75)',
+            color: '#666',
             marginBottom: '24px',
           }}
         >
@@ -166,6 +167,7 @@ function HeroSection() {
             lineHeight: 1.02,
             margin: 0,
             maxWidth: '1100px',
+            color: '#0a0a0a',
           }}
         >
           An AI guide that lives inside iOS and helps seniors use their phones without feeling overwhelmed.
@@ -178,13 +180,13 @@ function HeroSection() {
             fontFamily: jakarta,
             fontSize: '16px',
             fontWeight: 400,
-            color: 'rgba(255,255,255,0.7)',
+            color: '#444',
             lineHeight: 1.7,
             marginTop: '28px',
             maxWidth: '620px',
           }}
         >
-          Project Lead, UCI Project Teams Design Sprint (8 weeks) · 1st Place · Team of 5 · 2026
+          Project Lead, UCI Project Teams Design Sprint (8 weeks) · Team of 5 · 2026
         </motion.p>
       </motion.div>
     </section>
@@ -210,7 +212,7 @@ function MediaImg({
         width: '100%',
         height,
         background: bg,
-        borderRadius: '24px',
+        borderRadius: caseStudyRadius,
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
@@ -243,8 +245,8 @@ function MediaVideo({
       style={{
         width: '100%',
         height,
-        background: '#000',
-        borderRadius: '24px',
+        background: '#f5f7fb',
+        borderRadius: caseStudyRadius,
         overflow: 'hidden',
       }}
     >
@@ -276,7 +278,7 @@ function StickyVideoBlock({
     <section
       style={{
         position: 'relative',
-        background: '#0a0a0a',
+        background: '#ffffff',
         padding: '14vh 7vw',
       }}
     >
@@ -294,10 +296,10 @@ function StickyVideoBlock({
           style={{
             width: '100%',
             aspectRatio: '16/9',
-            background: '#000',
-            borderRadius: '24px',
+            background: '#f5f7fb',
+            borderRadius: caseStudyRadius,
             overflow: 'hidden',
-            boxShadow: '0 40px 120px rgba(37,99,235,0.18)',
+            boxShadow: '0 40px 120px rgba(37,99,235,0.12)',
           }}
         >
           <video
@@ -314,7 +316,7 @@ function StickyVideoBlock({
           style={{
             fontFamily: jakarta,
             fontSize: '14px',
-            color: 'rgba(255,255,255,0.5)',
+            color: '#666',
             marginTop: '20px',
             textAlign: 'center',
           }}
@@ -366,6 +368,7 @@ export default function FindyPage() {
               { label: 'About', href: '/about' },
               { label: 'Work', href: '/#work' },
               { label: 'Extras', href: '/extras' },
+              { label: 'Vibe Playground', href: '/vibe-playground' },
             ] as const
           ).map(({ label, href }) => (
             <Link
@@ -471,7 +474,7 @@ export default function FindyPage() {
       <section
         style={{
           padding: '6vh 7vw 14vh',
-          background: '#0a0a0a',
+          background: '#ffffff',
         }}
       >
         <div
@@ -499,7 +502,7 @@ export default function FindyPage() {
                 style={{
                   fontFamily: jakarta,
                   fontSize: '14px',
-                  color: 'rgba(255,255,255,0.55)',
+                  color: '#666',
                   marginTop: '14px',
                   textAlign: 'center',
                 }}
@@ -604,7 +607,7 @@ export default function FindyPage() {
               gap: '32px',
               alignItems: 'center',
               background: '#eaf2ff',
-              borderRadius: '24px',
+              borderRadius: caseStudyRadius,
               padding: '60px 40px',
             }}
           >
@@ -722,7 +725,7 @@ export default function FindyPage() {
                 transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   background: '#f5f7fb',
-                  borderRadius: '20px',
+                  borderRadius: caseStudyRadius,
                   padding: '32px',
                 }}
               >

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import LuminaOrb from './LuminaOrb'
+import { caseStudyRadius } from './caseStudyTheme'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
 const instrument = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
@@ -24,7 +24,6 @@ interface CardData {
   icon: string
   iconRotation: number
   featured?: boolean
-  badge?: string
   pillText: string
   buttons?: CardButton[]
 }
@@ -33,8 +32,8 @@ const CARDS: CardData[] = [
   {
     id: 'iheart',
     company: 'iHeartMedia',
-    meta: 'Product Design Intern / Summer 2026',
-    description: 'Designing inside America’s largest audio media company across iHeartRadio and broadcast properties.',
+    meta: 'Product Management Intern / Summer 2026',
+    description: 'Building product inside America’s largest audio media company across iHeartRadio and broadcast properties.',
     href: '/work/iheart',
     icon: 'briefcase',
     iconRotation: 0,
@@ -43,12 +42,11 @@ const CARDS: CardData[] = [
   {
     id: 'findy',
     company: 'Findy',
-    meta: 'UCI Project Teams / 1st Place',
+    meta: 'UCI Project Teams',
     description: 'An AI guide that lives inside iOS and helps seniors use their phones without feeling overwhelmed.',
     href: '/work/findy',
     icon: 'briefcase',
     iconRotation: 0,
-    badge: '1st Place',
     pillText: 'See Case Study!',
   },
   {
@@ -59,7 +57,6 @@ const CARDS: CardData[] = [
     href: '/work/clair',
     icon: 'briefcase',
     iconRotation: 0,
-    badge: 'Anthropic Track',
     pillText: 'See Case Study!',
   },
   {
@@ -70,17 +67,6 @@ const CARDS: CardData[] = [
     href: 'https://nami.mykm.dev/',
     icon: 'submarine',
     iconRotation: -15,
-    badge: '1st Place',
-    pillText: 'See Website!',
-  },
-  {
-    id: 'lumina',
-    company: 'Lumina',
-    meta: 'Voice AI / Solo Build',
-    description: 'A voice-first AI tool designed to help people think out loud and get unstuck.',
-    href: 'https://lumina-lac-chi.vercel.app/',
-    icon: 'microphone',
-    iconRotation: 8,
     pillText: 'See Website!',
   },
   {
@@ -94,34 +80,14 @@ const CARDS: CardData[] = [
     pillText: 'See Case Study!',
   },
   {
-    id: 'beats',
-    company: 'Beats by Dre',
-    meta: 'Data Analytics Extern',
-    description: 'Surfacing consumer listening patterns to inform product and brand strategy.',
-    href: '/beats',
-    icon: 'headphones',
-    iconRotation: 12,
-    pillText: 'Coming soon',
-  },
-  {
-    id: 'in-n-out',
-    company: 'In-N-Out',
-    meta: 'DataThon 2026 / ML Project',
-    description: 'ML model predicting In-N-Out location performance using foot traffic data.',
-    href: '/work/in-n-out',
-    icon: 'burger',
-    iconRotation: -12,
-    pillText: 'See Case Study!',
-  },
-  {
-    id: 'bcec',
-    company: 'BCEC',
-    meta: 'VP of Marketing',
-    description: "Led marketing strategy for UCI's premier business consulting club.",
-    href: '/work/bcec',
+    id: 'ai-uci',
+    company: 'AI @ UCI',
+    meta: 'Operations Lead',
+    description: 'Website redesign for AI @ UCI · Operations Lead',
+    href: 'https://ai-uci.vercel.app/',
     icon: 'briefcase',
-    iconRotation: 10,
-    pillText: 'See Case Study!',
+    iconRotation: 0,
+    pillText: 'See Website!',
   },
 ]
 
@@ -130,15 +96,12 @@ const CARDS: CardData[] = [
 function WorkCard({ card, index }: { card: CardData; index: number }) {
   const [hovered, setHovered] = useState(false)
   const isNami = card.id === 'nami'
-  const isBeats = card.id === 'beats'
   const isChagee = card.id === 'chagee'
-  const isLumina = card.id === 'lumina'
-  const isInNOut = card.id === 'in-n-out'
-  const isBcec = card.id === 'bcec'
   const isDesignUci = card.id === 'design-uci'
   const isFindy = card.id === 'findy'
   const isClair = card.id === 'clair'
   const isIheart = card.id === 'iheart'
+  const isAiUci = card.id === 'ai-uci'
   const isExternal = /^https?:\/\//i.test(card.href)
   const hasButtons = !!card.buttons?.length
 
@@ -148,29 +111,23 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
         position: 'relative',
         width: '100%',
         aspectRatio: '4/3',
-        borderRadius: '0px',
+        borderRadius: caseStudyRadius,
         overflow: 'hidden',
         background: isDesignUci
           ? '#000000'
           : isNami
             ? 'linear-gradient(135deg, #05080f 0%, #0b1120 60%, #0d1528 100%)'
-            : isBeats
-              ? '#000000'
-              : isInNOut
-                ? '#fff4e0'
-                : isChagee
-                  ? '#a82620'
-                  : isLumina
-                    ? '#ffffff'
-                    : isBcec
-                      ? '#91a0c0'
-                      : isFindy
-                        ? '#eaf2ff'
-                        : isClair
-                          ? '#ffffff'
-                          : isIheart
-                            ? '#c8102e'
-                            : '#f5f5f5',
+            : isChagee
+              ? '#a82620'
+              : isFindy
+                ? '#eaf2ff'
+                : isClair
+                  ? '#ffffff'
+                  : isIheart
+                    ? '#c8102e'
+                    : isAiUci
+                      ? '#ffffff'
+                      : '#f5f5f5',
       }}
     >
       <motion.div
@@ -178,12 +135,9 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
           scale:
             hovered &&
             !isNami &&
-            !isBeats &&
             !isChagee &&
-            !isLumina &&
-            !isInNOut &&
-            !isBcec &&
-            !isDesignUci
+            !isDesignUci &&
+            !isAiUci
               ? 1.03
               : 1,
         }}
@@ -208,7 +162,7 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
               maxWidth: '92%',
               display: 'block',
               objectFit: 'contain',
-              borderRadius: '0px',
+              borderRadius: caseStudyRadius,
               overflow: 'hidden',
             }}
           >
@@ -254,19 +208,6 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
               objectFit: 'cover',
             }}
           />
-        ) : isBeats ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src="/work-cards/beats-logo.png"
-            alt="Beats by Dre"
-            style={{
-              maxHeight: '58%',
-              width: 'auto',
-              maxWidth: '60%',
-              display: 'block',
-              objectFit: 'contain',
-            }}
-          />
         ) : isChagee ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
@@ -279,30 +220,15 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
               objectFit: 'cover',
             }}
           />
-        ) : isLumina ? (
-          <LuminaOrb size={280} />
-        ) : isInNOut ? (
+        ) : isAiUci ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
-            src="/work-cards/in-n-out-location-predictor-logo.png"
-            alt="In-N-Out Location Predictor"
+            src="/work-cards/ai-uci.png"
+            alt="AI @ UCI"
             style={{
-              maxHeight: '90%',
+              maxHeight: '72%',
               width: 'auto',
-              maxWidth: '92%',
-              display: 'block',
-              objectFit: 'contain',
-            }}
-          />
-        ) : isBcec ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src="/work-cards/bceclogo.png"
-            alt="BCEC"
-            style={{
-              maxHeight: '96%',
-              width: 'auto',
-              maxWidth: '96%',
+              maxWidth: '72%',
               display: 'block',
               objectFit: 'contain',
             }}
@@ -336,82 +262,21 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
           />
         )}
       </motion.div>
-
-      {card.badge && (
-        <span
-          style={
-            isNami
-              ? {
-                  position: 'absolute',
-                  top: '16px',
-                  left: '16px',
-                  zIndex: 2,
-                  fontFamily: jakarta,
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  color: '#0d0d0f',
-                  letterSpacing: '0.05em',
-                  padding: '6px 14px',
-                  borderRadius: '999px',
-                  background:
-                    'linear-gradient(145deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.82) 45%, rgba(255,255,255,0.9) 100%)',
-                  backdropFilter: 'blur(12px) saturate(150%)',
-                  WebkitBackdropFilter: 'blur(12px) saturate(150%)',
-                  border: '1px solid rgba(255,255,255,0.95)',
-                  boxShadow: `
-                    0 2px 4px rgba(0,0,0,0.12),
-                    0 6px 20px rgba(0,0,0,0.1),
-                    0 1px 0 rgba(255,255,255,0.85) inset
-                  `,
-                  textShadow: '0 1px 0 rgba(255,255,255,0.9)',
-                }
-              : {
-                  position: 'absolute',
-                  top: '16px',
-                  left: '16px',
-                  fontFamily: jakarta,
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  color: '#111',
-                  background: '#ffffff',
-                  border: '1px solid #e0e0e0',
-                  borderRadius: '999px',
-                  padding: '4px 10px',
-                  letterSpacing: '0.04em',
-                }
-          }
-        >
-          {card.badge}
-        </span>
-      )}
     </div>
   )
 
   const cardBody = (
-    <div
-      style={{
-        padding: '18px 0 0',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: '32px',
-      }}
-    >
-      {/* Left: text */}
-      <div>
-        <div
-          style={{
-            fontFamily: instrument,
-            fontSize: '13px',
-            fontWeight: 500,
-            color: '#666',
-            letterSpacing: '0.01em',
-            marginBottom: '8px',
-          }}
-        >
-          {card.meta}
-        </div>
-
+    <div style={{ padding: '18px 0 0' }}>
+      {/* Company title + meta on the same baseline row */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+          gap: '24px',
+          marginBottom: '8px',
+        }}
+      >
         <div
           style={{
             fontFamily: jakarta,
@@ -420,12 +285,36 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
             color: '#111',
             letterSpacing: '-0.02em',
             lineHeight: 1.2,
-            marginBottom: '8px',
+            minWidth: 0,
           }}
         >
           {card.company}
         </div>
 
+        <div
+          style={{
+            fontFamily: instrument,
+            fontSize: '13px',
+            fontWeight: 500,
+            color: '#666',
+            letterSpacing: '0.01em',
+            textAlign: 'right',
+            lineHeight: 1.2,
+            flexShrink: 0,
+          }}
+        >
+          {card.meta}
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '32px',
+        }}
+      >
         <div
           style={{
             fontFamily: jakarta,
@@ -438,7 +327,6 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
         >
           {card.description}
         </div>
-      </div>
 
       {hasButtons && (
         <div style={{ display: 'flex', gap: '10px', flexShrink: 0 }}>
@@ -482,6 +370,7 @@ function WorkCard({ card, index }: { card: CardData; index: number }) {
           ))}
         </div>
       )}
+      </div>
     </div>
   )
 

@@ -10,6 +10,7 @@ import {
   caseStudyDescriptor,
   caseStudyJakarta,
   caseStudyLabelStyles,
+  caseStudyRadius,
   caseStudySectionHeading,
   caseStudyTitle,
 } from './caseStudyTheme'
@@ -33,7 +34,6 @@ export interface CaseStudyProps {
   tools: string
   company: string
   descriptor: string
-  tags: string[]
   context: string
   contributions: string[]
   metrics: CaseStudyMetric[]
@@ -59,7 +59,7 @@ const metaValue: React.CSSProperties = {
 
 const cardStyle: React.CSSProperties = {
   background: '#fafafa',
-  borderRadius: '0px',
+  borderRadius: caseStudyRadius,
   padding: '28px',
   flex: 1,
 }
@@ -111,7 +111,6 @@ export default function CaseStudy({
   tools,
   company,
   descriptor,
-  tags,
   context,
   contributions,
   metrics,
@@ -178,6 +177,7 @@ export default function CaseStudy({
                 { label: 'About', href: '/about' },
                 { label: 'Work', href: '/#work' },
                 { label: 'Extras', href: '/extras' },
+                { label: 'Vibe Playground', href: '/vibe-playground' },
               ] as const
             ).map(({ label, href }) => (
               <Link
@@ -208,7 +208,7 @@ export default function CaseStudy({
             width: '100%',
             height: '480px',
             background: '#f5f5f5',
-            borderRadius: '0px',
+            borderRadius: caseStudyRadius,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -269,7 +269,7 @@ export default function CaseStudy({
               backgroundColor: canvasBackdropSrc
                 ? 'rgba(255, 255, 255, 0.94)'
                 : 'transparent',
-              borderRadius: '0px',
+              borderRadius: caseStudyRadius,
             }}
         >
         {/* 3. METADATA ROW ─────────────────────────────────────────────────── */}
@@ -318,32 +318,11 @@ export default function CaseStudy({
               style={{
                 ...caseStudyDescriptor,
                 marginTop: '10px',
-                marginBottom: '20px',
+                marginBottom: '0',
               }}
             >
               {descriptor}
             </motion.p>
-
-            <motion.div
-              variants={rightItem}
-              style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}
-            >
-              {tags.map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    fontFamily: jakarta,
-                    fontSize: '13px',
-                    color: '#666',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '999px',
-                    padding: '4px 12px',
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </motion.div>
           </motion.div>
         </div>
 
@@ -421,7 +400,7 @@ export default function CaseStudy({
                   marginRight: 'auto',
                   height: '400px',
                   background: '#f5f5f5',
-                  borderRadius: '0px',
+                  borderRadius: caseStudyRadius,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',

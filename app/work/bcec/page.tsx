@@ -11,6 +11,7 @@ import {
   caseStudyDescriptor,
   caseStudyJakarta,
   caseStudyLabelStyles,
+  caseStudyRadius,
   caseStudySectionBlock,
   caseStudySectionHeading,
   caseStudyTitle,
@@ -95,6 +96,7 @@ export default function BcecPage() {
                 { label: 'About', href: '/about' },
                 { label: 'Work', href: '/#work' },
                 { label: 'Extras', href: '/extras' },
+                { label: 'Vibe Playground', href: '/vibe-playground' },
               ] as const
             ).map(({ label, href }) => (
               <Link
@@ -115,11 +117,6 @@ export default function BcecPage() {
             ))}
           </div>
         </motion.nav>
-
-        {/* Eyebrow */}
-        <motion.div {...fadeUp(0.05)} style={L.eyebrow}>
-          Brand Strategy · Case Study
-        </motion.div>
 
         {/* Title */}
         <motion.h1 {...fadeUp(0.1)} style={caseStudyTitle}>
@@ -285,7 +282,7 @@ export default function BcecPage() {
                 key={label}
                 style={{
                   background: '#fafafa',
-                  borderRadius: '12px',
+                  borderRadius: caseStudyRadius,
                   padding: '24px',
                 }}
               >

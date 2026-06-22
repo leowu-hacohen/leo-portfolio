@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import type { CSSProperties } from 'react'
 import {
   CASE_STUDY_LABEL_COLORS,
   caseStudyBody,
@@ -13,6 +12,7 @@ import {
   caseStudyDescriptor,
   caseStudyJakarta,
   caseStudyLabelStyles,
+  caseStudyRadius,
   caseStudySectionBlock,
   caseStudySectionHeading,
   caseStudyTitle,
@@ -23,16 +23,6 @@ const L = caseStudyLabelStyles(CASE_STUDY_LABEL_COLORS.chagee)
 
 /** Hero line: same string as the H1 (mirrors Lumina-style hero where label matches headline). */
 const CHAGEE_HERO_TITLE = 'CHAGEE USA: First Market Launch'
-
-/** Eyebrow uses the hero title; keep casing identical to the H1 (no uppercase transform). */
-const chageeHeroEyebrow: CSSProperties = {
-  ...L.eyebrow,
-  textTransform: 'none',
-  letterSpacing: '-0.02em',
-  fontSize: '13px',
-  lineHeight: 1.25,
-  fontWeight: 600,
-}
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
@@ -110,6 +100,7 @@ export default function ChageePage() {
                 { label: 'About', href: '/about' },
                 { label: 'Work', href: '/#work' },
                 { label: 'Extras', href: '/extras' },
+                { label: 'Vibe Playground', href: '/vibe-playground' },
               ] as const
             ).map(({ label, href }) => (
               <Link
@@ -148,6 +139,8 @@ export default function ChageePage() {
             marginBottom: '40px',
             padding: '48px 40px',
             boxSizing: 'border-box',
+            borderRadius: caseStudyRadius,
+            overflow: 'hidden',
           }}
         >
           <Image
@@ -163,11 +156,6 @@ export default function ChageePage() {
               objectFit: 'contain',
             }}
           />
-        </motion.div>
-
-        {/* Top line: same copy as H1 (Lumina-style hero sync) */}
-        <motion.div {...fadeUp(0.05)} style={chageeHeroEyebrow}>
-          {CHAGEE_HERO_TITLE}
         </motion.div>
 
         {/* Title */}
@@ -328,7 +316,7 @@ export default function ChageePage() {
                 key={label}
                 style={{
                   background: '#fafafa',
-                  borderRadius: '12px',
+                  borderRadius: caseStudyRadius,
                   padding: '24px',
                 }}
               >

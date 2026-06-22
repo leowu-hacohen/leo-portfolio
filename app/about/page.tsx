@@ -13,6 +13,7 @@ const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Work', href: '/#work' },
   { label: 'Extras', href: '/extras' },
+  { label: 'Vibe Playground', href: '/vibe-playground' },
 ] as const
 
 /** Exact filenames under public/aboutme/ (case-sensitive on deploy) */
@@ -37,7 +38,6 @@ const fadeUp = (delay = 0) => ({
 /* TODO: confirm dates and titles */
 const experience: { company: string; role: string; year: string }[] = [
   { company: '0studio', role: 'Product', year: '2026' },
-  { company: 'Beats by Dre', role: 'Data Analytics Extern', year: '2026' },
   { company: 'CHAGEE', role: 'Product Marketing Intern', year: '2024-2025' },
 ]
 
@@ -249,8 +249,7 @@ export default function AboutPage() {
             I&apos;m a third-year Business Information Management student at UC
             Irvine, focused on product management. Over the past two years
             I&apos;ve worked across marketing, data, and product, at a tea brand
-            scaling across the US, a data analytics externship at Beats by Dre,
-            and a handful of hackathons where I learned to ship fast and figure
+            scaling across the US and a handful of hackathons where I learned to ship fast and figure
             things out under pressure.
           </p>
 

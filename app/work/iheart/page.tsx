@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { caseStudyRadius } from '../../../components/caseStudyTheme'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
 const instrumentSerif = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
@@ -43,6 +44,7 @@ export default function IHeartPage() {
               { label: 'About', href: '/about' },
               { label: 'Work', href: '/#work' },
               { label: 'Extras', href: '/extras' },
+              { label: 'Vibe Playground', href: '/vibe-playground' },
             ] as const
           ).map(({ label, href }) => (
             <Link
@@ -79,7 +81,7 @@ export default function IHeartPage() {
             width: '60%',
             height: 'auto',
             marginBottom: '48px',
-            borderRadius: '24px',
+            borderRadius: caseStudyRadius,
             boxShadow: '0 30px 80px rgba(200, 16, 46, 0.18)',
           }}
         />
@@ -96,7 +98,7 @@ export default function IHeartPage() {
             marginBottom: '14px',
           }}
         >
-          Case Study / In Progress
+          Product Management Intern · Summer 2026
         </motion.div>
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -110,7 +112,7 @@ export default function IHeartPage() {
             lineHeight: 1.6,
           }}
         >
-          Coming soon.
+          Case study coming soon.
         </motion.p>
       </main>
     </div>

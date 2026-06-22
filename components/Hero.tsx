@@ -4,85 +4,13 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ObjectIcon from './ObjectIcon'
+import { heroRingIcons } from './heroRingIcons'
+import { caseStudyRadius } from './caseStudyTheme'
 
 const PHRASES = [
   'Analytical by nature.',
   'Creative by trade.',
   'Product by obsession.',
-]
-
-type RingIcon = {
-  name: string
-  ext?: 'svg' | 'png'
-  rotation: number
-  scale?: number
-  top: string
-  left?: string
-  right?: string
-  href: string
-  external: boolean
-  pillText: string
-}
-
-const ringIcons: RingIcon[] = [
-  {
-    name: 'teacup',
-    rotation: -10,
-    top: '18%',
-    left: '18%',
-    href: '/work/chagee',
-    external: false,
-    pillText: 'See Case Study!',
-  },
-  {
-    name: 'submarine',
-    rotation: 8,
-    top: '18%',
-    right: '18%',
-    href: 'https://nami.mykm.dev/',
-    external: true,
-    pillText: 'See Website!',
-  },
-  {
-    name: 'findy',
-    ext: 'png',
-    rotation: -6,
-    top: '46%',
-    left: '10%',
-    href: '/work/findy',
-    external: false,
-    pillText: 'See Case Study!',
-  },
-  {
-    name: 'clair',
-    ext: 'png',
-    rotation: 6,
-    top: '46%',
-    right: '10%',
-    href: '/work/clair',
-    external: false,
-    pillText: 'See Case Study!',
-  },
-  {
-    name: 'iheart',
-    ext: 'png',
-    rotation: -8,
-    scale: 0.75,
-    top: '74%',
-    left: '20%',
-    href: '/work/iheart',
-    external: false,
-    pillText: 'See Case Study!',
-  },
-  {
-    name: 'microphone',
-    rotation: 10,
-    top: '74%',
-    right: '20%',
-    href: 'https://lumina-lac-chi.vercel.app/',
-    external: true,
-    pillText: 'See Website!',
-  },
 ]
 
 const ICON_SIZE = 160
@@ -114,6 +42,7 @@ const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Work', href: '#work' },
   { label: 'Extras', href: '/extras' },
+  { label: 'Vibe Playground', href: '/vibe-playground' },
 ] as const
 
 const SCROLL_PILL_AT = 48
@@ -212,7 +141,7 @@ export default function Hero() {
           Outer motion.div: entry fade/scale.
           Inner motion.div: perpetual bobbing.
           The link wraps the icon so the whole bob area is clickable. */}
-      {ringIcons.map((icon, i) => {
+      {heroRingIcons.map((icon, i) => {
         const linkProps = icon.external
           ? {
               href: icon.href,
@@ -236,13 +165,28 @@ export default function Hero() {
                 delay: i * 0.25,
               }}
             >
-              <ObjectIcon
-                name={icon.name}
-                ext={icon.ext}
-                rotation={icon.rotation}
-                translateY={0}
-                size={Math.round(ICON_SIZE * (icon.scale ?? 1))}
-              />
+              <div
+                style={{
+                  background: icon.introBackdrop,
+                  borderRadius: icon.introBackdrop ? caseStudyRadius : undefined,
+                  padding: icon.introBackdrop ? '12px' : undefined,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <ObjectIcon
+                  name={icon.name}
+                  ext={icon.ext}
+                  rotation={icon.rotation}
+                  translateY={0}
+                  size={
+                    icon.introBackdrop
+                      ? Math.round(ICON_SIZE * (icon.scale ?? 1) * 0.82)
+                      : Math.round(ICON_SIZE * (icon.scale ?? 1))
+                  }
+                />
+              </div>
             </motion.div>
           </motion.div>
         )
@@ -418,33 +362,39 @@ export default function Hero() {
         transition={{ duration: 0.45, ease: 'easeOut', delay: 0.55 }}
         style={{
           position: 'absolute',
-          bottom: '44px',
+          bottom: '40px',
           left: '50%',
           zIndex: 3,
           pointerEvents: 'auto',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '10px',
+          gap: '14px',
         }}
       >
-        <p
+        <motion.p
+          animate={{ opacity: [0.72, 1, 0.72] }}
+          transition={{
+            duration: 2.2,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
           style={{
             fontFamily: 'var(--font-jakarta), sans-serif',
-            fontSize: '13px',
-            fontWeight: 400,
+            fontSize: '17px',
+            fontWeight: 600,
             color: '#111',
-            letterSpacing: '0.01em',
+            letterSpacing: '0.02em',
             textAlign: 'center',
-            lineHeight: 1.6,
+            lineHeight: 1.4,
             margin: 0,
             whiteSpace: 'nowrap',
           }}
         >
           Click around to see my work!
-        </p>
+        </motion.p>
         <motion.div
-          animate={{ y: [0, 9, 0] }}
+          animate={{ y: [0, 12, 0] }}
           transition={{
             duration: 1.25,
             repeat: Infinity,
@@ -465,12 +415,12 @@ export default function Hero() {
             }}
           >
             <svg
-              width="34"
-              height="34"
+              width="44"
+              height="44"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2.7"
+              strokeWidth="2.8"
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden

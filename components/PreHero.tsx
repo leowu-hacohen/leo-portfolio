@@ -2,11 +2,16 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ObjectIcon from './ObjectIcon'
+import { heroRingIcons } from './heroRingIcons'
+import { caseStudyRadius } from './caseStudyTheme'
 
-const ICONS = ['teacup', 'submarine', 'microphone', 'burger', 'headphones', 'briefcase']
-const T = 0.9
-const ICON_DURATION = 0.6 * T
-const TOTAL_DURATION = ICONS.length * ICON_DURATION
+const ICON_SIZE = 160
+// Faster icon steps; longer overlay fade so the reveal into Hero feels gradual.
+const ICON_STEP_MS = 340
+const FADE_OUT_MS = 950
+// Extra beat on the last icon so AI @ UCI (and the final swap) registers before fade.
+const TOTAL_MS = heroRingIcons.length * ICON_STEP_MS + 280
 
 interface PreHeroProps {
   // Called the instant we start fading out — parent mounts Hero behind us
@@ -26,14 +31,14 @@ export default function PreHero({ onReveal, onExit }: PreHeroProps) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIconIndex(i => Math.min(i + 1, ICONS.length - 1))
-    }, ICON_DURATION * 1000)
+      setIconIndex(i => Math.min(i + 1, heroRingIcons.length - 1))
+    }, ICON_STEP_MS)
 
     const hideTimer = setTimeout(() => {
       clearInterval(interval)
       onRevealRef.current()
       setVisible(false)
-    }, TOTAL_DURATION * 1000)
+    }, TOTAL_MS)
 
     return () => {
       clearInterval(interval)
@@ -41,12 +46,14 @@ export default function PreHero({ onReveal, onExit }: PreHeroProps) {
     }
   }, [])
 
+  const icon = heroRingIcons[iconIndex]
+
   return (
     <AnimatePresence onExitComplete={() => onExitRef.current()}>
       {visible && (
         <motion.div
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 * T, ease: 'easeOut' }}
+          transition={{ duration: FADE_OUT_MS / 1000, ease: [0.4, 0, 0.2, 1] }}
           style={{
             position: 'fixed',
             inset: 0,
@@ -57,41 +64,59 @@ export default function PreHero({ onReveal, onExit }: PreHeroProps) {
             zIndex: 1000,
           }}
         >
-          <div style={{ position: 'relative', width: '160px', height: '160px' }}>
-            <AnimatePresence mode="wait">
+          <div style={{ position: 'relative', width: `${ICON_SIZE}px`, height: `${ICON_SIZE}px` }}>
+            <AnimatePresence mode="sync">
               <motion.div
-                key={ICONS[iconIndex]}
-                initial={{ opacity: 0, scale: 0.55, y: 24, rotate: -14 }}
+                key={icon.name}
+                initial={{ opacity: 0, scale: 0.72, y: 14, rotate: -8 }}
                 animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
                 exit={{
                   opacity: 0,
-                  scale: 1.18,
-                  y: -18,
-                  rotate: 12,
-                  transition: { duration: 0.28 * T, ease: 'easeOut' },
+                  scale: 1.08,
+                  y: -10,
+                  rotate: 8,
+                  transition: { duration: 0.14, ease: 'easeIn' },
                 }}
                 transition={{
-                  opacity: { duration: 0.22 * T },
-                  scale:  { type: 'spring', stiffness: 180, damping: 22 },
-                  y:      { type: 'spring', stiffness: 150, damping: 22 },
-                  rotate: { type: 'spring', stiffness: 130, damping: 22 },
+                  opacity: { duration: 0.12 },
+                  scale:  { type: 'spring', stiffness: 420, damping: 32 },
+                  y:      { type: 'spring', stiffness: 380, damping: 30 },
+                  rotate: { type: 'spring', stiffness: 340, damping: 28 },
                 }}
-                style={{ position: 'absolute', inset: 0 }}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
               >
-                <motion.img
-                  src={`/icons/${ICONS[iconIndex]}.svg`}
-                  alt={ICONS[iconIndex]}
-                  animate={{ y: [0, -10, 0, 6, 0], rotate: [0, -4, 0, 4, 0] }}
+                <motion.div
+                  animate={{ y: [0, -6, 0, 4, 0] }}
                   transition={{
-                    duration: 2.4 * T,
+                    duration: 1.6,
                     ease: 'easeInOut',
                     repeat: Infinity,
-                    delay: 0.18 * T,
+                    delay: 0.08,
                   }}
-                  width={160}
-                  height={160}
-                  style={{ display: 'block', width: '160px', height: '160px' }}
-                />
+                  style={{
+                    transform: icon.scale ? `scale(${icon.scale})` : undefined,
+                    background: icon.introBackdrop,
+                    borderRadius: icon.introBackdrop ? caseStudyRadius : undefined,
+                    padding: icon.introBackdrop ? '14px' : undefined,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <ObjectIcon
+                    name={icon.name}
+                    ext={icon.ext}
+                    rotation={icon.rotation}
+                    translateY={0}
+                    size={icon.introBackdrop ? ICON_SIZE - 28 : ICON_SIZE}
+                  />
+                </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>

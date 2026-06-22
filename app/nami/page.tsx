@@ -12,7 +12,6 @@ export default function NamiPage() {
       timeline="April 2026 · 24 Hours"
       type="Hackathon · FullyHacks 2026"
       tools="Figma · Claude API · Next.js · Supabase"
-      tags={['AI', 'EdTech', 'Hackathon', '1st Place', 'Claude API']}
       context="The college application process is overwhelming, expensive to navigate, and deeply inequitable. Students without access to private counselors (which cost $200 to $500/hr) are left to figure it out alone. At FullyHacks 2026, our team set out to close that gap. Nami is an AI college counselor that gives every student a personalized, on-demand advisor: one that knows their profile, asks the right questions, and helps them build a strategy, not just a list."
       contributions={[
         'Defined the core problem space and user persona in the first two hours of the hackathon',
