@@ -66,7 +66,6 @@ export default function ExtrasPage() {
               { label: 'Home', href: '/' },
               { label: 'About', href: '/about' },
               { label: 'Work', href: '/#work' },
-              { label: 'Extras', href: '/extras' },
               { label: 'Playground', href: '/playground' },
             ] as const
           ).map(({ label, href }) => (
@@ -74,11 +73,7 @@ export default function ExtrasPage() {
               key={label}
               href={href}
               data-cursor-pill={label}
-              style={
-                label === 'Extras'
-                  ? { ...navLinkStyle, color: '#111' }
-                  : navLinkStyle
-              }
+              style={navLinkStyle}
             >
               {label}
             </Link>

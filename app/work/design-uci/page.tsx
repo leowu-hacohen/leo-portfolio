@@ -57,7 +57,6 @@ export default function DesignUciComingSoonPage() {
               { label: 'Home', href: '/' },
               { label: 'About', href: '/about' },
               { label: 'Work', href: '/#work' },
-              { label: 'Extras', href: '/extras' },
               { label: 'Playground', href: '/playground' },
             ] as const
           ).map(({ label, href }) => (
