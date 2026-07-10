@@ -34,10 +34,13 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.55, ease: 'easeOut' as const, delay },
 })
 
-/* TODO: confirm dates and titles */
 const experience: { company: string; role: string; year: string }[] = [
+  { company: 'iHeartMedia', role: 'Product Management Intern', year: 'Summer 2026' },
   { company: '0studio', role: 'Product', year: '2026' },
-  { company: 'CHAGEE', role: 'Product Marketing Intern', year: '2024-2025' },
+  { company: 'Findy, UCI Project Teams', role: 'Project Lead', year: '2026' },
+  { company: 'BCEC', role: 'VP of Marketing', year: '2025–Present' },
+  { company: 'AI @ UCI', role: 'Operations Lead', year: '2025–Present' },
+  { company: 'CHAGEE', role: 'Product Marketing Intern', year: '2024–2025' },
 ]
 
 const education: {
@@ -63,7 +66,7 @@ const skills: string[] = [
   'Data: SQL, dashboards, A/B readouts',
   'Design: Figma, systems thinking',
   'Writing for execs, users, and docs',
-  'Tooling: Cursor, Notion, light automation',
+  'Tooling: Claude Code, Cursor, Notion, light automation',
 ]
 
 /** Right column: two stacked images — middle column portrait height matches this block (ref layout). */
