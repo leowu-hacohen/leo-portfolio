@@ -249,7 +249,7 @@ export default function FindyPage() {
               gap: '14px',
             }}
           >
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+            {[1, 7, 8].map((n) => (
               <motion.div
                 key={n}
                 whileHover={{ scale: 1.03, y: -4 }}
@@ -282,8 +282,8 @@ export default function FindyPage() {
               marginTop: '18px',
             }}
           >
-            Stills from the final concept: Findy dims the noise, spotlights the next
-            step, and never takes over.
+            From the field research: sessions at two senior centers and in-home
+            visits, where the real barrier showed itself.
           </motion.p>
         </div>
       </section>
