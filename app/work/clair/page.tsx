@@ -6,7 +6,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import ClairOrbit3D from '../../../components/ClairOrbit3D'
 import { caseStudyRadius } from '../../../components/caseStudyTheme'
-import { NextProjectFooter } from '../../../components/CaseStudyKit'
+import { NextProjectFooter, SectionRail } from '../../../components/CaseStudyKit'
 
 const jakarta = 'var(--font-jakarta), sans-serif'
 const instrument = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
@@ -77,7 +77,7 @@ function HeroSection() {
         width: '100%',
         height: '100vh',
         overflow: 'hidden',
-        background: '#ffffff',
+        background: '#F4F4F4',
       }}
     >
       <motion.div style={{ position: 'absolute', inset: 0, y: yCanvas }}>
@@ -96,6 +96,7 @@ function HeroSection() {
           opacity,
         }}
       >
+        <div style={{ maxWidth: '1000px', margin: '0 auto', width: '100%' }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -147,6 +148,7 @@ function HeroSection() {
           A clinical AI scribe that turns the messiest part of a doctor&apos;s day, the handoff, into a clean, structured, always-current record. Built in 24
           hours. Team of 3.
         </motion.p>
+        </div>
       </motion.div>
 
       <motion.div
@@ -188,7 +190,14 @@ const META = [
 
 function MetaStrip() {
   return (
-    <section style={{ borderTop: '1px solid #e8e8e8', borderBottom: '1px solid #e8e8e8', background: '#fafafa' }}>
+    <section
+      style={{
+        borderTop: '1px solid #e8e8e8',
+        borderBottom: '1px solid #e8e8e8',
+        background: '#fafafa',
+        padding: '0 7vw',
+      }}
+    >
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -197,7 +206,7 @@ function MetaStrip() {
         style={{
           maxWidth: '1000px',
           margin: '0 auto',
-          padding: '36px 7vw',
+          padding: '36px 0',
           display: 'flex',
           flexWrap: 'wrap',
           gap: '40px 64px',
@@ -705,11 +714,24 @@ export default function ClairPage() {
         </div>
       </nav>
 
+      <SectionRail
+        accent={ACCENT}
+        sections={[
+          { id: 'tldr', label: 'TLDR' },
+          { id: 'problem', label: 'Problem' },
+          { id: 'product', label: 'Product' },
+          { id: 'build', label: 'Build' },
+          { id: 'challenges', label: 'Challenges' },
+          { id: 'takeaways', label: 'Takeaways' },
+          { id: 'results', label: 'Results' },
+          { id: 'references', label: 'References' },
+        ]}
+      />
       <HeroSection />
       <MetaStrip />
 
       {/* TLDR */}
-      <section style={{ padding: '14vh 7vw 6vh' }}>
+      <section id="tldr" style={{ padding: '14vh 7vw 6vh', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <Eyebrow>TLDR</Eyebrow>
           <motion.h2 {...reveal} style={h2Style}>
@@ -734,7 +756,7 @@ export default function ClairPage() {
       </section>
 
       {/* PROBLEM */}
-      <section style={{ padding: '10vh 7vw' }}>
+      <section id="problem" style={{ padding: '10vh 7vw', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <Eyebrow>The Problem</Eyebrow>
           <motion.h2 {...reveal} style={{ ...h2Style, maxWidth: '820px' }}>
@@ -812,7 +834,7 @@ export default function ClairPage() {
       </section>
 
       {/* PRODUCT, screenshot */}
-      <section style={{ padding: '10vh 5vw 4vh' }}>
+      <section id="product" style={{ padding: '10vh 5vw 4vh', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <div style={{ maxWidth: '900px', margin: '0 auto 56px', textAlign: 'center' }}>
             <Eyebrow>The Product</Eyebrow>
@@ -875,7 +897,7 @@ export default function ClairPage() {
       </section>
 
       {/* ARCHITECTURE */}
-      <section style={{ padding: '10vh 7vw', background: '#ffffff' }}>
+      <section id="build" style={{ padding: '10vh 7vw', background: '#ffffff', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <Eyebrow>How It&apos;s Built</Eyebrow>
           <motion.h2 {...reveal} style={{ ...h2Style, maxWidth: '760px' }}>
@@ -979,7 +1001,7 @@ export default function ClairPage() {
       </section>
 
       {/* CHALLENGES */}
-      <section style={{ padding: '12vh 7vw' }}>
+      <section id="challenges" style={{ padding: '12vh 7vw', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <Eyebrow>What Almost Broke Us</Eyebrow>
           <motion.h2 {...reveal} style={{ ...h2Style, maxWidth: '760px' }}>
@@ -1055,7 +1077,7 @@ export default function ClairPage() {
       </section>
 
       {/* TAKEAWAYS */}
-      <section style={{ padding: '10vh 7vw', background: INK, color: '#fff' }}>
+      <section id="takeaways" style={{ padding: '10vh 7vw', background: INK, color: '#fff', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <motion.div {...reveal} style={{ ...eyebrowStyle, color: '#9DB1FC' }}>
             Takeaways
@@ -1117,7 +1139,7 @@ export default function ClairPage() {
       </section>
 
       {/* RESULTS */}
-      <section style={{ padding: '12vh 7vw 6vh' }}>
+      <section id="results" style={{ padding: '12vh 7vw 6vh', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <Eyebrow>Results</Eyebrow>
           <motion.div
@@ -1159,7 +1181,7 @@ export default function ClairPage() {
       </section>
 
       {/* REFERENCES */}
-      <section style={{ padding: '8vh 7vw' }}>
+      <section id="references" style={{ padding: '8vh 7vw', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <Eyebrow>References</Eyebrow>
           <div style={{ marginTop: '8px' }}>

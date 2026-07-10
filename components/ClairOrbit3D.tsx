@@ -88,6 +88,9 @@ export default function ClairOrbit3D() {
     mount.appendChild(renderer.domElement)
 
     const group = new THREE.Group()
+    // Sit right-of-center so hero copy stays on clean background
+    group.position.x = 1.6
+    group.position.y = 0.2
     scene.add(group)
 
     const dotTexture = makeDotTexture()
@@ -97,8 +100,11 @@ export default function ClairOrbit3D() {
     const ringGeo = new THREE.BufferGeometry()
     const ringPos = new Float32Array(RING_COUNT * 3)
     const ringCol = new Float32Array(RING_COUNT * 3)
-    const a = 2.35 // semi-major
-    const b = 0.95 // semi-minor
+    // Circle in its own plane: in-plane spin keeps the silhouette stable
+    // (an ellipse would drift edge-on as it rotates). The tilt below gives
+    // the slanted-ellipse look from the logo.
+    const a = 1.9
+    const b = 1.9
     const tmp = new THREE.Color()
     for (let i = 0; i < RING_COUNT; i++) {
       const t = Math.random() * Math.PI * 2
@@ -122,7 +128,7 @@ export default function ClairOrbit3D() {
       map: dotTexture,
       vertexColors: true,
       transparent: true,
-      opacity: 0.9,
+      opacity: 0.7,
       depthWrite: false,
       sizeAttenuation: true,
     })
@@ -130,8 +136,8 @@ export default function ClairOrbit3D() {
     // Tilt like the logo's slanted ellipse
     const ringHolder = new THREE.Group()
     ringHolder.add(ring)
-    ringHolder.rotation.z = 0.55
-    ringHolder.rotation.x = 0.35
+    ringHolder.rotation.x = 1.05
+    ringHolder.rotation.z = 0.4
     group.add(ringHolder)
 
     // ── Ambient dust for depth ───────────────────────────────────────────────
@@ -149,7 +155,7 @@ export default function ClairOrbit3D() {
       map: dotTexture,
       color: new THREE.Color('#8CA2FB'),
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.25,
       depthWrite: false,
       sizeAttenuation: true,
     })

@@ -7,6 +7,7 @@ import { caseStudyRadius } from '../../../components/caseStudyTheme'
 import {
   MetaCards,
   NextProjectFooter,
+  SectionRail,
   TakeawayCards,
   kitReveal,
 } from '../../../components/CaseStudyKit'
@@ -36,7 +37,7 @@ function HeroSection() {
         width: '100%',
         height: '100vh',
         overflow: 'hidden',
-        background: '#ffffff',
+        background: '#F4F4F4',
       }}
     >
       <motion.div
@@ -52,6 +53,7 @@ function HeroSection() {
           opacity,
         }}
       >
+        <div style={{ maxWidth: '1000px', margin: '0 auto', width: '100%' }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,6 +102,7 @@ function HeroSection() {
         >
           Project Lead, UCI Project Teams Design Sprint (8 weeks), Team of 5, 2026
         </motion.p>
+        </div>
       </motion.div>
     </section>
   )
@@ -163,10 +166,19 @@ export default function FindyPage() {
         </div>
       </nav>
 
+      <SectionRail
+        accent={ACCENT}
+        sections={[
+          { id: 'tldr', label: 'TLDR' },
+          { id: 'research', label: 'Research' },
+          { id: 'deck', label: 'Deck' },
+          { id: 'takeaways', label: 'Takeaways' },
+        ]}
+      />
       <HeroSection />
 
       {/* TLDR */}
-      <section style={{ padding: '14vh 7vw 6vh' }}>
+      <section id="tldr" style={{ padding: '14vh 7vw 6vh', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -238,7 +250,7 @@ export default function FindyPage() {
       </section>
 
       {/* Stills gallery */}
-      <section style={{ padding: '4vh 5vw' }}>
+      <section id="research" style={{ padding: '4vh 5vw', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <motion.div
             {...kitReveal}
@@ -288,7 +300,7 @@ export default function FindyPage() {
       </section>
 
       {/* THE DECK, Figma embed */}
-      <section style={{ padding: '6vh 5vw 14vh' }}>
+      <section id="deck" style={{ padding: '6vh 5vw 14vh', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -396,7 +408,7 @@ export default function FindyPage() {
       </section>
 
       {/* Acknowledgments + contact */}
-      <section style={{ padding: '8vh 7vw 18vh' }}>
+      <section id="takeaways" style={{ padding: '8vh 7vw 18vh', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 18 }}
