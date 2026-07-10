@@ -296,9 +296,8 @@ export default function AboutPage() {
               lineHeight: 1.6,
             }}
           >
-            {/* TODO: set real LinkedIn URL */}
             <a
-              href="https://www.linkedin.com/"
+              href="https://linkedin.com/in/leo-wu-hacohen"
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: '#111', textDecoration: 'underline' }}
@@ -316,7 +315,7 @@ export default function AboutPage() {
             <span style={{ color: '#ccc', margin: '0 10px' }}>·</span>
             {/* TODO: replace with your real E.164 number in href */}
             <a
-              href="tel:+15555550100"
+              href="tel:+16177979390"
               style={{ color: '#111', textDecoration: 'underline' }}
             >
               Phone
