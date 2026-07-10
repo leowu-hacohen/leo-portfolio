@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ObjectIcon from './ObjectIcon'
-import { heroRingIcons } from './heroRingIcons'
+import { heroRingIcons, type HeroRingIcon } from './heroRingIcons'
 import { caseStudyRadius } from './caseStudyTheme'
 
 const PHRASES = [
@@ -13,7 +13,7 @@ const PHRASES = [
   'Product by obsession.',
 ]
 
-const ICON_SIZE = 160
+const ICON_SIZE = 140
 
 // `delayChildren` lets the centered text start AFTER the icons have begun
 // fading in, so the sequence reads as: icons-arrive → text-arrives, without
@@ -42,10 +42,175 @@ const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Work', href: '#work' },
   { label: 'Extras', href: '/extras' },
-  { label: 'Vibe Playground', href: '/vibe-playground' },
+  { label: 'Playground', href: '/playground' },
 ] as const
 
 const SCROLL_PILL_AT = 48
+
+/**
+ * One draggable, springy product icon with a hover identity label.
+ * Dragging suppresses the navigation click on release.
+ */
+function RingIcon({ icon, index }: { icon: HeroRingIcon; index: number }) {
+  const [hovered, setHovered] = useState(false)
+  const wasDragged = useRef(false)
+
+  const linkStyle: React.CSSProperties = {
+    display: 'inline-block',
+    textDecoration: 'none',
+  }
+
+  const iconNode = (
+    <motion.div
+      drag
+      dragSnapToOrigin
+      dragTransition={{ bounceStiffness: 320, bounceDamping: 14 }}
+      dragElastic={0.35}
+      whileHover={{ scale: 1.12 }}
+      whileDrag={{ scale: 1.15, rotate: icon.rotation * -0.6 }}
+      onDragStart={() => {
+        wasDragged.current = true
+      }}
+      onDragEnd={() => {
+        setTimeout(() => {
+          wasDragged.current = false
+        }, 120)
+      }}
+      transition={{ type: 'spring', stiffness: 420, damping: 18 }}
+      style={{ display: 'inline-block', cursor: 'grab', position: 'relative' }}
+    >
+      <motion.div
+        animate={{ y: [0, -10, 0, 10, 0] }}
+        transition={{
+          duration: 4 + (index % 3) * 0.6,
+          ease: 'easeInOut',
+          repeat: Infinity,
+          delay: index * 0.25,
+        }}
+      >
+        <div
+          style={{
+            background: icon.introBackdrop,
+            borderRadius: icon.introBackdrop ? caseStudyRadius : undefined,
+            padding: icon.introBackdrop ? '12px' : undefined,
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <ObjectIcon
+            name={icon.name}
+            ext={icon.ext}
+            rotation={icon.rotation}
+            translateY={0}
+            size={
+              icon.introBackdrop
+                ? Math.round(ICON_SIZE * (icon.scale ?? 1) * 0.82)
+                : Math.round(ICON_SIZE * (icon.scale ?? 1))
+            }
+          />
+        </div>
+
+        {/* Hover identity label */}
+        <AnimatePresence>
+          {hovered && (
+            <motion.div
+              initial={{ opacity: 0, y: 6, scale: 0.94 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 6, scale: 0.96 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                position: 'absolute',
+                top: 'calc(100% + 2px)',
+                left: '50%',
+                x: '-50%',
+                background: 'rgba(255,255,255,0.92)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                border: '1px solid rgba(0,0,0,0.07)',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.10)',
+                borderRadius: '12px',
+                padding: '8px 14px',
+                whiteSpace: 'nowrap',
+                textAlign: 'center',
+                pointerEvents: 'none',
+                zIndex: 20,
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: 'var(--font-jakarta), sans-serif',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  color: '#111',
+                  lineHeight: 1.3,
+                }}
+              >
+                {icon.label}
+              </div>
+              <div
+                style={{
+                  fontFamily: 'var(--font-jakarta), sans-serif',
+                  fontSize: '11.5px',
+                  fontWeight: 400,
+                  color: '#888',
+                  lineHeight: 1.3,
+                }}
+              >
+                {icon.sub}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </motion.div>
+  )
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (wasDragged.current) e.preventDefault()
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.7 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.45, ease: 'easeOut', delay: 0.05 + index * 0.05 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        position: 'absolute',
+        top: icon.top,
+        left: icon.left,
+        right: icon.right,
+        zIndex: hovered ? 5 : 1,
+      }}
+    >
+      {icon.external ? (
+        <a
+          href={icon.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cursor-pill={icon.pillText}
+          draggable={false}
+          onClick={handleClick}
+          style={linkStyle}
+        >
+          {iconNode}
+        </a>
+      ) : (
+        <Link
+          href={icon.href}
+          data-cursor-pill={icon.pillText}
+          draggable={false}
+          onClick={handleClick}
+          style={linkStyle}
+        >
+          {iconNode}
+        </Link>
+      )}
+    </motion.div>
+  )
+}
 
 export default function Hero() {
   const [phraseIndex, setPhraseIndex] = useState(0)
@@ -137,94 +302,11 @@ export default function Hero() {
         </motion.nav>
       </div>
 
-      {/* Outer ring of icons. Each icon is a link to its experience.
-          Outer motion.div: entry fade/scale.
-          Inner motion.div: perpetual bobbing.
-          The link wraps the icon so the whole bob area is clickable. */}
-      {heroRingIcons.map((icon, i) => {
-        const linkProps = icon.external
-          ? {
-              href: icon.href,
-              target: '_blank' as const,
-              rel: 'noopener noreferrer',
-            }
-          : { href: icon.href }
-
-        const iconNode = (
-          <motion.div
-            whileHover={{ scale: 1.12 }}
-            transition={{ type: 'spring', stiffness: 420, damping: 18 }}
-            style={{ display: 'inline-block', cursor: 'pointer' }}
-          >
-            <motion.div
-              animate={{ y: [0, -10, 0, 10, 0] }}
-              transition={{
-                duration: 4 + (i % 3) * 0.6,
-                ease: 'easeInOut',
-                repeat: Infinity,
-                delay: i * 0.25,
-              }}
-            >
-              <div
-                style={{
-                  background: icon.introBackdrop,
-                  borderRadius: icon.introBackdrop ? caseStudyRadius : undefined,
-                  padding: icon.introBackdrop ? '12px' : undefined,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <ObjectIcon
-                  name={icon.name}
-                  ext={icon.ext}
-                  rotation={icon.rotation}
-                  translateY={0}
-                  size={
-                    icon.introBackdrop
-                      ? Math.round(ICON_SIZE * (icon.scale ?? 1) * 0.82)
-                      : Math.round(ICON_SIZE * (icon.scale ?? 1))
-                  }
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )
-
-        return (
-          <motion.div
-            key={icon.name}
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.45, ease: 'easeOut', delay: 0.05 + i * 0.05 }}
-            style={{
-              position: 'absolute',
-              top: icon.top,
-              left: icon.left,
-              right: icon.right,
-              zIndex: 1,
-            }}
-          >
-            {icon.external ? (
-              <a
-                {...linkProps}
-                data-cursor-pill={icon.pillText}
-                style={{ display: 'inline-block', textDecoration: 'none' }}
-              >
-                {iconNode}
-              </a>
-            ) : (
-              <Link
-                href={icon.href}
-                data-cursor-pill={icon.pillText}
-                style={{ display: 'inline-block', textDecoration: 'none' }}
-              >
-                {iconNode}
-              </Link>
-            )}
-          </motion.div>
-        )
-      })}
+      {/* Ring of draggable product icons — each links to its experience and
+          shows an identity label on hover. */}
+      {heroRingIcons.map((icon, i) => (
+        <RingIcon key={icon.name} icon={icon} index={i} />
+      ))}
 
       {/* Centered text block.
           The wrapper is pointer-events: none so the empty flex area doesn't
@@ -349,6 +431,22 @@ export default function Hero() {
               </motion.span>
             </AnimatePresence>
           </div>
+
+          {/* Proof strip — one confident line, Queenie-style */}
+          <motion.div
+            variants={item}
+            style={{
+              fontFamily: 'var(--font-jakarta), sans-serif',
+              fontSize: '16px',
+              fontWeight: 500,
+              color: '#767676',
+              letterSpacing: '0.005em',
+              marginTop: '18px',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Awarded by Anthropic, shipping at iHeartMedia.
+          </motion.div>
         </motion.div>
       </motion.div>
 

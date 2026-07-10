@@ -24,12 +24,32 @@ interface PreHeroProps {
 export default function PreHero({ onReveal, onExit }: PreHeroProps) {
   const [iconIndex, setIconIndex] = useState(0)
   const [visible, setVisible] = useState(true)
+  const [ready, setReady] = useState(false)
   const onRevealRef = useRef(onReveal)
   const onExitRef = useRef(onExit)
   useEffect(() => { onRevealRef.current = onReveal })
   useEffect(() => { onExitRef.current = onExit })
 
+  // Preload every intro icon before the timer starts so first-load has no
+  // network/decode race against the 340ms slot. Cached loads resolve instantly.
   useEffect(() => {
+    let cancelled = false
+    const loads = heroRingIcons.map(icon => new Promise<void>(resolve => {
+      const img = new Image()
+      img.onload = () => resolve()
+      img.onerror = () => resolve()
+      img.src = `/icons/${icon.name}.${icon.ext ?? 'svg'}`
+    }))
+    // Hard cap so a stuck asset can't strand the intro forever.
+    const cap = new Promise<void>(resolve => setTimeout(resolve, 1200))
+    Promise.race([Promise.all(loads).then(() => {}), cap]).then(() => {
+      if (!cancelled) setReady(true)
+    })
+    return () => { cancelled = true }
+  }, [])
+
+  useEffect(() => {
+    if (!ready) return
     const interval = setInterval(() => {
       setIconIndex(i => Math.min(i + 1, heroRingIcons.length - 1))
     }, ICON_STEP_MS)
@@ -44,7 +64,7 @@ export default function PreHero({ onReveal, onExit }: PreHeroProps) {
       clearInterval(interval)
       clearTimeout(hideTimer)
     }
-  }, [])
+  }, [ready])
 
   const icon = heroRingIcons[iconIndex]
 

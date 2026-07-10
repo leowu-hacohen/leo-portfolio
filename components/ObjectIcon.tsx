@@ -29,7 +29,15 @@ export default function ObjectIcon({
         alt={name}
         width={size}
         height={size}
-        style={{ display: 'block', width: `${size}px`, height: `${size}px`, objectFit: 'contain' }}
+        draggable={false}
+        style={{
+          display: 'block',
+          width: `${size}px`,
+          height: `${size}px`,
+          objectFit: 'contain',
+          userSelect: 'none',
+          WebkitUserDrag: 'none',
+        } as React.CSSProperties}
       />
     </span>
   )

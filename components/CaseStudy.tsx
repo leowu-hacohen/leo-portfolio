@@ -177,7 +177,7 @@ export default function CaseStudy({
                 { label: 'About', href: '/about' },
                 { label: 'Work', href: '/#work' },
                 { label: 'Extras', href: '/extras' },
-                { label: 'Vibe Playground', href: '/vibe-playground' },
+                { label: 'Playground', href: '/playground' },
               ] as const
             ).map(({ label, href }) => (
               <Link

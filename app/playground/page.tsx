@@ -27,10 +27,10 @@ const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Work', href: '/#work' },
   { label: 'Extras', href: '/extras' },
-  { label: 'Vibe Playground', href: '/vibe-playground' },
+  { label: 'Playground', href: '/playground' },
 ] as const
 
-export default function VibePlaygroundPage() {
+export default function PlaygroundPage() {
   return (
     <div
       style={{
@@ -75,7 +75,7 @@ export default function VibePlaygroundPage() {
               href={href}
               data-cursor-pill={label}
               style={
-                label === 'Vibe Playground'
+                label === 'Playground'
                   ? { ...navLinkStyle, color: '#111' }
                   : navLinkStyle
               }
@@ -125,7 +125,7 @@ export default function VibePlaygroundPage() {
             margin: '0 0 20px',
           }}
         >
-          Vibe Playground
+          Playground
         </motion.h1>
 
         <motion.p

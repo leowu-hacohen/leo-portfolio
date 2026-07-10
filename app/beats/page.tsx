@@ -58,7 +58,7 @@ export default function BeatsPage() {
               { label: 'About', href: '/about' },
               { label: 'Work', href: '/#work' },
               { label: 'Extras', href: '/extras' },
-              { label: 'Vibe Playground', href: '/vibe-playground' },
+              { label: 'Playground', href: '/playground' },
             ] as const
           ).map(({ label, href }) => (
             <Link

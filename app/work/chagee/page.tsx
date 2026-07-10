@@ -17,9 +17,25 @@ import {
   caseStudySectionHeading,
   caseStudyTitle,
 } from '../../../components/caseStudyTheme'
+import {
+  MetaCards,
+  NextProjectFooter,
+  SectionRail,
+  TakeawayCards,
+  VisualPanel,
+} from '../../../components/CaseStudyKit'
 
 const jakarta = caseStudyJakarta
-const L = caseStudyLabelStyles(CASE_STUDY_LABEL_COLORS.chagee)
+const ACCENT = CASE_STUDY_LABEL_COLORS.chagee
+const L = caseStudyLabelStyles(ACCENT)
+
+const RAIL_SECTIONS = [
+  { id: 'problem', label: 'Problem' },
+  { id: 'role', label: 'My Role' },
+  { id: 'process', label: 'Process' },
+  { id: 'outcome', label: 'Outcome' },
+  { id: 'takeaways', label: 'Takeaways' },
+]
 
 /** Hero line: same string as the H1 (mirrors Lumina-style hero where label matches headline). */
 const CHAGEE_HERO_TITLE = 'CHAGEE USA: First Market Launch'
@@ -31,20 +47,23 @@ const fadeUp = (delay = 0) => ({
 })
 
 const Section = ({
+  id,
   label,
   heading,
   children,
 }: {
+  id?: string
   label: string
   heading: string
   children: React.ReactNode
 }) => (
   <motion.section
+    id={id}
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-40px' }}
     transition={{ duration: 0.55, ease: 'easeOut' }}
-    style={caseStudySectionBlock}
+    style={{ ...caseStudySectionBlock, scrollMarginTop: '80px' }}
   >
     <div style={L.sectionLabel}>{label}</div>
     <h2 style={caseStudySectionHeading}>{heading}</h2>
@@ -62,6 +81,7 @@ export default function ChageePage() {
         color: '#111',
       }}
     >
+      <SectionRail sections={RAIL_SECTIONS} accent={ACCENT} />
       <div
         style={{
           ...caseStudyContentMaxWidth,
@@ -100,7 +120,7 @@ export default function ChageePage() {
                 { label: 'About', href: '/about' },
                 { label: 'Work', href: '/#work' },
                 { label: 'Extras', href: '/extras' },
-                { label: 'Vibe Playground', href: '/vibe-playground' },
+                { label: 'Playground', href: '/playground' },
               ] as const
             ).map(({ label, href }) => (
               <Link
@@ -169,8 +189,19 @@ export default function ChageePage() {
           opening day into an event people couldn&apos;t miss.
         </motion.p>
 
+        <MetaCards
+          accent={ACCENT}
+          items={[
+            { label: 'Role', value: 'Product Marketing Intern' },
+            { label: 'Timeline', value: '4 months' },
+            { label: 'Team', value: 'Marketing, Ops, Creative agency' },
+            { label: 'Scope', value: 'Creator strategy, Launch GTM' },
+          ]}
+        />
+
         {/* Problem */}
         <Section
+          id="problem"
           label="Problem"
           heading="A massive brand in Asia. A complete unknown in Orange County."
         >
@@ -186,8 +217,9 @@ export default function ChageePage() {
 
         {/* My Role */}
         <Section
+          id="role"
           label="My Role"
-          heading="Product Marketing Intern · 4 months"
+          heading="Product Marketing Intern, 4 months"
         >
           <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
             Embedded with the Marketing Manager, Social Media Lead, the
@@ -220,6 +252,7 @@ export default function ChageePage() {
 
         {/* Process */}
         <Section
+          id="process"
           label="Process"
           heading="Three phases: build buzz, manufacture FOMO, sustain momentum."
         >
@@ -234,19 +267,19 @@ export default function ChageePage() {
             {[
               {
                 phase: '01',
-                title: 'Build buzz · 6 weeks pre-launch',
+                title: 'Build buzz: 6 weeks pre-launch',
                 copy:
                   'Identified 100+ local OC food and lifestyle creators. Sent personalized outreach, not mass DMs. Invited a curated set to exclusive preview tastings before the soft opening. Local relevance over follower count: a creator with 10K followers in Irvine outperforms 500K in New York.',
               },
               {
                 phase: '02',
-                title: 'Create FOMO · soft opening',
+                title: 'Create FOMO: soft opening',
                 copy:
                   'Creators-only soft opening with first access to the menu, store, and photo moments. Hundreds of posts and stories dropped that same weekend, all framing CHAGEE as the new place you needed to try. Social proof at scale before a single paying customer walked in.',
               },
               {
                 phase: '03',
-                title: 'Sustain momentum · 3-day grand opening',
+                title: 'Sustain momentum: 3-day grand opening',
                 copy:
                   'Pop-up tea trucks across LA pulled foot traffic toward the store. An Emily Ratajkowski appearance created a "you had to be there" moment. Creator posts were scheduled to drop throughout the weekend so the feed never went quiet.',
               },
@@ -290,10 +323,122 @@ export default function ChageePage() {
               </div>
             ))}
           </div>
+
+          <VisualPanel
+            caption={
+              <>
+                Launch choreography:{' '}
+                <strong style={{ color: '#444' }}>the feed never went quiet</strong>{' '}
+                from first DM to grand-opening weekend.
+              </>
+            }
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              {[
+                { span: '6 weeks out', label: 'Creator outreach & tastings', width: '100%', tone: `${ACCENT}22` },
+                { span: 'Soft opening', label: 'Creators-only: hundreds of posts drop', width: '72%', tone: `${ACCENT}55` },
+                { span: 'Grand opening', label: 'Tea trucks, EmRata, 3-day cadence', width: '60%', tone: ACCENT },
+              ].map(({ span, label, width, tone }) => (
+                <div key={span} style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <div
+                    style={{
+                      fontFamily: jakarta,
+                      fontSize: '12px',
+                      fontWeight: 600,
+                      color: '#888',
+                      width: '110px',
+                      flexShrink: 0,
+                      textAlign: 'right',
+                    }}
+                  >
+                    {span}
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div
+                      style={{
+                        width,
+                        background: tone,
+                        borderRadius: '999px',
+                        padding: '9px 16px',
+                        fontFamily: jakarta,
+                        fontSize: '13px',
+                        fontWeight: 600,
+                        color: tone === ACCENT ? '#fff' : '#7a1d18',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
+                    >
+                      {label}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </VisualPanel>
+
+          <VisualPanel
+            caption={
+              <>
+                Social proof at scale:{' '}
+                <strong style={{ color: '#444' }}>
+                  a curated local creator beats a national mega-account
+                </strong>{' '}
+                for a neighborhood launch.
+              </>
+            }
+          >
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gap: '14px',
+              }}
+            >
+              {[
+                { handle: '@oc.eats', meta: '12K, Irvine', note: 'Preview tasting reel', hot: true },
+                { handle: '@bobadiaries', meta: '28K, Tustin', note: 'Soft-opening story set', hot: true },
+                { handle: '@bigfoodpage', meta: '500K, NYC', note: 'Skipped, zero local pull', hot: false },
+              ].map(({ handle, meta, note, hot }) => (
+                <div
+                  key={handle}
+                  style={{
+                    border: hot ? `1px solid ${ACCENT}` : '1px dashed #d8d8d8',
+                    background: hot ? `${ACCENT}0a` : 'transparent',
+                    borderRadius: caseStudyRadius,
+                    padding: '18px',
+                    opacity: hot ? 1 : 0.7,
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                    <span
+                      style={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: '50%',
+                        background: hot ? ACCENT : '#ddd',
+                        flexShrink: 0,
+                      }}
+                    />
+                    <div>
+                      <div style={{ fontFamily: jakarta, fontSize: '14px', fontWeight: 700, color: hot ? '#111' : '#999' }}>
+                        {handle}
+                      </div>
+                      <div style={{ fontFamily: jakarta, fontSize: '11.5px', color: '#aaa' }}>{meta}</div>
+                    </div>
+                  </div>
+                  <div style={{ fontFamily: jakarta, fontSize: '13px', color: hot ? '#555' : '#b0b0b0' }}>
+                    {note}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </VisualPanel>
         </Section>
 
         {/* Outcome */}
         <Section
+          id="outcome"
           label="Outcome"
           heading="One of the most talked-about boba openings in Orange County."
         >
@@ -352,40 +497,37 @@ export default function ChageePage() {
           </p>
         </Section>
 
-        {/* Footer nav */}
-        <div
-          style={{
-            borderTop: '1px solid #f0f0f0',
-            paddingTop: '48px',
-            marginTop: '96px',
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '64px',
+        {/* Takeaways */}
+        <Section id="takeaways" label="Reflection" heading="What I took away">
+          <TakeawayCards
+            accent={ACCENT}
+            title=""
+            items={[
+              {
+                title: 'Local relevance beats follower count.',
+                body: 'A 10K-follower creator in Irvine outperforms 500K in New York for a neighborhood launch. Curation was the strategy, not reach.',
+              },
+              {
+                title: 'Treat the launch like a product.',
+                body: 'Every touchpoint, DMs, packaging, the store itself, was designed for shareability. If it wasn’t Instagram-worthy, we redesigned it.',
+              },
+              {
+                title: 'Momentum has to be choreographed.',
+                body: 'Posts were scheduled so the feed never went quiet across the weekend. FOMO isn’t luck; it’s a content calendar.',
+              },
+            ]}
+          />
+        </Section>
+
+        <NextProjectFooter
+          accent={ACCENT}
+          prev={{ label: 'Clair', href: '/work/clair' }}
+          next={{
+            label: 'In-N-Out Location Predictor',
+            href: '/work/in-n-out',
+            descriptor: 'Reverse-engineering site selection with a LambdaRank model, in 36 hours.',
           }}
-        >
-          <Link
-            href="/"
-            style={{
-              fontFamily: jakarta,
-              fontSize: '14px',
-              color: '#888',
-              textDecoration: 'none',
-            }}
-          >
-            ← Home
-          </Link>
-          <Link
-            href="/nami"
-            style={{
-              fontFamily: jakarta,
-              fontSize: '14px',
-              color: '#888',
-              textDecoration: 'none',
-            }}
-          >
-            Next: Nami →
-          </Link>
-        </div>
+        />
       </div>
     </div>
   )

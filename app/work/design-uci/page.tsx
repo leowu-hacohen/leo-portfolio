@@ -58,7 +58,7 @@ export default function DesignUciComingSoonPage() {
               { label: 'About', href: '/about' },
               { label: 'Work', href: '/#work' },
               { label: 'Extras', href: '/extras' },
-              { label: 'Vibe Playground', href: '/vibe-playground' },
+              { label: 'Playground', href: '/playground' },
             ] as const
           ).map(({ label, href }) => (
             <Link
@@ -164,6 +164,22 @@ export default function DesignUciComingSoonPage() {
         >
           This case study is on the way. Check back soon.
         </motion.p>
+
+        <motion.div {...fadeUp(0.24)} style={{ marginTop: '32px' }}>
+          <Link
+            href="/work/clair"
+            data-cursor-pill="Next project"
+            style={{
+              fontFamily: jakarta,
+              fontSize: '14px',
+              fontWeight: 600,
+              color: CASE_STUDY_LABEL_COLORS.designUci,
+              textDecoration: 'none',
+            }}
+          >
+            Meanwhile, read Clair →
+          </Link>
+        </motion.div>
       </div>
     </div>
   )

@@ -16,9 +16,25 @@ import {
   caseStudySectionHeading,
   caseStudyTitle,
 } from '../../../components/caseStudyTheme'
+import {
+  MetaCards,
+  NextProjectFooter,
+  SectionRail,
+  TakeawayCards,
+  VisualPanel,
+} from '../../../components/CaseStudyKit'
 
 const jakarta = caseStudyJakarta
-const L = caseStudyLabelStyles(CASE_STUDY_LABEL_COLORS.bcec)
+const ACCENT = CASE_STUDY_LABEL_COLORS.bcec
+const L = caseStudyLabelStyles(ACCENT)
+
+const RAIL_SECTIONS = [
+  { id: 'problem', label: 'Problem' },
+  { id: 'role', label: 'My Role' },
+  { id: 'process', label: 'Process' },
+  { id: 'outcome', label: 'Outcome' },
+  { id: 'takeaways', label: 'Takeaways' },
+]
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
@@ -27,20 +43,23 @@ const fadeUp = (delay = 0) => ({
 })
 
 const Section = ({
+  id,
   label,
   heading,
   children,
 }: {
+  id?: string
   label: string
   heading: string
   children: React.ReactNode
 }) => (
   <motion.section
+    id={id}
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-40px' }}
     transition={{ duration: 0.55, ease: 'easeOut' }}
-    style={caseStudySectionBlock}
+    style={{ ...caseStudySectionBlock, scrollMarginTop: '80px' }}
   >
     <div style={L.sectionLabel}>{label}</div>
     <h2 style={caseStudySectionHeading}>{heading}</h2>
@@ -58,6 +77,7 @@ export default function BcecPage() {
         color: '#111',
       }}
     >
+      <SectionRail sections={RAIL_SECTIONS} accent={ACCENT} />
       <div
         style={{
           ...caseStudyContentMaxWidth,
@@ -96,7 +116,7 @@ export default function BcecPage() {
                 { label: 'About', href: '/about' },
                 { label: 'Work', href: '/#work' },
                 { label: 'Extras', href: '/extras' },
-                { label: 'Vibe Playground', href: '/vibe-playground' },
+                { label: 'Playground', href: '/playground' },
               ] as const
             ).map(({ label, href }) => (
               <Link
@@ -130,8 +150,19 @@ export default function BcecPage() {
           entertainment was an option.
         </motion.p>
 
+        <MetaCards
+          accent={ACCENT}
+          items={[
+            { label: 'Role', value: 'VP of Marketing' },
+            { label: 'Timeline', value: 'Mar 2025 – Present' },
+            { label: 'Team', value: 'Marketing committee + exec board' },
+            { label: 'Scope', value: 'Brand strategy, Workshops, Panels' },
+          ]}
+        />
+
         {/* Problem */}
         <Section
+          id="problem"
           label="Problem"
           heading="Seen as the club for people who already knew they wanted in."
         >
@@ -149,12 +180,67 @@ export default function BcecPage() {
             member we never recruited. The positioning was leaving real
             opportunity on the table.
           </p>
+
+          <VisualPanel
+            caption={
+              <>
+                The repositioning in one line: stop selling the industry,{' '}
+                <strong style={{ color: '#444' }}>start naming the jobs</strong>.
+              </>
+            }
+          >
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                gap: '14px',
+              }}
+            >
+              <div
+                style={{
+                  border: '1px dashed #d8d8d8',
+                  borderRadius: caseStudyRadius,
+                  padding: '22px',
+                  opacity: 0.75,
+                }}
+              >
+                <div style={{ fontFamily: jakarta, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#b0b0b0', marginBottom: '10px' }}>
+                  Before
+                </div>
+                <div style={{ fontFamily: jakarta, fontSize: '17px', fontWeight: 600, color: '#999', lineHeight: 1.4 }}>
+                  &ldquo;Entertainment industry networking&rdquo;
+                </div>
+                <div style={{ fontFamily: jakarta, fontSize: '13px', color: '#b0b0b0', marginTop: '10px' }}>
+                  Reads as insiders-only. If you didn&apos;t already want in, it wasn&apos;t for you.
+                </div>
+              </div>
+              <div
+                style={{
+                  border: `1px solid ${ACCENT}`,
+                  background: `${ACCENT}0d`,
+                  borderRadius: caseStudyRadius,
+                  padding: '22px',
+                }}
+              >
+                <div style={{ fontFamily: jakarta, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: ACCENT, marginBottom: '10px' }}>
+                  After
+                </div>
+                <div style={{ fontFamily: jakarta, fontSize: '17px', fontWeight: 600, color: '#111', lineHeight: 1.4 }}>
+                  &ldquo;Business careers at companies you use every day&rdquo;
+                </div>
+                <div style={{ fontFamily: jakarta, fontSize: '13px', color: '#666', marginTop: '10px' }}>
+                  Anyone studying business can see themselves here.
+                </div>
+              </div>
+            </div>
+          </VisualPanel>
         </Section>
 
         {/* My Role */}
         <Section
+          id="role"
           label="My Role"
-          heading="VP of Marketing · March 2025 – Present (1 year)"
+          heading="VP of Marketing, March 2025 – Present (1 year)"
         >
           <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
             Led the marketing committee in coordination with the executive
@@ -187,6 +273,7 @@ export default function BcecPage() {
 
         {/* Process */}
         <Section
+          id="process"
           label="Process"
           heading="Reposition the brand, teach over gatekeep, lower the barrier."
         >
@@ -200,7 +287,7 @@ export default function BcecPage() {
             {[
               {
                 phase: '01',
-                title: 'Reposition · roles over industry glamour',
+                title: 'Reposition: roles over industry glamour',
                 copy:
                   'Stopped leading with "entertainment industry networking" and started leading with "business careers at companies you use every day." Named specific roles: product management at Spotify, marketing at Netflix, strategy at Epic Games. Students who had dismissed us as "not for me" started seeing themselves in the industry when we named the actual jobs.',
               },
@@ -256,10 +343,47 @@ export default function BcecPage() {
               </div>
             ))}
           </div>
+
+          <VisualPanel
+            caption={
+              <>
+                Students dismissed &ldquo;entertainment&rdquo;, until we{' '}
+                <strong style={{ color: '#444' }}>named the actual jobs</strong>.
+              </>
+            }
+          >
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+              {[
+                { role: 'Product Management', co: 'Spotify' },
+                { role: 'Marketing', co: 'Netflix' },
+                { role: 'Strategy', co: 'Epic Games' },
+                { role: 'Finance', co: 'Warner Bros.' },
+                { role: 'Data Science', co: 'Riot Games' },
+              ].map(({ role, co }) => (
+                <span
+                  key={co}
+                  style={{
+                    fontFamily: jakarta,
+                    fontSize: '13.5px',
+                    background: '#fafafa',
+                    border: '1px solid #ececec',
+                    borderRadius: '999px',
+                    padding: '9px 16px',
+                    color: '#444',
+                  }}
+                >
+                  <strong style={{ color: '#111', fontWeight: 600 }}>{role}</strong>
+                  {' @ '}
+                  {co}
+                </span>
+              ))}
+            </div>
+          </VisualPanel>
         </Section>
 
         {/* Outcome */}
         <Section
+          id="outcome"
           label="Outcome"
           heading="A business-skills hub that happens to focus on entertainment."
         >
@@ -319,40 +443,37 @@ export default function BcecPage() {
           </p>
         </Section>
 
-        {/* Footer nav */}
-        <div
-          style={{
-            borderTop: '1px solid #f0f0f0',
-            paddingTop: '48px',
-            marginTop: '96px',
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '64px',
+        {/* Takeaways */}
+        <Section id="takeaways" label="Reflection" heading="What I took away">
+          <TakeawayCards
+            accent={ACCENT}
+            title=""
+            items={[
+              {
+                title: 'Positioning is about who feels welcome.',
+                body: 'The brand didn’t need a louder message, it needed a wider door. Every "not for me" was a recruiting failure we could fix with language alone.',
+              },
+              {
+                title: 'Teach something useful and people come back.',
+                body: 'Workshops that broke down real campaigns beat aspirational panels every time. Immediate usefulness is the strongest retention tool a club has.',
+              },
+              {
+                title: 'Lowering the barrier expanded the brand, not diluted it.',
+                body: 'Discussion-based prompts ("how would you market this show?") turned spectators into participants, and a resume line into a learning community.',
+              },
+            ]}
+          />
+        </Section>
+
+        <NextProjectFooter
+          accent={ACCENT}
+          prev={{ label: 'In-N-Out Location Predictor', href: '/work/in-n-out' }}
+          next={{
+            label: 'Findy',
+            href: '/work/findy',
+            descriptor: 'An AI guide inside iOS that helps seniors use their phones without overwhelm.',
           }}
-        >
-          <Link
-            href="/work/in-n-out"
-            style={{
-              fontFamily: jakarta,
-              fontSize: '14px',
-              color: '#888',
-              textDecoration: 'none',
-            }}
-          >
-            ← In-N-Out
-          </Link>
-          <Link
-            href="/work/chagee"
-            style={{
-              fontFamily: jakarta,
-              fontSize: '14px',
-              color: '#888',
-              textDecoration: 'none',
-            }}
-          >
-            Next: Chagee →
-          </Link>
-        </div>
+        />
       </div>
     </div>
   )

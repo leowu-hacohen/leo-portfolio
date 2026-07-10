@@ -44,7 +44,7 @@ export default function IHeartPage() {
               { label: 'About', href: '/about' },
               { label: 'Work', href: '/#work' },
               { label: 'Extras', href: '/extras' },
-              { label: 'Vibe Playground', href: '/vibe-playground' },
+              { label: 'Playground', href: '/playground' },
             ] as const
           ).map(({ label, href }) => (
             <Link
@@ -98,7 +98,7 @@ export default function IHeartPage() {
             marginBottom: '14px',
           }}
         >
-          Product Management Intern · Summer 2026
+          Product Management Intern, Summer 2026
         </motion.div>
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -112,8 +112,28 @@ export default function IHeartPage() {
             lineHeight: 1.6,
           }}
         >
-          Case study coming soon.
+          The internship is happening right now, case study lands when it wraps.
         </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.7 }}
+          style={{ marginTop: '40px' }}
+        >
+          <Link
+            href="/work/findy"
+            data-cursor-pill="Next project"
+            style={{
+              fontFamily: jakarta,
+              fontSize: '14px',
+              fontWeight: 600,
+              color: '#c8102e',
+              textDecoration: 'none',
+            }}
+          >
+            Meanwhile, read Findy →
+          </Link>
+        </motion.div>
       </main>
     </div>
   )
