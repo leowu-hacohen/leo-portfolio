@@ -24,11 +24,13 @@ type FieldProject = {
   depth: number
   href?: string
   linkLabel?: string
+  img?: string
 }
 
 const PROJECTS: FieldProject[] = [
   {
     id: 'brew',
+    img: '/playground/brew.png',
     name: 'brew',
     tag: 'Full-stack app',
     caption:
@@ -42,6 +44,7 @@ const PROJECTS: FieldProject[] = [
   },
   {
     id: 'among-us-irl',
+    img: '/playground/among-us-irl.png',
     name: 'Among Us IRL',
     tag: 'Party game',
     caption:
@@ -55,6 +58,7 @@ const PROJECTS: FieldProject[] = [
   },
   {
     id: 'ai-uci',
+    img: '/playground/ai-uci.png',
     name: 'AI @ UCI',
     tag: 'Club site',
     caption: 'The website I built for Artificial Intelligence @ UCI.',
@@ -67,6 +71,7 @@ const PROJECTS: FieldProject[] = [
   },
   {
     id: 'zotpath',
+    img: '/playground/zotpath.png',
     name: 'ZotPath',
     tag: 'Tool',
     caption:
@@ -95,6 +100,7 @@ const PROJECTS: FieldProject[] = [
   },
   {
     id: 'code-quest',
+    img: '/playground/code-quest.png',
     name: 'CodeQuest',
     tag: 'Desktop app',
     caption:
@@ -108,6 +114,7 @@ const PROJECTS: FieldProject[] = [
   },
   {
     id: 'lumina',
+    img: '/playground/lumina.png',
     name: 'Lumina',
     tag: 'Voice AI',
     caption:
@@ -210,6 +217,34 @@ function ProjectCard({
           cursor: 'grab',
         }}
       >
+        {item.img && (
+          <div
+            style={{
+              borderRadius: '3px',
+              overflow: 'hidden',
+              border: '1px solid #ececec',
+              marginBottom: '14px',
+              aspectRatio: '16 / 10',
+              background: '#fafafa',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={item.img}
+              alt={`${item.name} screenshot`}
+              draggable={false}
+              loading="lazy"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'top',
+                display: 'block',
+                pointerEvents: 'none',
+              }}
+            />
+          </div>
+        )}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
           <span
             style={{
