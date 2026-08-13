@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import ClairOrbit3D from '../../../components/ClairOrbit3D'
 import { caseStudyRadius } from '../../../components/caseStudyTheme'
 import { NextProjectFooter, SectionRail } from '../../../components/CaseStudyKit'
 
@@ -60,121 +59,73 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
 function HeroSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  })
-  const yText = useTransform(scrollYProgress, [0, 1], [0, -70])
-  const yCanvas = useTransform(scrollYProgress, [0, 1], [0, 120])
-  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0])
-
   return (
-    <section
-      ref={ref}
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '100vh',
-        overflow: 'hidden',
-        background: '#F4F4F4',
-      }}
-    >
-      <motion.div style={{ position: 'absolute', inset: 0, y: yCanvas }}>
-        <ClairOrbit3D />
-      </motion.div>
-
-      <motion.div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-          padding: '0 7vw 10vh',
-          y: yText,
-          opacity,
-        }}
-      >
-        <div style={{ maxWidth: '1000px', margin: '0 auto', width: '100%' }}>
+    <header style={{ padding: '110px 7vw 0', background: '#F4F4F4' }}>
+      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: 'easeOut', delay: 0.4 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            borderRadius: caseStudyRadius,
+            overflow: 'hidden',
+            border: '1px solid rgba(0,0,0,0.06)',
+            aspectRatio: '16 / 9',
+            background: '#ffffff',
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/case-study/clair/demo-screenshot.png"
+            alt="The Clair patient page: synopsis, what changed since the last visit, vitals, labs, and plan in one view"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'top',
+              display: 'block',
+            }}
+          />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.25 }}
           style={{
             fontFamily: instrument,
             fontSize: '13px',
             fontWeight: 500,
             letterSpacing: '0.01em',
             color: '#666',
-            marginBottom: '24px',
+            margin: '56px 0 20px',
           }}
         >
-          Clair, HackDavis 2026,{' '}
+          Clair · HackDavis 2026 ·{' '}
           <span style={{ color: ACCENT }}>
             Winner: Anthropic&apos;s &ldquo;Best Use of AI/ML&rdquo;
           </span>
         </motion.div>
         <motion.h1
-          initial={{ opacity: 0, y: 36 }}
+          initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
           style={{
             fontFamily: jakarta,
-            fontSize: 'clamp(42px, 6.6vw, 92px)',
+            fontSize: 'clamp(30px, 3.6vw, 42px)',
             fontWeight: 600,
-            letterSpacing: '-0.03em',
-            lineHeight: 1.02,
+            letterSpacing: '-0.02em',
+            lineHeight: 1.18,
             margin: 0,
-            maxWidth: '1100px',
+            maxWidth: '820px',
             color: INK,
           }}
         >
-          Every doctor walks in already knowing the patient&apos;s story.
+          A clinical AI scribe that turns the handoff, the messiest part of a
+          doctor&apos;s day, into a record that&apos;s always current.
         </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: 'easeOut', delay: 0.75 }}
-          style={{
-            fontFamily: jakarta,
-            fontSize: '16px',
-            color: '#444',
-            lineHeight: 1.7,
-            marginTop: '28px',
-            maxWidth: '620px',
-          }}
-        >
-          A clinical AI scribe that turns the messiest part of a doctor&apos;s day, the handoff, into a clean, structured, always-current record. Built in 24
-          hours. Team of 3.
-        </motion.p>
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
-        style={{
-          position: 'absolute',
-          bottom: '28px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          fontFamily: jakarta,
-          fontSize: '11px',
-          letterSpacing: '0.14em',
-          textTransform: 'uppercase',
-          color: '#aaa',
-        }}
-      >
-        <motion.span
-          animate={{ opacity: [1, 0.35, 1] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          Scroll
-        </motion.span>
-      </motion.div>
-    </section>
+      </div>
+    </header>
   )
 }
 
@@ -576,7 +527,7 @@ const TAKEAWAYS = [
   },
   {
     n: '04',
-    title: 'Scoping is a skill. Cut early, cut often.',
+    title: 'Scoping is a skill, so cut early and cut often.',
     body: 'Voice enrollment, per-field diff cards, real time-series vitals, every feature we cut bought time for the loop that won: conversation in, structured record out, handoff narrative on return.',
   },
 ] as const
@@ -734,17 +685,18 @@ export default function ClairPage() {
       <section id="tldr" style={{ padding: '14vh 7vw 6vh', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <Eyebrow>TLDR</Eyebrow>
-          <motion.h2 {...reveal} style={h2Style}>
-            24 hours. One question: what did the last doctor know that you don&apos;t?
-          </motion.h2>
-          <motion.div {...reveal} style={{ ...bodyStyle, fontSize: '18px', marginTop: '32px' }}>
+          <motion.div {...reveal} style={{ ...bodyStyle, fontSize: '18px', maxWidth: '720px' }}>
             <p style={{ margin: 0 }}>
-              Patient handoff in hospitals is informal and unstandardized, and patients
-              pay the price, repeated questions, missed notes, long-term goals that
-              quietly fall out of the plan. At HackDavis 2026 our team of three built
-              Clair: every visit is transcribed live, Claude extracts a structured
-              SOAP record from the conversation, and each returning doctor gets a
-              short narrative of exactly what changed since they last saw the patient.
+              Every handoff in a hospital runs on the same quiet question: what did the
+              last doctor know that you don&apos;t? Handoff is informal and
+              unstandardized, and patients pay the price, repeated questions, missed
+              notes, long-term goals that quietly fall out of the plan.
+            </p>
+            <p style={{ margin: '20px 0 0' }}>
+              At HackDavis 2026, our team of 3 built Clair in 24 hours. Every visit is
+              transcribed live, Claude extracts a structured SOAP record from the
+              conversation, and each returning doctor gets a short narrative of exactly
+              what changed since they last saw the patient.
             </p>
             <p style={{ margin: '20px 0 0' }}>
               It won Anthropic&apos;s &ldquo;Best Use of AI/ML&rdquo; track. This page
@@ -1032,7 +984,7 @@ export default function ClairPage() {
                 CHALLENGE: WHO IS SPEAKING?
               </div>
               <h3 style={{ fontFamily: jakarta, fontSize: '22px', fontWeight: 600, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
-                Voice biometrics fell apart. The fallback won.
+                Voice biometrics fell apart, and the fallback won.
               </h3>
               <p style={{ ...bodyStyle, fontSize: '15px', margin: 0 }}>
                 We first tried speaker enrollment so the system could attribute turns

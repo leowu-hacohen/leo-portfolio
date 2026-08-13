@@ -8,7 +8,6 @@ import {
   caseStudyBulletChar,
   caseStudyBulletList,
   caseStudyContentMaxWidth,
-  caseStudyDescriptor,
   caseStudyJakarta,
   caseStudyLabelStyles,
   caseStudyRadius,
@@ -137,17 +136,18 @@ export default function BcecPage() {
           </div>
         </motion.nav>
 
-        {/* Title */}
-        <motion.h1 {...fadeUp(0.1)} style={caseStudyTitle}>
-          Business Careers in Entertainment Club: Brand Strategy
-        </motion.h1>
-
-        {/* One-line description */}
-        <motion.p {...fadeUp(0.15)} style={caseStudyDescriptor}>
+        {/* Kicker + one-sentence title */}
+        <motion.div {...fadeUp(0.05)} style={L.eyebrow}>
+          BCEC · Business Careers in Entertainment Club · UC Irvine
+        </motion.div>
+        <motion.h1
+          {...fadeUp(0.1)}
+          style={{ ...caseStudyTitle, fontSize: '36px', fontWeight: 600, lineHeight: 1.2 }}
+        >
           Repositioning a niche club from &ldquo;industry insiders only&rdquo;
           into a business-skills hub for students who didn&apos;t know
           entertainment was an option.
-        </motion.p>
+        </motion.h1>
 
         <MetaCards
           accent={ACCENT}

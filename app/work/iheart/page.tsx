@@ -111,7 +111,7 @@ export default function IHeartPage() {
             lineHeight: 1.6,
           }}
         >
-          The internship is happening right now, case study lands when it wraps.
+          The internship wrapped in July, the case study is on its way.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 12 }}

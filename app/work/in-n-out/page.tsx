@@ -8,7 +8,6 @@ import {
   caseStudyBulletChar,
   caseStudyBulletList,
   caseStudyContentMaxWidth,
-  caseStudyDescriptor,
   caseStudyJakarta,
   caseStudyLabelStyles,
   caseStudyRadius,
@@ -139,15 +138,17 @@ export default function InNOutPage() {
         </motion.nav>
 
         {/* Title */}
-        <motion.h1 {...fadeUp(0.1)} style={caseStudyTitle}>
-          In-N-Out Location Predictor: Data Heist 2026
-        </motion.h1>
-
-        {/* One-line description */}
-        <motion.p {...fadeUp(0.15)} style={caseStudyDescriptor}>
+        {/* Kicker + one-sentence title */}
+        <motion.div {...fadeUp(0.05)} style={L.eyebrow}>
+          In-N-Out Location Predictor · Data Heist 2026
+        </motion.div>
+        <motion.h1
+          {...fadeUp(0.1)}
+          style={{ ...caseStudyTitle, fontSize: '36px', fontWeight: 600, lineHeight: 1.2 }}
+        >
           Reverse-engineering In-N-Out&apos;s site-selection strategy with a
           LambdaRank ML model, built in 36 hours.
-        </motion.p>
+        </motion.h1>
 
         <MetaCards
           accent={ACCENT}

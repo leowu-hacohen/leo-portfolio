@@ -8,8 +8,6 @@ import {
   caseStudyBody,
   caseStudyBulletChar,
   caseStudyBulletList,
-  caseStudyContentMaxWidth,
-  caseStudyDescriptor,
   caseStudyJakarta,
   caseStudyLabelStyles,
   caseStudyRadius,
@@ -30,6 +28,7 @@ const ACCENT = CASE_STUDY_LABEL_COLORS.chagee
 const L = caseStudyLabelStyles(ACCENT)
 
 const RAIL_SECTIONS = [
+  { id: 'tldr', label: 'TLDR' },
   { id: 'problem', label: 'Problem' },
   { id: 'role', label: 'My Role' },
   { id: 'process', label: 'Process' },
@@ -82,127 +81,173 @@ export default function ChageePage() {
       }}
     >
       <SectionRail sections={RAIL_SECTIONS} accent={ACCENT} />
-      <div
+
+      {/* Top nav (fixed, frosted) */}
+      <nav
         style={{
-          ...caseStudyContentMaxWidth,
-          padding: '0 40px 120px',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '20px 7vw',
+          background: 'rgba(255,255,255,0.6)',
+          backdropFilter: 'blur(20px) saturate(140%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(140%)',
         }}
       >
-        {/* Top nav */}
-        <motion.nav
-          {...fadeUp(0)}
+        <Link
+          href="/"
+          data-cursor-pill="Back"
           style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            paddingTop: '28px',
-            paddingBottom: '64px',
+            fontFamily: jakarta,
+            fontSize: '13px',
+            color: '#666',
+            textDecoration: 'none',
           }}
         >
-          <Link
-            href="/"
-            data-cursor-pill="Back"
+          ← Back
+        </Link>
+        <div style={{ display: 'flex', gap: '32px' }}>
+          {(
+            [
+              { label: 'Home', href: '/' },
+              { label: 'About', href: '/about' },
+              { label: 'Work', href: '/#work' },
+              { label: 'Playground', href: '/playground' },
+            ] as const
+          ).map(({ label, href }) => (
+            <Link
+              key={label}
+              href={href}
+              data-cursor-pill={label}
+              style={{
+                fontFamily: jakarta,
+                fontSize: '13px',
+                color: '#888',
+                textDecoration: 'none',
+              }}
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
+      {/* Header: image panel, kicker, one-sentence title, meta */}
+      <header style={{ padding: '110px 7vw 0' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontFamily: jakarta,
-              fontSize: '13px',
-              fontWeight: 400,
-              color: '#888',
-              textDecoration: 'none',
-              letterSpacing: '0.01em',
+              aspectRatio: '16 / 7',
+              background: '#f4efe8',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '40px',
+              boxSizing: 'border-box',
+              borderRadius: caseStudyRadius,
+              border: '1px solid rgba(0,0,0,0.06)',
+              overflow: 'hidden',
             }}
           >
-            ← Back
-          </Link>
-          <div style={{ display: 'flex', gap: '32px' }}>
-            {(
-              [
-                { label: 'Home', href: '/' },
-                { label: 'About', href: '/about' },
-                { label: 'Work', href: '/#work' },
-                { label: 'Playground', href: '/playground' },
-              ] as const
-            ).map(({ label, href }) => (
-              <Link
-                key={label}
-                href={href}
-                data-cursor-pill={label}
-                style={{
-                  fontFamily: jakarta,
-                  fontSize: '13px',
-                  fontWeight: 400,
-                  color: '#b0b0b0',
-                  textDecoration: 'none',
-                  letterSpacing: '0.02em',
-                }}
-              >
-                {label}
-              </Link>
-            ))}
-          </div>
-        </motion.nav>
+            <Image
+              src="/work-cards/chageenew.png"
+              alt="CHAGEE"
+              width={1080}
+              height={1350}
+              priority
+              style={{
+                height: '100%',
+                width: 'auto',
+                maxWidth: '100%',
+                objectFit: 'contain',
+              }}
+            />
+          </motion.div>
 
-        {/* Hero canvas: warm tea-paper (matches work card) */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          style={{
-            width: 'calc(100% + 80px)',
-            marginLeft: '-40px',
-            marginRight: '-40px',
-            minHeight: 'min(48vh, 480px)',
-            background: '#f4efe8',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '40px',
-            padding: '48px 40px',
-            boxSizing: 'border-box',
-            borderRadius: caseStudyRadius,
-            overflow: 'hidden',
-          }}
-        >
-          <Image
-            src="/work-cards/chageenew.png"
-            alt="CHAGEE"
-            width={1080}
-            height={1350}
-            priority
+          <motion.div {...fadeUp(0.25)} style={{ ...L.eyebrow, margin: '56px 0 20px' }}>
+            {CHAGEE_HERO_TITLE}
+          </motion.div>
+          <motion.h1
+            {...fadeUp(0.35)}
             style={{
-              width: 'min(82vw, 420px)',
-              maxWidth: '100%',
-              height: 'auto',
-              objectFit: 'contain',
+              ...caseStudyTitle,
+              fontSize: 'clamp(30px, 3.6vw, 42px)',
+              fontWeight: 600,
+              lineHeight: 1.18,
+              maxWidth: '820px',
             }}
+          >
+            Launching a brand from zero in a saturated US market, and turning
+            opening day into an event people couldn&apos;t miss.
+          </motion.h1>
+
+          <MetaCards
+            accent={ACCENT}
+            items={[
+              { label: 'Role', value: 'Product Marketing Intern' },
+              { label: 'Timeline', value: '4 months' },
+              { label: 'Team', value: 'Marketing, Ops, Creative agency' },
+              { label: 'Scope', value: 'Creator strategy, Launch GTM' },
+            ]}
           />
-        </motion.div>
+        </div>
+      </header>
 
-        {/* Title */}
-        <motion.h1 {...fadeUp(0.1)} style={caseStudyTitle}>
-          {CHAGEE_HERO_TITLE}
-        </motion.h1>
+      {/* TLDR */}
+      <section id="tldr" style={{ padding: '13vh 7vw 0', scrollMarginTop: '60px' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <motion.div {...fadeUp(0)} style={L.eyebrow}>
+            TLDR
+          </motion.div>
+          <motion.div
+            {...fadeUp(0.1)}
+            style={{
+              fontFamily: jakarta,
+              fontSize: '18px',
+              color: '#444',
+              lineHeight: 1.75,
+              maxWidth: '720px',
+            }}
+          >
+            <p style={{ margin: 0 }}>
+              CHAGEE has Starbucks-level recognition across Asia, and none of it
+              followed us to Orange County. I spent 4 months as the product
+              marketing intern helping launch the first US store, in a boba market
+              that runs on word-of-mouth, where a slow opening weekend can sink a
+              brand before it starts.
+            </p>
+            <p style={{ margin: '20px 0 0' }}>
+              We treated the launch like a product. I mapped and managed 100+
+              local OC creators, helped choreograph a creators-only soft opening,
+              and synced the grand-opening content cadence so the feed never went
+              quiet. By the time doors opened, 8,000 people already followed the
+              Instagram, 5,000+ came through opening weekend, and creator content
+              pulled 2.5M+ views.
+            </p>
+            <p style={{ margin: '20px 0 0' }}>
+              The sections below walk through the problem, my role, and the
+              three-phase playbook.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-        {/* One-line description */}
-        <motion.p {...fadeUp(0.15)} style={caseStudyDescriptor}>
-          Launching a brand from zero in a saturated US market, and turning
-          opening day into an event people couldn&apos;t miss.
-        </motion.p>
-
-        <MetaCards
-          accent={ACCENT}
-          items={[
-            { label: 'Role', value: 'Product Marketing Intern' },
-            { label: 'Timeline', value: '4 months' },
-            { label: 'Team', value: 'Marketing, Ops, Creative agency' },
-            { label: 'Scope', value: 'Creator strategy, Launch GTM' },
-          ]}
-        />
+      <div style={{ padding: '6vh 7vw 120px' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
 
         {/* Problem */}
         <Section
           id="problem"
           label="Problem"
-          heading="A massive brand in Asia. A complete unknown in Orange County."
+          heading="A massive brand in Asia, and a complete unknown in Orange County."
         >
           <p style={caseStudyBody}>
             CHAGEE has Starbucks-level recognition across Asia. In the US, we
@@ -527,6 +572,7 @@ export default function ChageePage() {
             descriptor: 'Reverse-engineering site selection with a LambdaRank model, in 36 hours.',
           }}
         />
+        </div>
       </div>
     </div>
   )

@@ -161,7 +161,7 @@ export default function DesignUciComingSoonPage() {
             margin: 0,
           }}
         >
-          This case study is on the way. Check back soon.
+          This case study is on the way, check back soon.
         </motion.p>
 
         <motion.div {...fadeUp(0.24)} style={{ marginTop: '32px' }}>

@@ -1,9 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import { caseStudyRadius } from '../../../components/caseStudyTheme'
+import { motion } from 'framer-motion'
+import { caseStudyRadius, caseStudyTitle } from '../../../components/caseStudyTheme'
 import {
   MetaCards,
   NextProjectFooter,
@@ -20,91 +19,78 @@ const ACCENT = '#2563eb'
 const FIGMA_EMBED =
   'https://embed.figma.com/slides/msGjfaqJcKL6XeAQLSfbva/Case-Study?node-id=481-5899&embed-host=share'
 
-function HeroSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  })
-  const yText = useTransform(scrollYProgress, [0, 1], [0, -60])
-  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0])
-
+function HeaderSection() {
   return (
-    <section
-      ref={ref}
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '100vh',
-        overflow: 'hidden',
-        background: '#F4F4F4',
-      }}
-    >
-      <motion.div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-          padding: '0 7vw 10vh',
-          color: '#0a0a0a',
-          y: yText,
-          opacity,
-        }}
-      >
-        <div style={{ maxWidth: '1000px', margin: '0 auto', width: '100%' }}>
+    <header style={{ padding: '110px 7vw 0', background: '#F4F4F4' }}>
+      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: 'easeOut', delay: 0.4 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            borderRadius: caseStudyRadius,
+            overflow: 'hidden',
+            border: '1px solid rgba(0,0,0,0.06)',
+            aspectRatio: '16 / 7',
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/case-study/findy/stills/still-4.png"
+            alt="A research session at a senior center, most of the room with a hand raised"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.25 }}
           style={{
             fontFamily: instrument,
-            fontSize: '12px',
+            fontSize: '13px',
             fontWeight: 500,
             letterSpacing: '0.01em',
             color: '#666',
-            marginBottom: '24px',
+            margin: '56px 0 20px',
           }}
         >
-          Findy, UCI Project Teams, 2026
+          Findy · UCI Project Teams · 2026
         </motion.div>
         <motion.h1
-          initial={{ opacity: 0, y: 36 }}
+          initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
           style={{
-            fontFamily: jakarta,
-            fontSize: 'clamp(44px, 7vw, 96px)',
+            ...caseStudyTitle,
+            fontSize: 'clamp(30px, 3.6vw, 42px)',
             fontWeight: 600,
-            letterSpacing: '-0.03em',
-            lineHeight: 1.02,
-            margin: 0,
-            maxWidth: '1100px',
-            color: '#0a0a0a',
+            letterSpacing: '-0.02em',
+            lineHeight: 1.18,
+            maxWidth: '820px',
           }}
         >
-          An AI guide that lives inside iOS and helps seniors use their phones without feeling overwhelmed.
+          An AI guide that lives inside iOS and helps seniors use their phones
+          without feeling overwhelmed.
         </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
+
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: 'easeOut', delay: 0.75 }}
-          style={{
-            fontFamily: jakarta,
-            fontSize: '16px',
-            fontWeight: 400,
-            color: '#444',
-            lineHeight: 1.7,
-            marginTop: '28px',
-            maxWidth: '620px',
-          }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}
         >
-          Project Lead, UCI Project Teams Design Sprint (8 weeks), Team of 5, 2026
-        </motion.p>
-        </div>
-      </motion.div>
-    </section>
+          <MetaCards
+            accent={ACCENT}
+            items={[
+              { label: 'Role', value: 'Project Lead' },
+              { label: 'Timeline', value: '8 weeks, 2026' },
+              { label: 'Team', value: '5 designers' },
+              { label: 'Method', value: 'Field research, 2 senior centers' },
+            ]}
+          />
+        </motion.div>
+      </div>
+    </header>
   )
 }
 
@@ -175,10 +161,10 @@ export default function FindyPage() {
           { id: 'takeaways', label: 'Takeaways' },
         ]}
       />
-      <HeroSection />
+      <HeaderSection />
 
       {/* TLDR */}
-      <section id="tldr" style={{ padding: '14vh 7vw 6vh', scrollMarginTop: '60px' }}>
+      <section id="tldr" style={{ padding: '13vh 7vw 6vh', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -196,56 +182,38 @@ export default function FindyPage() {
           >
             TLDR
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              fontFamily: jakarta,
-              fontSize: 'clamp(30px, 4.4vw, 52px)',
-              fontWeight: 600,
-              color: '#0a0a0a',
-              letterSpacing: '-0.02em',
-              lineHeight: 1.1,
-              margin: 0,
-            }}
-          >
-            Eight weeks. Two senior centers. One question that ran the whole thing.
-          </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
             style={{
               fontFamily: jakarta,
               fontSize: '18px',
               color: '#444',
               lineHeight: 1.75,
-              marginTop: '32px',
+              maxWidth: '720px',
             }}
           >
             <p>
-              I led a five-person team through UCI&apos;s Project Teams design sprint, asking why seniors still struggle with tech when there&apos;s more built to help them than ever. The surveys lied. The data said 73% of seniors rarely struggle. Sitting with them in person said the opposite.
+              I led a team of 5 through UCI&apos;s Project Teams design sprint, trying to
+              answer a question that bugged all of us: why do seniors still struggle with
+              tech when there&apos;s more built to help them than ever? Our survey data
+              said 73% of seniors rarely struggle. Then we sat with them at two senior
+              centers and watched the opposite happen.
             </p>
             <p style={{ marginTop: '20px' }}>
-              The real barrier isn&apos;t ability, it&apos;s overwhelm. And doing things for seniors is just as harmful as giving them too many options, because either way the learning stops. So we designed Findy: an AI guide that lives inside iOS, dims the noise, spotlights the next step, and never takes over.
+              The real barrier isn&apos;t ability, it&apos;s overwhelm. And doing things
+              for seniors is just as harmful as giving them too many options, because
+              either way the learning stops. So we designed Findy, an AI guide that lives
+              inside iOS, dims the noise, and spotlights the next step (without ever
+              taking over).
             </p>
             <p style={{ marginTop: '20px' }}>
-              The deck below walks through the research, the pivots, the character design, and how we landed on building inside iOS as the only honest answer.
+              The deck below walks through the research, the pivots, the character
+              design, and how we landed on building inside iOS.
             </p>
           </motion.div>
-
-          <MetaCards
-            accent={ACCENT}
-            items={[
-              { label: 'Role', value: 'Project Lead' },
-              { label: 'Timeline', value: '8 weeks, 2026' },
-              { label: 'Team', value: '5 designers' },
-              { label: 'Method', value: 'Field research, 2 senior centers' },
-            ]}
-          />
         </div>
       </section>
 
@@ -458,16 +426,16 @@ export default function FindyPage() {
               accent={ACCENT}
               items={[
                 {
-                  title: 'The surveys lied. Sitting with people didn’t.',
-                  body: '73% of seniors said they rarely struggle with tech. Watching them in person said the opposite. Self-reported data hides shame; field research doesn’t.',
+                  title: 'Surveys hide what shame covers up',
+                  body: '73% of seniors told us they rarely struggle with tech, and then we watched them struggle in person. Self-reported data protects people’s pride, but sitting next to them tells you the truth.',
                 },
                 {
-                  title: 'Overwhelm is the barrier, not ability.',
-                  body: 'Doing things for seniors is as harmful as giving them too many options, either way the learning stops. The design job was dimming noise, not adding help.',
+                  title: 'Overwhelm is the barrier, not ability',
+                  body: 'Doing things for seniors is just as harmful as giving them too many options, because either way the learning stops. Our design job was dimming noise, not adding help.',
                 },
                 {
-                  title: 'Build where the user already lives.',
-                  body: 'A separate app would be one more thing to learn. Living inside iOS was the only honest answer to our own research.',
+                  title: 'Build where the user already lives',
+                  body: 'A separate app would have been one more thing to learn, so living inside iOS was the only honest answer to our own research.',
                 },
               ]}
             />
