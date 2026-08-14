@@ -48,7 +48,7 @@ const PROJECTS: FieldProject[] = [
     name: 'Among Us IRL',
     tag: 'Party game',
     caption:
-      'Among Us for house parties. Phones run the tasks, Supabase realtime runs the chaos.',
+      'Real-life Among Us with my friends in a campus building. The app runs the whole game (meetings, tasks, kills, body reports), and it got better after every round we played.',
     accent: '#c51111',
     x: -240,
     y: -330,
@@ -364,7 +364,7 @@ function StickerCard({ px, py }: { px: MotionValue<number>; py: MotionValue<numb
             marginTop: '10px',
           }}
         >
-          Findy&apos;s sticker sheet (he gets around)
+          Findy&apos;s sticker sheet, wandered over from his case study
         </div>
       </motion.div>
     </motion.div>
@@ -584,7 +584,7 @@ export default function PlaygroundPage() {
             margin: 0,
           }}
         >
-          Things I&apos;ve built, scattered on a table.
+          Miscellaneous things I&apos;ve built, look around and explore!
         </motion.h1>
       </div>
 

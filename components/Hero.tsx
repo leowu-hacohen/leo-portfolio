@@ -28,6 +28,35 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
 }
 
+/** Little app-style logo tile for the proof strip (Brian Yang-style chip). */
+function LogoChip({ src, label }: { src: string; label: string }) {
+  return (
+    <span
+      role="img"
+      aria-label={label}
+      title={label}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '26px',
+        height: '26px',
+        background: '#efefef',
+        borderRadius: '7px',
+        verticalAlign: 'middle',
+        flexShrink: 0,
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={label}
+        style={{ width: '16px', height: '16px', objectFit: 'contain', display: 'block' }}
+      />
+    </span>
+  )
+}
+
 const displayStyle: React.CSSProperties = {
   fontFamily: 'var(--font-jakarta), sans-serif',
   fontSize: '38px',
@@ -431,20 +460,31 @@ export default function Hero() {
             </AnimatePresence>
           </div>
 
-          {/* Proof strip — one confident line, Queenie-style */}
+          {/* Proof strip — lowercase line with logo chips, Brian Yang-style */}
           <motion.div
             variants={item}
             style={{
               fontFamily: 'var(--font-jakarta), sans-serif',
               fontSize: '16px',
               fontWeight: 500,
-              color: '#767676',
+              color: '#111',
               letterSpacing: '0.005em',
               marginTop: '18px',
               whiteSpace: 'nowrap',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '7px',
+              flexWrap: 'wrap',
             }}
           >
-            Awarded by Anthropic, shipping at iHeartMedia.
+            <span>ambassador @</span>
+            <LogoChip src="/logos/google-g.svg" label="Google" />
+            <span>, prev pm @</span>
+            <LogoChip src="/icons/iheart.png" label="iHeartMedia" />
+            <span>,</span>
+            <LogoChip src="/logos/claude.svg" label="Anthropic" />
+            <span>hackathon winner</span>
           </motion.div>
         </motion.div>
       </motion.div>
