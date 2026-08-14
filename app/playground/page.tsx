@@ -25,11 +25,13 @@ type FieldProject = {
   href?: string
   linkLabel?: string
   img?: string
+  repo?: string
 }
 
 const PROJECTS: FieldProject[] = [
   {
     id: 'brew',
+    repo: 'https://github.com/leowu-hacohen/brew-app',
     img: '/playground/brew.png',
     name: 'brew',
     tag: 'Full-stack app',
@@ -44,6 +46,7 @@ const PROJECTS: FieldProject[] = [
   },
   {
     id: 'among-us-irl',
+    repo: 'https://github.com/leowu-hacohen/among-us-irl',
     img: '/playground/among-us-irl.png',
     name: 'Among Us IRL',
     tag: 'Party game',
@@ -58,6 +61,7 @@ const PROJECTS: FieldProject[] = [
   },
   {
     id: 'ai-uci',
+    repo: 'https://github.com/leowu-hacohen/ai-uci',
     img: '/playground/ai-uci.png',
     name: 'AI @ UCI',
     tag: 'Club site',
@@ -71,6 +75,7 @@ const PROJECTS: FieldProject[] = [
   },
   {
     id: 'zotpath',
+    repo: 'https://github.com/leowu-hacohen/zotpath',
     img: '/playground/zotpath.png',
     name: 'ZotPath',
     tag: 'Tool',
@@ -100,6 +105,7 @@ const PROJECTS: FieldProject[] = [
   },
   {
     id: 'code-quest',
+    repo: 'https://github.com/leowu-hacohen/code-quest',
     img: '/playground/code-quest.png',
     name: 'CodeQuest',
     tag: 'Desktop app',
@@ -114,6 +120,7 @@ const PROJECTS: FieldProject[] = [
   },
   {
     id: 'lumina',
+    repo: 'https://github.com/leowu-hacohen/lumina',
     img: '/playground/lumina.png',
     name: 'Lumina',
     tag: 'Voice AI',
@@ -207,7 +214,11 @@ function ProjectCard({
         }}
         whileDrag={{ scale: 1.09, rotate: 0, boxShadow: `0 34px 80px ${item.accent}40` }}
         onPointerDown={(e) => e.stopPropagation()}
-        data-cursor-pill={item.name}
+        onTap={() => {
+          if (item.repo) window.open(item.repo, '_blank', 'noopener,noreferrer')
+          else if (item.href) window.location.assign(item.href)
+        }}
+        data-cursor-pill={item.repo ? `${item.name} · GitHub ↗` : item.name}
         style={{
           background: '#ffffff',
           border: '1px solid #ececec',
