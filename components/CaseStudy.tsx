@@ -49,16 +49,17 @@ export interface CaseStudyProps {
 // ─── Shared style tokens ──────────────────────────────────────────────────────
 
 const jakarta = caseStudyJakarta
+const instrument = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
 
 const metaValue: React.CSSProperties = {
   fontFamily: jakarta,
   fontSize: '14px',
-  color: '#111',
+  color: '#16130E',
   fontWeight: 400,
 }
 
 const cardStyle: React.CSSProperties = {
-  background: '#fafafa',
+  background: 'rgba(255,255,255,0.65)',
   borderRadius: caseStudyRadius,
   padding: '28px',
   flex: 1,
@@ -131,10 +132,10 @@ export default function CaseStudy({
   return (
     <div
       style={{
-        background: '#F4F4F4',
+        background: '#FBF8F3',
         minHeight: '100vh',
         fontFamily: jakarta,
-        color: '#111',
+        color: '#16130E',
       }}
     >
       {/* Top: nav + hero only (full-width band stays clean) */}
@@ -163,7 +164,7 @@ export default function CaseStudy({
               fontFamily: jakarta,
               fontSize: '13px',
               fontWeight: 400,
-              color: '#888',
+              color: '#8A8377',
               textDecoration: 'none',
               letterSpacing: '0.01em',
             }}
@@ -187,7 +188,7 @@ export default function CaseStudy({
                   fontFamily: jakarta,
                   fontSize: '13px',
                   fontWeight: 400,
-                  color: '#b0b0b0',
+                  color: 'rgba(22,19,14,0.35)',
                   textDecoration: 'none',
                   letterSpacing: '0.02em',
                 }}
@@ -206,7 +207,7 @@ export default function CaseStudy({
           style={{
             width: '100%',
             height: '480px',
-            background: '#f5f5f5',
+            background: '#F5F0E8',
             borderRadius: caseStudyRadius,
             display: 'flex',
             alignItems: 'center',
@@ -218,7 +219,7 @@ export default function CaseStudy({
             style={{
               fontFamily: jakarta,
               fontSize: '13px',
-              color: '#ccc',
+              color: 'rgba(22,19,14,0.3)',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
             }}
@@ -266,7 +267,7 @@ export default function CaseStudy({
               margin: '0 auto',
               padding: '0 40px 120px',
               backgroundColor: canvasBackdropSrc
-                ? 'rgba(255, 255, 255, 0.94)'
+                ? 'rgba(251, 248, 243, 0.94)'
                 : 'transparent',
               borderRadius: caseStudyRadius,
             }}
@@ -329,7 +330,7 @@ export default function CaseStudy({
         <div
           style={{
             height: '1px',
-            background: '#f0f0f0',
+            background: 'rgba(22,19,14,0.12)',
             margin: '64px 0',
           }}
         />
@@ -398,7 +399,7 @@ export default function CaseStudy({
                   marginLeft: 'auto',
                   marginRight: 'auto',
                   height: '400px',
-                  background: '#f5f5f5',
+                  background: '#F5F0E8',
                   borderRadius: caseStudyRadius,
                   display: 'flex',
                   alignItems: 'center',
@@ -409,7 +410,7 @@ export default function CaseStudy({
                   style={{
                     fontFamily: jakarta,
                     fontSize: '12px',
-                    color: '#ccc',
+                    color: 'rgba(22,19,14,0.3)',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
                   }}
@@ -445,10 +446,10 @@ export default function CaseStudy({
               >
                 <div
                   style={{
-                    fontFamily: jakarta,
+                    fontFamily: instrument,
                     fontSize: '36px',
-                    fontWeight: 700,
-                    color: '#111',
+                    fontWeight: 400,
+                    color: '#16130E',
                     lineHeight: 1,
                   }}
                 >
@@ -458,7 +459,7 @@ export default function CaseStudy({
                   style={{
                     fontFamily: jakarta,
                     fontSize: '13px',
-                    color: '#888',
+                    color: '#8A8377',
                     marginTop: '6px',
                   }}
                 >
@@ -472,7 +473,7 @@ export default function CaseStudy({
         {/* 8. FOOTER NAV ───────────────────────────────────────────────────── */}
         <div
           style={{
-            borderTop: '1px solid #f0f0f0',
+            borderTop: '1px solid rgba(22,19,14,0.12)',
             paddingTop: '48px',
             marginTop: '80px',
             display: 'flex',
@@ -486,14 +487,14 @@ export default function CaseStudy({
               style={{
                 fontFamily: jakarta,
                 fontSize: '14px',
-                color: '#888',
+                color: '#8A8377',
                 textDecoration: 'none',
               }}
             >
               ← Previous
             </Link>
           ) : (
-            <span style={{ fontFamily: jakarta, fontSize: '14px', color: '#ddd' }}>
+            <span style={{ fontFamily: jakarta, fontSize: '14px', color: 'rgba(22,19,14,0.25)' }}>
               ← Previous
             </span>
           )}
@@ -503,14 +504,14 @@ export default function CaseStudy({
               style={{
                 fontFamily: jakarta,
                 fontSize: '14px',
-                color: '#888',
+                color: '#8A8377',
                 textDecoration: 'none',
               }}
             >
               Next →
             </Link>
           ) : (
-            <span style={{ fontFamily: jakarta, fontSize: '14px', color: '#ddd' }}>
+            <span style={{ fontFamily: jakarta, fontSize: '14px', color: 'rgba(22,19,14,0.25)' }}>
               Next →
             </span>
           )}

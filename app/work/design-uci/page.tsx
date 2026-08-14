@@ -2,10 +2,16 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { CASE_STUDY_LABEL_COLORS, caseStudyRadius } from '../../../components/caseStudyTheme'
+import {
+  CASE_STUDY_LABEL_COLORS,
+  caseStudyLabelStyles,
+  caseStudyRadius,
+} from '../../../components/caseStudyTheme'
 
-const jakarta = 'var(--font-jakarta), sans-serif'
-const noto = 'var(--font-noto), serif'
+const instrument = 'var(--font-instrument), sans-serif'
+const instrumentSerif = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
+
+const labelStyles = caseStudyLabelStyles(CASE_STUDY_LABEL_COLORS.designUci)
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
@@ -17,10 +23,10 @@ export default function DesignUciComingSoonPage() {
   return (
     <div
       style={{
-        background: '#F4F4F4',
+        background: '#FBF8F3',
         minHeight: '100vh',
-        fontFamily: jakarta,
-        color: '#111',
+        fontFamily: instrument,
+        color: '#16130E',
         display: 'flex',
         flexDirection: 'column',
       }}
@@ -41,10 +47,10 @@ export default function DesignUciComingSoonPage() {
           href="/"
           data-cursor-pill="Back"
           style={{
-            fontFamily: jakarta,
+            fontFamily: instrument,
             fontSize: '13px',
             fontWeight: 400,
-            color: '#888',
+            color: '#8A8377',
             textDecoration: 'none',
             letterSpacing: '0.01em',
           }}
@@ -65,10 +71,10 @@ export default function DesignUciComingSoonPage() {
               href={href}
               data-cursor-pill={label}
               style={{
-                fontFamily: jakarta,
+                fontFamily: instrument,
                 fontSize: '13px',
                 fontWeight: 400,
-                color: '#b0b0b0',
+                color: 'rgba(138,131,119,0.75)',
                 textDecoration: 'none',
                 letterSpacing: '0.02em',
               }}
@@ -99,7 +105,7 @@ export default function DesignUciComingSoonPage() {
             width: '120px',
             height: '120px',
             borderRadius: caseStudyRadius,
-            background: '#000',
+            background: '#16130E',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -122,12 +128,7 @@ export default function DesignUciComingSoonPage() {
         <motion.p
           {...fadeUp(0.08)}
           style={{
-            fontFamily: jakarta,
-            fontSize: '11px',
-            fontWeight: 500,
-            color: CASE_STUDY_LABEL_COLORS.designUci,
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
+            ...labelStyles.eyebrow,
             margin: '0 0 16px',
           }}
         >
@@ -137,11 +138,11 @@ export default function DesignUciComingSoonPage() {
         <motion.h1
           {...fadeUp(0.12)}
           style={{
-            fontFamily: noto,
+            fontFamily: instrumentSerif,
             fontSize: '36px',
-            fontWeight: 600,
-            color: '#111',
-            letterSpacing: '-0.02em',
+            fontWeight: 400,
+            color: '#16130E',
+            letterSpacing: '-0.015em',
             lineHeight: 1.15,
             margin: '0 0 16px',
           }}
@@ -152,16 +153,16 @@ export default function DesignUciComingSoonPage() {
         <motion.p
           {...fadeUp(0.18)}
           style={{
-            fontFamily: jakarta,
+            fontFamily: instrument,
             fontSize: '17px',
             fontWeight: 400,
-            color: '#666',
+            color: '#4A443B',
             lineHeight: 1.6,
             maxWidth: '420px',
             margin: 0,
           }}
         >
-          This case study is on the way, check back soon.
+          This case study is on the way. Check back soon.
         </motion.p>
 
         <motion.div {...fadeUp(0.24)} style={{ marginTop: '32px' }}>
@@ -169,7 +170,7 @@ export default function DesignUciComingSoonPage() {
             href="/work/clair"
             data-cursor-pill="Next project"
             style={{
-              fontFamily: jakarta,
+              fontFamily: instrument,
               fontSize: '14px',
               fontWeight: 600,
               color: CASE_STUDY_LABEL_COLORS.designUci,

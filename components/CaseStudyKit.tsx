@@ -45,8 +45,8 @@ export function MetaCards({
             show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
           }}
           style={{
-            background: '#ffffff',
-            border: '1px solid #ececec',
+            background: 'rgba(255,255,255,0.65)',
+            border: '1px solid rgba(22,19,14,0.12)',
             borderRadius: caseStudyRadius,
             padding: '16px 18px',
           }}
@@ -54,7 +54,7 @@ export function MetaCards({
           <div style={{ fontFamily: instrument, fontSize: '12px', color: accent, marginBottom: '6px' }}>
             {label}
           </div>
-          <div style={{ fontFamily: jakarta, fontSize: '14px', fontWeight: 500, color: '#111', lineHeight: 1.4 }}>
+          <div style={{ fontFamily: jakarta, fontSize: '14px', fontWeight: 500, color: '#16130E', lineHeight: 1.4 }}>
             {value}
           </div>
         </motion.div>
@@ -124,7 +124,7 @@ export function SectionRail({
                 width: 6,
                 height: 6,
                 borderRadius: '50%',
-                background: isActive ? accent : '#d0d0d0',
+                background: isActive ? accent : 'rgba(22,19,14,0.2)',
                 transition: 'background 0.25s ease',
                 flexShrink: 0,
               }}
@@ -135,7 +135,7 @@ export function SectionRail({
                 fontSize: '11px',
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
-                color: isActive ? '#111' : '#b0b0b0',
+                color: isActive ? '#16130E' : 'rgba(22,19,14,0.35)',
                 fontWeight: isActive ? 600 : 400,
                 transition: 'color 0.25s ease',
               }}
@@ -164,8 +164,8 @@ export function VisualPanel({
     <motion.figure {...kitReveal} style={{ margin: '32px 0 0' }}>
       <div
         style={{
-          background: '#ffffff',
-          border: '1px solid #ececec',
+          background: 'rgba(255,255,255,0.65)',
+          border: '1px solid rgba(22,19,14,0.12)',
           borderRadius: caseStudyRadius,
           padding: padded ? 'clamp(20px, 4vw, 40px)' : 0,
           overflow: 'hidden',
@@ -178,7 +178,7 @@ export function VisualPanel({
           style={{
             fontFamily: jakarta,
             fontSize: '13.5px',
-            color: '#888',
+            color: '#8A8377',
             textAlign: 'center',
             marginTop: '14px',
             lineHeight: 1.6,
@@ -208,10 +208,10 @@ export function TakeawayCards({
         <motion.h2
           {...kitReveal}
           style={{
-            fontFamily: jakarta,
+            fontFamily: instrument,
             fontSize: '24px',
-            fontWeight: 600,
-            color: '#111',
+            fontWeight: 400,
+            color: '#16130E',
             letterSpacing: '-0.01em',
             margin: '0 0 24px',
           }}
@@ -231,8 +231,8 @@ export function TakeawayCards({
               display: 'flex',
               gap: '20px',
               alignItems: 'flex-start',
-              background: '#ffffff',
-              border: '1px solid #ececec',
+              background: 'rgba(255,255,255,0.65)',
+              border: '1px solid rgba(22,19,14,0.12)',
               borderRadius: caseStudyRadius,
               padding: '26px 28px',
             }}
@@ -255,10 +255,10 @@ export function TakeawayCards({
               {i + 1}
             </div>
             <div>
-              <div style={{ fontFamily: jakarta, fontSize: '16.5px', fontWeight: 600, color: '#111', marginBottom: '6px' }}>
+              <div style={{ fontFamily: jakarta, fontSize: '16.5px', fontWeight: 600, color: '#16130E', marginBottom: '6px' }}>
                 {t.title}
               </div>
-              <p style={{ fontFamily: jakarta, fontSize: '15px', color: '#555', lineHeight: 1.7, margin: 0 }}>
+              <p style={{ fontFamily: jakarta, fontSize: '15px', color: '#4A443B', lineHeight: 1.7, margin: 0 }}>
                 {t.body}
               </p>
             </div>
@@ -281,8 +281,8 @@ export function NextProjectFooter({
   accent: string
 }) {
   return (
-    <div style={{ marginTop: '96px', borderTop: '1px solid #e4e4e4', paddingTop: '56px' }}>
-      <motion.div {...kitReveal} style={{ fontFamily: instrument, fontSize: 'clamp(28px, 4vw, 42px)', color: '#111', marginBottom: '24px' }}>
+    <div style={{ marginTop: '96px', borderTop: '1px solid rgba(22,19,14,0.12)', paddingTop: '56px' }}>
+      <motion.div {...kitReveal} style={{ fontFamily: instrument, fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 400, color: '#16130E', marginBottom: '24px' }}>
         Next project
       </motion.div>
       <motion.div {...kitReveal}>
@@ -294,18 +294,18 @@ export function NextProjectFooter({
             justifyContent: 'space-between',
             alignItems: 'center',
             gap: '24px',
-            background: '#ffffff',
-            border: '1px solid #ececec',
+            background: 'rgba(255,255,255,0.65)',
+            border: '1px solid rgba(22,19,14,0.12)',
             borderRadius: caseStudyRadius,
             padding: '28px 32px',
             textDecoration: 'none',
           }}
         >
           <div>
-            <div style={{ fontFamily: jakarta, fontSize: '20px', fontWeight: 700, color: '#111', letterSpacing: '-0.01em' }}>
+            <div style={{ fontFamily: jakarta, fontSize: '20px', fontWeight: 700, color: '#16130E', letterSpacing: '-0.01em' }}>
               {next.label}
             </div>
-            <div style={{ fontFamily: jakarta, fontSize: '14px', color: '#888', marginTop: '6px' }}>
+            <div style={{ fontFamily: jakarta, fontSize: '14px', color: '#8A8377', marginTop: '6px' }}>
               {next.descriptor}
             </div>
           </div>
@@ -316,7 +316,7 @@ export function NextProjectFooter({
         <div style={{ marginTop: '28px', textAlign: 'center' }}>
           <Link
             href={prev.href}
-            style={{ fontFamily: jakarta, fontSize: '14px', color: '#888', textDecoration: 'none' }}
+            style={{ fontFamily: jakarta, fontSize: '14px', color: '#8A8377', textDecoration: 'none' }}
           >
             ← Previous · {prev.label}
           </Link>

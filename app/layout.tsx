@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans, Noto_Serif, Instrument_Sans } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
+import PixelLeo from '../components/PixelLeo'
 import CustomCursor from '../components/CustomCursor'
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -47,9 +48,10 @@ export default function RootLayout({
       lang="en"
       className={`${plusJakarta.variable} ${notoSerif.variable} ${instrumentSans.variable} ${instrumentSerif.variable}`}
     >
-      <body style={{ background: '#F4F4F4', color: '#111111', margin: 0 }}>
+      <body style={{ background: '#FBF8F3', color: '#16130E', margin: 0 }}>
         <CustomCursor />
         {children}
+        <PixelLeo />
       </body>
     </html>
   )

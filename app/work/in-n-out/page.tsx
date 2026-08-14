@@ -71,10 +71,10 @@ export default function InNOutPage() {
   return (
     <div
       style={{
-        background: '#F4F4F4',
+        background: '#FBF8F3',
         minHeight: '100vh',
         fontFamily: jakarta,
-        color: '#111',
+        color: '#16130E',
       }}
     >
       <SectionRail sections={RAIL_SECTIONS} accent={ACCENT} />
@@ -102,7 +102,7 @@ export default function InNOutPage() {
               fontFamily: jakarta,
               fontSize: '13px',
               fontWeight: 400,
-              color: '#888',
+              color: '#8A8377',
               textDecoration: 'none',
               letterSpacing: '0.01em',
             }}
@@ -126,7 +126,7 @@ export default function InNOutPage() {
                   fontFamily: jakarta,
                   fontSize: '13px',
                   fontWeight: 400,
-                  color: '#b0b0b0',
+                  color: '#8A8377',
                   textDecoration: 'none',
                   letterSpacing: '0.02em',
                 }}
@@ -144,7 +144,7 @@ export default function InNOutPage() {
         </motion.div>
         <motion.h1
           {...fadeUp(0.1)}
-          style={{ ...caseStudyTitle, fontSize: '36px', fontWeight: 600, lineHeight: 1.2 }}
+          style={{ ...caseStudyTitle, fontSize: '36px', fontWeight: 400, lineHeight: 1.2 }}
         >
           Reverse-engineering In-N-Out&apos;s site-selection strategy with a
           LambdaRank ML model, built in 36 hours.
@@ -185,7 +185,7 @@ export default function InNOutPage() {
         <Section
           id="role"
           label="My Role"
-          heading="Team Member: 3-person team, 36 hours"
+          heading="I was one of three builders over 36 hours."
         >
           <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
             Built at Data Heist 2026 (April 3–5, 2026) alongside Justin Siek
@@ -263,7 +263,7 @@ export default function InNOutPage() {
                     fontFamily: jakarta,
                     fontSize: '13px',
                     fontWeight: 600,
-                    color: '#111',
+                    color: '#16130E',
                     letterSpacing: '0.08em',
                     flexShrink: 0,
                     width: '32px',
@@ -278,7 +278,7 @@ export default function InNOutPage() {
                       fontFamily: jakarta,
                       fontSize: '16px',
                       fontWeight: 600,
-                      color: '#111',
+                      color: '#16130E',
                       marginBottom: '6px',
                     }}
                   >
@@ -294,8 +294,8 @@ export default function InNOutPage() {
             caption={
               <>
                 The reframe: for every real opening, the model sees the{' '}
-                <strong style={{ color: '#444' }}>choice In-N-Out actually faced</strong>{' '}
-               , and learns to rank the real site first.
+                <strong style={{ color: '#4A443B' }}>choice In-N-Out actually faced</strong>,
+                and learns to rank the real site first.
               </>
             }
           >
@@ -314,8 +314,8 @@ export default function InNOutPage() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '14px',
-                    border: real ? `1px solid ${ACCENT}` : '1px solid #efefef',
-                    background: real ? `${ACCENT}0d` : '#fafafa',
+                    border: real ? `1px solid ${ACCENT}` : '1px solid rgba(22,19,14,0.12)',
+                    background: real ? `${ACCENT}0d` : 'rgba(255,255,255,0.65)',
                     borderRadius: caseStudyRadius,
                     padding: real ? '14px 18px' : '9px 18px',
                   }}
@@ -325,7 +325,7 @@ export default function InNOutPage() {
                       fontFamily: jakarta,
                       fontSize: real ? '15px' : '12px',
                       fontWeight: 700,
-                      color: real ? ACCENT : '#b0b0b0',
+                      color: real ? ACCENT : '#8A8377',
                       width: '28px',
                       flexShrink: 0,
                     }}
@@ -337,7 +337,7 @@ export default function InNOutPage() {
                       fontFamily: jakarta,
                       fontSize: real ? '15px' : '13px',
                       fontWeight: real ? 700 : 400,
-                      color: real ? '#111' : '#999',
+                      color: real ? '#16130E' : '#8A8377',
                     }}
                   >
                     {label}
@@ -369,7 +369,7 @@ export default function InNOutPage() {
             caption={
               <>
                 Four public datasets, merged into{' '}
-                <strong style={{ color: '#444' }}>14 explainable features</strong> per
+                <strong style={{ color: '#4A443B' }}>14 explainable features</strong> per
                 candidate site.
               </>
             }
@@ -392,17 +392,17 @@ export default function InNOutPage() {
                   <div
                     key={name}
                     style={{
-                      border: '1px solid #ececec',
-                      background: '#fafafa',
+                      border: '1px solid rgba(22,19,14,0.12)',
+                      background: 'rgba(255,255,255,0.65)',
                       borderRadius: caseStudyRadius,
                       padding: '12px 16px',
                       minWidth: '170px',
                     }}
                   >
-                    <div style={{ fontFamily: jakarta, fontSize: '13.5px', fontWeight: 700, color: '#111' }}>
+                    <div style={{ fontFamily: jakarta, fontSize: '13.5px', fontWeight: 700, color: '#16130E' }}>
                       {name}
                     </div>
-                    <div style={{ fontFamily: jakarta, fontSize: '11.5px', color: '#999', marginTop: '2px' }}>
+                    <div style={{ fontFamily: jakarta, fontSize: '11.5px', color: '#8A8377', marginTop: '2px' }}>
                       {sub}
                     </div>
                   </div>
@@ -418,10 +418,18 @@ export default function InNOutPage() {
                   textAlign: 'center',
                 }}
               >
-                <div style={{ fontFamily: jakarta, fontSize: '30px', fontWeight: 700, color: ACCENT, lineHeight: 1 }}>
+                <div
+                  style={{
+                    fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
+                    fontSize: '30px',
+                    fontWeight: 400,
+                    color: ACCENT,
+                    lineHeight: 1,
+                  }}
+                >
                   14
                 </div>
-                <div style={{ fontFamily: jakarta, fontSize: '12.5px', color: '#666', marginTop: '6px', maxWidth: '260px' }}>
+                <div style={{ fontFamily: jakarta, fontSize: '12.5px', color: '#8A8377', marginTop: '6px', maxWidth: '260px' }}>
                   features per site: distances, income, population, flows, AADT
                 </div>
               </div>
@@ -433,7 +441,7 @@ export default function InNOutPage() {
         <Section
           id="deck"
           label="Presentation"
-          heading="Datathon deck: problem, approach, and results in one place."
+          heading="Here's the deck we presented at the datathon."
         >
           <p style={{ ...caseStudyBody, marginBottom: '24px' }}>
             Below is the slide deck we presented for the datathon (Figma Slides).
@@ -451,9 +459,9 @@ export default function InNOutPage() {
               margin: '0 auto',
               borderRadius: caseStudyRadius,
               overflow: 'hidden',
-              border: '1px solid rgba(0, 0, 0, 0.08)',
-              boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
-              background: '#fafafa',
+              border: '1px solid rgba(22,19,14,0.12)',
+              boxShadow: '0 4px 24px rgba(22, 19, 14, 0.06)',
+              background: 'rgba(255,255,255,0.65)',
               lineHeight: 0,
             }}
           >
@@ -504,17 +512,18 @@ export default function InNOutPage() {
               <div
                 key={label}
                 style={{
-                  background: '#fafafa',
+                  background: 'rgba(255,255,255,0.65)',
+                  border: '1px solid rgba(22,19,14,0.12)',
                   borderRadius: caseStudyRadius,
                   padding: '24px',
                 }}
               >
                 <div
                   style={{
-                    fontFamily: jakarta,
+                    fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
                     fontSize: '32px',
-                    fontWeight: 700,
-                    color: '#111',
+                    fontWeight: 400,
+                    color: '#16130E',
                     lineHeight: 1,
                   }}
                 >
@@ -524,7 +533,7 @@ export default function InNOutPage() {
                   style={{
                     fontFamily: jakarta,
                     fontSize: '13px',
-                    color: '#888',
+                    color: '#8A8377',
                     marginTop: '8px',
                   }}
                 >

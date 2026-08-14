@@ -74,10 +74,10 @@ export default function ChageePage() {
   return (
     <div
       style={{
-        background: '#F4F4F4',
+        background: '#FBF8F3',
         minHeight: '100vh',
         fontFamily: jakarta,
-        color: '#111',
+        color: '#16130E',
       }}
     >
       <SectionRail sections={RAIL_SECTIONS} accent={ACCENT} />
@@ -94,7 +94,7 @@ export default function ChageePage() {
           justifyContent: 'space-between',
           alignItems: 'center',
           padding: '20px 7vw',
-          background: 'rgba(255,255,255,0.6)',
+          background: 'rgba(255,255,255,0.65)',
           backdropFilter: 'blur(20px) saturate(140%)',
           WebkitBackdropFilter: 'blur(20px) saturate(140%)',
         }}
@@ -105,7 +105,7 @@ export default function ChageePage() {
           style={{
             fontFamily: jakarta,
             fontSize: '13px',
-            color: '#666',
+            color: '#8A8377',
             textDecoration: 'none',
           }}
         >
@@ -127,7 +127,7 @@ export default function ChageePage() {
               style={{
                 fontFamily: jakarta,
                 fontSize: '13px',
-                color: '#888',
+                color: '#8A8377',
                 textDecoration: 'none',
               }}
             >
@@ -146,14 +146,14 @@ export default function ChageePage() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             style={{
               aspectRatio: '16 / 7',
-              background: '#f4efe8',
+              background: '#F5F0E8',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               padding: '40px',
               boxSizing: 'border-box',
               borderRadius: caseStudyRadius,
-              border: '1px solid rgba(0,0,0,0.06)',
+              border: '1px solid rgba(22,19,14,0.12)',
               overflow: 'hidden',
             }}
           >
@@ -180,7 +180,6 @@ export default function ChageePage() {
             style={{
               ...caseStudyTitle,
               fontSize: 'clamp(30px, 3.6vw, 42px)',
-              fontWeight: 600,
               lineHeight: 1.18,
               maxWidth: '820px',
             }}
@@ -212,7 +211,7 @@ export default function ChageePage() {
             style={{
               fontFamily: jakarta,
               fontSize: '18px',
-              color: '#444',
+              color: '#4A443B',
               lineHeight: 1.75,
               maxWidth: '720px',
             }}
@@ -263,13 +262,13 @@ export default function ChageePage() {
         <Section
           id="role"
           label="My Role"
-          heading="Product Marketing Intern, 4 months"
+          heading="I owned the creator side of the launch."
         >
           <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
-            Embedded with the Marketing Manager, Social Media Lead, the
-            operations team, and an external creative agency. Owned creator
-            strategy, soft-opening choreography, and cross-functional launch
-            coordination across marketing, ops, and agency partners.
+            I was embedded with the Marketing Manager, Social Media Lead, the
+            operations team, and an external creative agency, and I owned
+            creator strategy, soft-opening choreography, and cross-functional
+            launch coordination across marketing, ops, and agency partners.
           </p>
           <ul style={caseStudyBulletList}>
             {[
@@ -313,13 +312,13 @@ export default function ChageePage() {
                 phase: '01',
                 title: 'Build buzz: 6 weeks pre-launch',
                 copy:
-                  'Identified 100+ local OC food and lifestyle creators. Sent personalized outreach, not mass DMs. Invited a curated set to exclusive preview tastings before the soft opening. Local relevance over follower count: a creator with 10K followers in Irvine outperforms 500K in New York.',
+                  'We identified 100+ local OC food and lifestyle creators, sent personalized outreach instead of mass DMs, and invited a curated set to exclusive preview tastings before the soft opening. We picked for local relevance over follower count: a creator with 10K followers in Irvine outperforms 500K in New York.',
               },
               {
                 phase: '02',
                 title: 'Create FOMO: soft opening',
                 copy:
-                  'Creators-only soft opening with first access to the menu, store, and photo moments. Hundreds of posts and stories dropped that same weekend, all framing CHAGEE as the new place you needed to try. Social proof at scale before a single paying customer walked in.',
+                  'We ran a creators-only soft opening with first access to the menu, store, and photo moments. Hundreds of posts and stories dropped that same weekend, all framing CHAGEE as the new place you needed to try. That was social proof at scale before a single paying customer walked in.',
               },
               {
                 phase: '03',
@@ -341,7 +340,7 @@ export default function ChageePage() {
                     fontFamily: jakarta,
                     fontSize: '13px',
                     fontWeight: 600,
-                    color: '#111',
+                    color: '#16130E',
                     letterSpacing: '0.08em',
                     flexShrink: 0,
                     width: '32px',
@@ -356,7 +355,7 @@ export default function ChageePage() {
                       fontFamily: jakarta,
                       fontSize: '16px',
                       fontWeight: 600,
-                      color: '#111',
+                      color: '#16130E',
                       marginBottom: '6px',
                     }}
                   >
@@ -372,7 +371,7 @@ export default function ChageePage() {
             caption={
               <>
                 Launch choreography:{' '}
-                <strong style={{ color: '#444' }}>the feed never went quiet</strong>{' '}
+                <strong style={{ color: '#4A443B' }}>the feed never went quiet</strong>{' '}
                 from first DM to grand-opening weekend.
               </>
             }
@@ -389,7 +388,7 @@ export default function ChageePage() {
                       fontFamily: jakarta,
                       fontSize: '12px',
                       fontWeight: 600,
-                      color: '#888',
+                      color: '#8A8377',
                       width: '110px',
                       flexShrink: 0,
                       textAlign: 'right',
@@ -425,7 +424,7 @@ export default function ChageePage() {
             caption={
               <>
                 Social proof at scale:{' '}
-                <strong style={{ color: '#444' }}>
+                <strong style={{ color: '#4A443B' }}>
                   a curated local creator beats a national mega-account
                 </strong>{' '}
                 for a neighborhood launch.
@@ -447,7 +446,7 @@ export default function ChageePage() {
                 <div
                   key={handle}
                   style={{
-                    border: hot ? `1px solid ${ACCENT}` : '1px dashed #d8d8d8',
+                    border: hot ? `1px solid ${ACCENT}` : '1px dashed rgba(22,19,14,0.2)',
                     background: hot ? `${ACCENT}0a` : 'transparent',
                     borderRadius: caseStudyRadius,
                     padding: '18px',
@@ -460,18 +459,18 @@ export default function ChageePage() {
                         width: 30,
                         height: 30,
                         borderRadius: '50%',
-                        background: hot ? ACCENT : '#ddd',
+                        background: hot ? ACCENT : 'rgba(22,19,14,0.12)',
                         flexShrink: 0,
                       }}
                     />
                     <div>
-                      <div style={{ fontFamily: jakarta, fontSize: '14px', fontWeight: 700, color: hot ? '#111' : '#999' }}>
+                      <div style={{ fontFamily: jakarta, fontSize: '14px', fontWeight: 700, color: hot ? '#16130E' : '#8A8377' }}>
                         {handle}
                       </div>
-                      <div style={{ fontFamily: jakarta, fontSize: '11.5px', color: '#aaa' }}>{meta}</div>
+                      <div style={{ fontFamily: jakarta, fontSize: '11.5px', color: '#8A8377' }}>{meta}</div>
                     </div>
                   </div>
-                  <div style={{ fontFamily: jakarta, fontSize: '13px', color: hot ? '#555' : '#b0b0b0' }}>
+                  <div style={{ fontFamily: jakarta, fontSize: '13px', color: hot ? '#4A443B' : '#8A8377' }}>
                     {note}
                   </div>
                 </div>
@@ -504,17 +503,18 @@ export default function ChageePage() {
               <div
                 key={label}
                 style={{
-                  background: '#fafafa',
+                  background: 'rgba(255,255,255,0.65)',
+                  border: '1px solid rgba(22,19,14,0.12)',
                   borderRadius: caseStudyRadius,
                   padding: '24px',
                 }}
               >
                 <div
                   style={{
-                    fontFamily: jakarta,
+                    fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
                     fontSize: '32px',
-                    fontWeight: 700,
-                    color: '#111',
+                    fontWeight: 400,
+                    color: '#16130E',
                     lineHeight: 1,
                   }}
                 >
@@ -524,7 +524,7 @@ export default function ChageePage() {
                   style={{
                     fontFamily: jakarta,
                     fontSize: '13px',
-                    color: '#888',
+                    color: '#8A8377',
                     marginTop: '8px',
                   }}
                 >

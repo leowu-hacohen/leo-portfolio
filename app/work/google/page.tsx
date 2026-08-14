@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { caseStudyRadius } from '../../../components/caseStudyTheme'
 
-const jakarta = 'var(--font-jakarta), sans-serif'
+const instrument = 'var(--font-instrument), sans-serif'
 const instrumentSerif = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
 
 const GOOGLE_BLUE = '#4285F4'
@@ -13,7 +13,7 @@ export default function GooglePage() {
   return (
     <div
       style={{
-        background: '#F4F4F4',
+        background: '#FBF8F3',
         minHeight: '100vh',
         position: 'relative',
         overflow: 'hidden',
@@ -35,7 +35,7 @@ export default function GooglePage() {
         <Link
           href="/"
           data-cursor-pill="Back"
-          style={{ fontFamily: jakarta, fontSize: '13px', color: '#666', textDecoration: 'none' }}
+          style={{ fontFamily: instrument, fontSize: '13px', color: '#8A8377', textDecoration: 'none' }}
         >
           ← Back
         </Link>
@@ -52,7 +52,7 @@ export default function GooglePage() {
               key={label}
               href={href}
               data-cursor-pill={label}
-              style={{ fontFamily: jakarta, fontSize: '13px', color: '#888', textDecoration: 'none' }}
+              style={{ fontFamily: instrument, fontSize: '13px', color: '#8A8377', textDecoration: 'none' }}
             >
               {label}
             </Link>
@@ -79,6 +79,7 @@ export default function GooglePage() {
             width: '160px',
             height: '160px',
             background: '#ffffff',
+            border: '1px solid rgba(22,19,14,0.12)',
             borderRadius: caseStudyRadius,
             display: 'flex',
             alignItems: 'center',
@@ -103,20 +104,20 @@ export default function GooglePage() {
             fontSize: '14px',
             fontWeight: 400,
             letterSpacing: '0.01em',
-            color: '#666',
+            color: '#8A8377',
             marginBottom: '14px',
           }}
         >
-          Campus Ambassador
-        </motion.div>
+          Campus ambassador
+</motion.div>
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55 }}
           style={{
-            fontFamily: jakarta,
+            fontFamily: instrument,
             fontSize: '18px',
-            color: '#444',
+            color: '#4A443B',
             maxWidth: '520px',
             lineHeight: 1.6,
           }}
@@ -133,7 +134,7 @@ export default function GooglePage() {
             href="/work/clair"
             data-cursor-pill="Next project"
             style={{
-              fontFamily: jakarta,
+              fontFamily: instrument,
               fontSize: '14px',
               fontWeight: 600,
               color: GOOGLE_BLUE,

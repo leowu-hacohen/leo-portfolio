@@ -70,10 +70,10 @@ export default function BcecPage() {
   return (
     <div
       style={{
-        background: '#F4F4F4',
+        background: '#FBF8F3',
         minHeight: '100vh',
         fontFamily: jakarta,
-        color: '#111',
+        color: '#16130E',
       }}
     >
       <SectionRail sections={RAIL_SECTIONS} accent={ACCENT} />
@@ -101,7 +101,7 @@ export default function BcecPage() {
               fontFamily: jakarta,
               fontSize: '13px',
               fontWeight: 400,
-              color: '#888',
+              color: '#8A8377',
               textDecoration: 'none',
               letterSpacing: '0.01em',
             }}
@@ -125,7 +125,7 @@ export default function BcecPage() {
                   fontFamily: jakarta,
                   fontSize: '13px',
                   fontWeight: 400,
-                  color: '#b0b0b0',
+                  color: '#8A8377',
                   textDecoration: 'none',
                   letterSpacing: '0.02em',
                 }}
@@ -142,7 +142,7 @@ export default function BcecPage() {
         </motion.div>
         <motion.h1
           {...fadeUp(0.1)}
-          style={{ ...caseStudyTitle, fontSize: '36px', fontWeight: 600, lineHeight: 1.2 }}
+          style={{ ...caseStudyTitle, fontSize: '36px', lineHeight: 1.2 }}
         >
           Repositioning a niche club from &ldquo;industry insiders only&rdquo;
           into a business-skills hub for students who didn&apos;t know
@@ -163,7 +163,7 @@ export default function BcecPage() {
         <Section
           id="problem"
           label="Problem"
-          heading="Seen as the club for people who already knew they wanted in."
+          heading="We were seen as the club for people who already knew they wanted in."
         >
           <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
             BCEC was read as a club for students who already knew they wanted
@@ -184,7 +184,7 @@ export default function BcecPage() {
             caption={
               <>
                 The repositioning in one line: stop selling the industry,{' '}
-                <strong style={{ color: '#444' }}>start naming the jobs</strong>.
+                <strong style={{ color: '#4A443B' }}>start naming the jobs</strong>.
               </>
             }
           >
@@ -197,19 +197,19 @@ export default function BcecPage() {
             >
               <div
                 style={{
-                  border: '1px dashed #d8d8d8',
+                  border: '1px dashed rgba(22,19,14,0.12)',
                   borderRadius: caseStudyRadius,
                   padding: '22px',
                   opacity: 0.75,
                 }}
               >
-                <div style={{ fontFamily: jakarta, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#b0b0b0', marginBottom: '10px' }}>
+                <div style={{ fontFamily: jakarta, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A8377', marginBottom: '10px' }}>
                   Before
                 </div>
-                <div style={{ fontFamily: jakarta, fontSize: '17px', fontWeight: 600, color: '#999', lineHeight: 1.4 }}>
+                <div style={{ fontFamily: jakarta, fontSize: '17px', fontWeight: 600, color: '#8A8377', lineHeight: 1.4 }}>
                   &ldquo;Entertainment industry networking&rdquo;
                 </div>
-                <div style={{ fontFamily: jakarta, fontSize: '13px', color: '#b0b0b0', marginTop: '10px' }}>
+                <div style={{ fontFamily: jakarta, fontSize: '13px', color: '#8A8377', marginTop: '10px' }}>
                   Reads as insiders-only. If you didn&apos;t already want in, it wasn&apos;t for you.
                 </div>
               </div>
@@ -224,10 +224,10 @@ export default function BcecPage() {
                 <div style={{ fontFamily: jakarta, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: ACCENT, marginBottom: '10px' }}>
                   After
                 </div>
-                <div style={{ fontFamily: jakarta, fontSize: '17px', fontWeight: 600, color: '#111', lineHeight: 1.4 }}>
+                <div style={{ fontFamily: jakarta, fontSize: '17px', fontWeight: 600, color: '#16130E', lineHeight: 1.4 }}>
                   &ldquo;Business careers at companies you use every day&rdquo;
                 </div>
-                <div style={{ fontFamily: jakarta, fontSize: '13px', color: '#666', marginTop: '10px' }}>
+                <div style={{ fontFamily: jakarta, fontSize: '13px', color: '#8A8377', marginTop: '10px' }}>
                   Anyone studying business can see themselves here.
                 </div>
               </div>
@@ -239,11 +239,11 @@ export default function BcecPage() {
         <Section
           id="role"
           label="My Role"
-          heading="VP of Marketing, March 2025 – Present (1 year)"
+          heading="I have been VP of Marketing since March 2025."
         >
           <p style={{ ...caseStudyBody, marginBottom: '14px' }}>
-            Led the marketing committee in coordination with the executive
-            board, event coordinators, and industry partners. Owned the
+            I led the marketing committee in coordination with the executive
+            board, event coordinators, and industry partners, and owned the
             positioning shift, the workshop curriculum direction, and content
             and messaging across channels.
           </p>
@@ -274,7 +274,7 @@ export default function BcecPage() {
         <Section
           id="process"
           label="Process"
-          heading="Reposition the brand, teach over gatekeep, lower the barrier."
+          heading="We repositioned the brand, taught instead of gatekeeping, and lowered the barrier."
         >
           <p style={{ ...caseStudyBody, marginBottom: '28px' }}>
             We led with roles instead of industry glamour, made workshops
@@ -288,19 +288,19 @@ export default function BcecPage() {
                 phase: '01',
                 title: 'Reposition: roles over industry glamour',
                 copy:
-                  'Stopped leading with "entertainment industry networking" and started leading with "business careers at companies you use every day." Named specific roles: product management at Spotify, marketing at Netflix, strategy at Epic Games. Students who had dismissed us as "not for me" started seeing themselves in the industry when we named the actual jobs.',
+                  'We stopped leading with "entertainment industry networking" and started leading with "business careers at companies you use every day." We named specific roles: product management at Spotify, marketing at Netflix, strategy at Epic Games. Students who had dismissed us as "not for me" started seeing themselves in the industry when we named the actual jobs.',
               },
               {
                 phase: '02',
                 title: 'Education over gatekeeping',
                 copy:
-                  'Made workshops practical, not aspirational. 5+ marketing workshops on branding, social strategy, and content creation, not abstract theory. 3+ speaker panels featuring PMs, analysts, and coordinators alongside executives. Broke down real campaigns: how shows get marketed, how music launches happen. People showed up because they learned something immediately useful.',
+                  'We made workshops practical, not aspirational: 5+ marketing workshops on branding, social strategy, and content creation rather than abstract theory, and 3+ speaker panels featuring PMs, analysts, and coordinators alongside executives. We broke down real campaigns: how shows get marketed, how music launches happen. People showed up because they learned something immediately useful.',
               },
               {
                 phase: '03',
                 title: 'Lower the barrier to entry',
                 copy:
-                  '10+ collaborative training sessions and brainstorms, discussion-based, not lecture-based. Framed prompts as "how would you market this show?" instead of "this is how professionals do it." Taught frameworks transferable to any industry. Attendance grew. Members came back. The club stopped feeling like a resume line and started feeling like a learning community.',
+                  'We ran 10+ collaborative training sessions and brainstorms, discussion-based rather than lecture-based. We framed prompts as "how would you market this show?" instead of "this is how professionals do it," and taught frameworks that transfer to any industry. Attendance grew, members came back, and the club stopped feeling like a resume line and started feeling like a learning community.',
               },
             ].map(({ phase, title, copy }) => (
               <div
@@ -316,7 +316,7 @@ export default function BcecPage() {
                     fontFamily: jakarta,
                     fontSize: '13px',
                     fontWeight: 600,
-                    color: '#111',
+                    color: '#16130E',
                     letterSpacing: '0.08em',
                     flexShrink: 0,
                     width: '32px',
@@ -331,7 +331,7 @@ export default function BcecPage() {
                       fontFamily: jakarta,
                       fontSize: '16px',
                       fontWeight: 600,
-                      color: '#111',
+                      color: '#16130E',
                       marginBottom: '6px',
                     }}
                   >
@@ -347,7 +347,7 @@ export default function BcecPage() {
             caption={
               <>
                 Students dismissed &ldquo;entertainment&rdquo;, until we{' '}
-                <strong style={{ color: '#444' }}>named the actual jobs</strong>.
+                <strong style={{ color: '#4A443B' }}>named the actual jobs</strong>.
               </>
             }
           >
@@ -364,14 +364,14 @@ export default function BcecPage() {
                   style={{
                     fontFamily: jakarta,
                     fontSize: '13.5px',
-                    background: '#fafafa',
-                    border: '1px solid #ececec',
+                    background: 'rgba(255,255,255,0.65)',
+                    border: '1px solid rgba(22,19,14,0.12)',
                     borderRadius: '999px',
                     padding: '9px 16px',
-                    color: '#444',
+                    color: '#4A443B',
                   }}
                 >
-                  <strong style={{ color: '#111', fontWeight: 600 }}>{role}</strong>
+                  <strong style={{ color: '#16130E', fontWeight: 600 }}>{role}</strong>
                   {' @ '}
                   {co}
                 </span>
@@ -384,7 +384,7 @@ export default function BcecPage() {
         <Section
           id="outcome"
           label="Outcome"
-          heading="A business-skills hub that happens to focus on entertainment."
+          heading="BCEC became a business-skills hub that happens to focus on entertainment."
         >
           <div
             style={{
@@ -404,17 +404,17 @@ export default function BcecPage() {
               <div
                 key={label}
                 style={{
-                  background: '#fafafa',
+                  background: 'rgba(255,255,255,0.65)',
                   borderRadius: caseStudyRadius,
                   padding: '24px',
                 }}
               >
                 <div
                   style={{
-                    fontFamily: jakarta,
+                    fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
                     fontSize: '32px',
-                    fontWeight: 700,
-                    color: '#111',
+                    fontWeight: 400,
+                    color: '#16130E',
                     lineHeight: 1,
                   }}
                 >
@@ -424,7 +424,7 @@ export default function BcecPage() {
                   style={{
                     fontFamily: jakarta,
                     fontSize: '13px',
-                    color: '#888',
+                    color: '#8A8377',
                     marginTop: '8px',
                   }}
                 >

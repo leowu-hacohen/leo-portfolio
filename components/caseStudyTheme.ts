@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-const jakarta = 'var(--font-jakarta), sans-serif'
+const jakarta = 'var(--font-instrument), sans-serif'
 
 /** Per-project accent for small-caps labels (eyebrow, PROBLEM, Role, etc.) */
 export const CASE_STUDY_LABEL_COLORS = {
@@ -18,7 +18,7 @@ export const caseStudyJakarta = jakarta
 /** Smallest corner round — shared by cards, heroes, and media on case study pages */
 export const caseStudyRadius = '4px'
 
-const DEFAULT_LABEL = '#6b6b6b'
+const DEFAULT_LABEL = '#8A8377'
 
 /** Eyebrow (e.g. PRODUCT MARKETING · CASE STUDY) — prefer `caseStudyLabelStyles(accent).eyebrow` */
 export const caseStudyEyebrow: CSSProperties = {
@@ -42,22 +42,22 @@ export const caseStudyMetaLabel: CSSProperties = {
 
 /** Main case study page title (H1) */
 export const caseStudyTitle: CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '44px',
-  fontWeight: 700,
-  color: '#111',
-  letterSpacing: '-0.02em',
-  lineHeight: 1.1,
+  fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
+  fontSize: '48px',
+  fontWeight: 400,
+  color: '#16130E',
+  letterSpacing: '-0.015em',
+  lineHeight: 1.12,
   margin: 0,
 }
 
 /** Subtitle / tagline under the title */
 export const caseStudyDescriptor: CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '18px',
+  fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
+  fontSize: '19px',
   fontWeight: 400,
   fontStyle: 'italic',
-  color: '#666',
+  color: '#8A8377',
   lineHeight: 1.5,
   margin: '14px 0 0',
   maxWidth: '680px',
@@ -84,10 +84,10 @@ export function caseStudyLabelStyles(accent: string) {
 
 /** Section H2 (Problem, My Role, …) */
 export const caseStudySectionHeading: CSSProperties = {
-  fontFamily: jakarta,
-  fontSize: '24px',
-  fontWeight: 600,
-  color: '#111',
+  fontFamily: 'var(--font-instrument-serif), Georgia, "Times New Roman", serif',
+  fontSize: '28px',
+  fontWeight: 400,
+  color: '#16130E',
   letterSpacing: '-0.01em',
   lineHeight: 1.25,
   margin: '0 0 16px',
@@ -98,7 +98,7 @@ export const caseStudyBody: CSSProperties = {
   fontFamily: jakarta,
   fontSize: '16px',
   fontWeight: 400,
-  color: '#444',
+  color: '#4A443B',
   lineHeight: 1.75,
   margin: 0,
   maxWidth: '680px',
@@ -116,7 +116,7 @@ export const caseStudyBulletChar: CSSProperties = {
   fontFamily: jakarta,
   fontSize: '16px',
   fontWeight: 400,
-  color: '#444',
+  color: '#4A443B',
   lineHeight: 1.75,
   flexShrink: 0,
   width: '0.6em',

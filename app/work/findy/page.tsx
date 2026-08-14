@@ -11,7 +11,7 @@ import {
   kitReveal,
 } from '../../../components/CaseStudyKit'
 
-const jakarta = 'var(--font-jakarta), sans-serif'
+const sans = 'var(--font-instrument), sans-serif'
 const instrument = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
 
 const ACCENT = '#2563eb'
@@ -21,7 +21,7 @@ const FIGMA_EMBED =
 
 function HeaderSection() {
   return (
-    <header style={{ padding: '110px 7vw 0', background: '#F4F4F4' }}>
+    <header style={{ padding: '110px 7vw 0', background: '#FBF8F3' }}>
       <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -30,7 +30,7 @@ function HeaderSection() {
           style={{
             borderRadius: caseStudyRadius,
             overflow: 'hidden',
-            border: '1px solid rgba(0,0,0,0.06)',
+            border: '1px solid rgba(22,19,14,0.12)',
             aspectRatio: '16 / 7',
           }}
         >
@@ -49,9 +49,9 @@ function HeaderSection() {
           style={{
             fontFamily: instrument,
             fontSize: '13px',
-            fontWeight: 500,
+            fontWeight: 400,
             letterSpacing: '0.01em',
-            color: '#666',
+            color: '#8A8377',
             margin: '56px 0 20px',
           }}
         >
@@ -64,7 +64,7 @@ function HeaderSection() {
           style={{
             ...caseStudyTitle,
             fontSize: 'clamp(30px, 3.6vw, 42px)',
-            fontWeight: 600,
+            fontWeight: 400,
             letterSpacing: '-0.02em',
             lineHeight: 1.18,
             maxWidth: '820px',
@@ -96,7 +96,7 @@ function HeaderSection() {
 
 export default function FindyPage() {
   return (
-    <div style={{ background: '#F4F4F4', color: '#0a0a0a', minHeight: '100vh' }}>
+    <div style={{ background: '#FBF8F3', color: '#16130E', minHeight: '100vh' }}>
       {/* Top nav */}
       <nav
         style={{
@@ -109,7 +109,7 @@ export default function FindyPage() {
           justifyContent: 'space-between',
           alignItems: 'center',
           padding: '20px 7vw',
-          background: 'rgba(255,255,255,0.6)',
+          background: 'rgba(255,255,255,0.65)',
           backdropFilter: 'blur(20px) saturate(140%)',
           WebkitBackdropFilter: 'blur(20px) saturate(140%)',
         }}
@@ -118,9 +118,9 @@ export default function FindyPage() {
           href="/"
           data-cursor-pill="Back"
           style={{
-            fontFamily: jakarta,
+            fontFamily: sans,
             fontSize: '13px',
-            color: '#666',
+            color: '#8A8377',
             textDecoration: 'none',
           }}
         >
@@ -140,9 +140,9 @@ export default function FindyPage() {
               href={href}
               data-cursor-pill={label}
               style={{
-                fontFamily: jakarta,
+                fontFamily: sans,
                 fontSize: '13px',
-                color: '#888',
+                color: '#8A8377',
                 textDecoration: 'none',
               }}
             >
@@ -188,9 +188,9 @@ export default function FindyPage() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
-              fontFamily: jakarta,
+              fontFamily: sans,
               fontSize: '18px',
-              color: '#444',
+              color: '#4A443B',
               lineHeight: 1.75,
               maxWidth: '720px',
             }}
@@ -236,9 +236,9 @@ export default function FindyPage() {
                 style={{
                   borderRadius: caseStudyRadius,
                   overflow: 'hidden',
-                  border: '1px solid rgba(0,0,0,0.06)',
+                  border: '1px solid rgba(22,19,14,0.12)',
                   boxShadow: '0 10px 30px rgba(37,99,235,0.08)',
-                  background: '#fff',
+                  background: 'rgba(255,255,255,0.65)',
                 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -254,9 +254,9 @@ export default function FindyPage() {
           <motion.p
             {...kitReveal}
             style={{
-              fontFamily: jakarta,
+              fontFamily: sans,
               fontSize: '13.5px',
-              color: '#888',
+              color: '#8A8377',
               textAlign: 'center',
               marginTop: '18px',
             }}
@@ -299,10 +299,10 @@ export default function FindyPage() {
               </div>
               <div
                 style={{
-                  fontFamily: jakarta,
+                  fontFamily: instrument,
                   fontSize: 'clamp(24px, 3vw, 36px)',
-                  fontWeight: 600,
-                  color: '#0a0a0a',
+                  fontWeight: 400,
+                  color: '#16130E',
                   letterSpacing: '-0.015em',
                   lineHeight: 1.15,
                 }}
@@ -316,7 +316,7 @@ export default function FindyPage() {
               rel="noopener noreferrer"
               data-cursor-pill="Open in Figma"
               style={{
-                fontFamily: jakarta,
+                fontFamily: sans,
                 fontSize: '14px',
                 color: ACCENT,
                 textDecoration: 'none',
@@ -336,11 +336,11 @@ export default function FindyPage() {
             style={{
               width: '100%',
               aspectRatio: '16 / 9',
-              background: '#ffffff',
+              background: '#F5F0E8',
               borderRadius: caseStudyRadius,
               overflow: 'hidden',
               boxShadow: '0 40px 120px rgba(37,99,235,0.12)',
-              border: '1px solid rgba(0,0,0,0.06)',
+              border: '1px solid rgba(22,19,14,0.12)',
             }}
           >
             <iframe
@@ -363,9 +363,9 @@ export default function FindyPage() {
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.7 }}
             style={{
-              fontFamily: jakarta,
+              fontFamily: sans,
               fontSize: '14px',
-              color: '#666',
+              color: '#8A8377',
               marginTop: '20px',
               textAlign: 'center',
             }}
@@ -400,16 +400,16 @@ export default function FindyPage() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
-              fontFamily: jakarta,
+              fontFamily: sans,
               fontSize: '17px',
-              color: '#444',
+              color: '#4A443B',
               lineHeight: 1.75,
             }}
           >
             <p>
               Huge thanks to my teammates Vanessa Pham, Armin Mohammadi, Katrina Wang, and Apoorva Khandelwal, the designers who built this alongside me. And to the seniors, senior centers, and the staff at Adriana Elderly Care Homes who let us sit with them, learn from them, and test with them. Findy exists because they were willing to share their time.
             </p>
-            <p style={{ marginTop: '24px', color: '#666' }}>
+            <p style={{ marginTop: '24px', color: '#8A8377' }}>
               Reach out at{' '}
               <a
                 href="mailto:leowuhacohen@gmail.com"

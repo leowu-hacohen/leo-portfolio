@@ -7,11 +7,11 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { caseStudyRadius } from '../../../components/caseStudyTheme'
 import { NextProjectFooter, SectionRail } from '../../../components/CaseStudyKit'
 
-const jakarta = 'var(--font-jakarta), sans-serif'
+const jakarta = 'var(--font-instrument), sans-serif'
 const instrument = 'var(--font-instrument-serif), Georgia, "Times New Roman", serif'
 
 const ACCENT = '#5B7CFA'
-const INK = '#0a0a0a'
+const INK = '#16130E'
 
 // ─── Shared bits ──────────────────────────────────────────────────────────────
 
@@ -25,9 +25,9 @@ const eyebrowStyle: React.CSSProperties = {
 }
 
 const h2Style: React.CSSProperties = {
-  fontFamily: jakarta,
+  fontFamily: instrument,
   fontSize: 'clamp(30px, 4.4vw, 52px)',
-  fontWeight: 600,
+  fontWeight: 400,
   color: INK,
   letterSpacing: '-0.02em',
   lineHeight: 1.08,
@@ -37,7 +37,7 @@ const h2Style: React.CSSProperties = {
 const bodyStyle: React.CSSProperties = {
   fontFamily: jakarta,
   fontSize: '17px',
-  color: '#444',
+  color: '#4A443B',
   lineHeight: 1.75,
 }
 
@@ -60,7 +60,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function HeroSection() {
   return (
-    <header style={{ padding: '110px 7vw 0', background: '#F4F4F4' }}>
+    <header style={{ padding: '110px 7vw 0', background: '#FBF8F3' }}>
       <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -69,9 +69,9 @@ function HeroSection() {
           style={{
             borderRadius: caseStudyRadius,
             overflow: 'hidden',
-            border: '1px solid rgba(0,0,0,0.06)',
+            border: '1px solid rgba(22,19,14,0.12)',
             aspectRatio: '16 / 9',
-            background: '#ffffff',
+            background: 'rgba(255,255,255,0.65)',
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -97,7 +97,7 @@ function HeroSection() {
             fontSize: '13px',
             fontWeight: 500,
             letterSpacing: '0.01em',
-            color: '#666',
+            color: '#8A8377',
             margin: '56px 0 20px',
           }}
         >
@@ -111,9 +111,9 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
           style={{
-            fontFamily: jakarta,
+            fontFamily: instrument,
             fontSize: 'clamp(30px, 3.6vw, 42px)',
-            fontWeight: 600,
+            fontWeight: 400,
             letterSpacing: '-0.02em',
             lineHeight: 1.18,
             margin: 0,
@@ -143,9 +143,9 @@ function MetaStrip() {
   return (
     <section
       style={{
-        borderTop: '1px solid #e8e8e8',
-        borderBottom: '1px solid #e8e8e8',
-        background: '#fafafa',
+        borderTop: '1px solid rgba(22,19,14,0.12)',
+        borderBottom: '1px solid rgba(22,19,14,0.12)',
+        background: '#F5F0E8',
         padding: '0 7vw',
       }}
     >
@@ -208,8 +208,8 @@ function VignetteFrame({ children }: { children: React.ReactNode }) {
     <div
       style={{
         marginTop: '24px',
-        background: '#ffffff',
-        border: '1px solid #ececec',
+        background: 'rgba(255,255,255,0.65)',
+        border: '1px solid rgba(22,19,14,0.12)',
         borderRadius: caseStudyRadius,
         padding: '18px',
         overflow: 'hidden',
@@ -234,7 +234,7 @@ function TranscriptVignette() {
           transition={{ duration: 1.4, repeat: Infinity }}
           style={{ width: 7, height: 7, borderRadius: '50%', background: '#e5484d', display: 'inline-block' }}
         />
-        <span style={{ fontFamily: jakarta, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#999' }}>
+        <span style={{ fontFamily: jakarta, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A8377' }}>
           Recording: nova-3-medical, diarized
         </span>
       </div>
@@ -254,8 +254,8 @@ function TranscriptVignette() {
             }}
             style={{
               alignSelf: l.speaker === 'Doctor' ? 'flex-start' : 'flex-end',
-              background: l.final ? (l.speaker === 'Doctor' ? '#EEF2FF' : '#f4f4f4') : 'transparent',
-              color: l.final ? '#333' : '#aaa',
+              background: l.final ? (l.speaker === 'Doctor' ? '#EEF2FF' : '#F5F0E8') : 'transparent',
+              color: l.final ? '#4A443B' : 'rgba(138,131,119,0.75)',
               fontStyle: l.final ? 'normal' : 'italic',
               fontFamily: jakarta,
               fontSize: '13px',
@@ -266,7 +266,7 @@ function TranscriptVignette() {
             }}
           >
             {l.final && (
-              <span style={{ fontWeight: 600, color: l.speaker === 'Doctor' ? ACCENT : '#777', marginRight: 6 }}>
+              <span style={{ fontWeight: 600, color: l.speaker === 'Doctor' ? ACCENT : '#8A8377', marginRight: 6 }}>
                 {l.speaker}
               </span>
             )}
@@ -284,7 +284,7 @@ function DiffVignette() {
       <div style={{ fontFamily: instrument, fontSize: '11px', letterSpacing: '0.02em', color: ACCENT, marginBottom: '10px' }}>
         WHAT&apos;S CHANGED SINCE YOU LAST SAW THIS PATIENT
       </div>
-      <p style={{ fontFamily: jakarta, fontSize: '13.5px', color: '#333', lineHeight: 1.65, margin: 0 }}>
+      <p style={{ fontFamily: jakarta, fontSize: '13.5px', color: '#4A443B', lineHeight: 1.65, margin: 0 }}>
         Since your visit on May 20, Dr.&nbsp;One documented improving orthostatic
         hypotension and adjusted acetaminophen to PRN.{' '}
         <span style={{ background: '#EEF2FF', padding: '1px 4px', borderRadius: '3px' }}>
@@ -324,17 +324,17 @@ function BentoVignette() {
             style={{
               width: t.w,
               flexGrow: 1,
-              background: '#fafafa',
-              border: '1px solid #efefef',
+              background: '#F5F0E8',
+              border: '1px solid rgba(22,19,14,0.12)',
               borderRadius: '6px',
               padding: '10px 12px',
             }}
           >
-            <div style={{ fontFamily: jakarta, fontSize: '11px', fontWeight: 600, color: '#555', marginBottom: '6px' }}>
+            <div style={{ fontFamily: jakarta, fontSize: '11px', fontWeight: 600, color: '#4A443B', marginBottom: '6px' }}>
               {t.label}
             </div>
-            <div style={{ height: 5, width: '82%', background: '#ececec', borderRadius: 3, marginBottom: 4 }} />
-            <div style={{ height: 5, width: '58%', background: '#f1f1f1', borderRadius: 3 }} />
+            <div style={{ height: 5, width: '82%', background: 'rgba(22,19,14,0.12)', borderRadius: 3, marginBottom: 4 }} />
+            <div style={{ height: 5, width: '58%', background: 'rgba(22,19,14,0.08)', borderRadius: 3 }} />
           </motion.div>
         ))}
       </motion.div>
@@ -408,8 +408,8 @@ function ChatVignette() {
             alignSelf: 'flex-start',
             fontFamily: jakarta,
             fontSize: '13px',
-            background: '#f4f4f4',
-            color: '#333',
+            background: '#F5F0E8',
+            color: '#4A443B',
             padding: '8px 12px',
             borderRadius: '10px',
             maxWidth: '90%',
@@ -441,16 +441,16 @@ function LedgerVignette() {
               justifyContent: 'space-between',
               gap: '12px',
               padding: '8px 0',
-              borderBottom: i < rows.length - 1 ? '1px solid #f1f1f1' : 'none',
+              borderBottom: i < rows.length - 1 ? '1px solid rgba(22,19,14,0.08)' : 'none',
               fontFamily: jakarta,
               fontSize: '12.5px',
-              color: '#555',
+              color: '#4A443B',
             }}
           >
             <span>
               <span style={{ fontWeight: 600, color: INK }}>{r.who}</span> {r.what}
             </span>
-            <span style={{ color: '#aaa', flexShrink: 0 }}>{r.when}</span>
+            <span style={{ color: 'rgba(138,131,119,0.75)', flexShrink: 0 }}>{r.when}</span>
           </div>
         ))}
       </div>
@@ -462,12 +462,12 @@ const FEATURES = [
   {
     n: '01',
     title: 'Transcription that stays out of the way',
-    body: 'Every visit is recorded and transcribed live with speaker diarization (Deepgram nova-3-medical), so Clair sits inside the existing exam-room workflow instead of interrupting it. Spacebar pauses. Done finalizes.',
+    body: 'Every visit is recorded and transcribed live with speaker diarization (Deepgram nova-3-medical), so Clair sits inside the existing exam-room workflow instead of interrupting it. Spacebar pauses the recording, and Done finalizes it.',
     vignette: <TranscriptVignette />,
   },
   {
     n: '02',
-    title: 'Change snapshots, per doctor',
+    title: 'Every doctor gets their own change snapshot',
     body: 'Each doctor carries their own snapshot of what they last knew. When they return, Clair writes a 2–4 sentence narrative of exactly what changed since their last visit, the handoff, automated.',
     vignette: <DiffVignette />,
   },
@@ -586,9 +586,9 @@ function ScreenshotShowcase() {
           y,
           borderRadius: caseStudyRadius,
           overflow: 'hidden',
-          border: '1px solid rgba(0,0,0,0.07)',
+          border: '1px solid rgba(22,19,14,0.12)',
           boxShadow: '0 50px 140px rgba(91,124,250,0.18)',
-          background: '#fff',
+          background: 'rgba(255,255,255,0.65)',
         }}
       >
         <Image
@@ -604,7 +604,7 @@ function ScreenshotShowcase() {
         style={{
           fontFamily: jakarta,
           fontSize: '13.5px',
-          color: '#888',
+          color: '#8A8377',
           textAlign: 'center',
           marginTop: '18px',
         }}
@@ -619,7 +619,7 @@ function ScreenshotShowcase() {
 
 export default function ClairPage() {
   return (
-    <div style={{ background: '#F4F4F4', color: INK, minHeight: '100vh' }}>
+    <div style={{ background: '#FBF8F3', color: INK, minHeight: '100vh' }}>
       {/* Nav */}
       <nav
         style={{
@@ -632,7 +632,7 @@ export default function ClairPage() {
           justifyContent: 'space-between',
           alignItems: 'center',
           padding: '20px 7vw',
-          background: 'rgba(255,255,255,0.6)',
+          background: 'rgba(251,248,243,0.65)',
           backdropFilter: 'blur(20px) saturate(140%)',
           WebkitBackdropFilter: 'blur(20px) saturate(140%)',
         }}
@@ -640,7 +640,7 @@ export default function ClairPage() {
         <Link
           href="/"
           data-cursor-pill="Back"
-          style={{ fontFamily: jakarta, fontSize: '13px', color: '#666', textDecoration: 'none' }}
+          style={{ fontFamily: jakarta, fontSize: '13px', color: '#8A8377', textDecoration: 'none' }}
         >
           ← Back
         </Link>
@@ -657,7 +657,7 @@ export default function ClairPage() {
               key={label}
               href={href}
               data-cursor-pill={label}
-              style={{ fontFamily: jakarta, fontSize: '13px', color: '#888', textDecoration: 'none' }}
+              style={{ fontFamily: jakarta, fontSize: '13px', color: '#8A8377', textDecoration: 'none' }}
             >
               {label}
             </Link>
@@ -740,13 +740,13 @@ export default function ClairPage() {
                   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
                 }}
                 style={{
-                  background: '#fff',
+                  background: 'rgba(255,255,255,0.65)',
                   borderRadius: caseStudyRadius,
-                  border: '1px solid #ececec',
+                  border: '1px solid rgba(22,19,14,0.12)',
                   padding: '28px',
                 }}
               >
-                <div style={{ fontFamily: jakarta, fontSize: '34px', fontWeight: 700, color: ACCENT, lineHeight: 1 }}>
+                <div style={{ fontFamily: instrument, fontSize: '34px', fontWeight: 400, color: ACCENT, lineHeight: 1 }}>
                   {c.stat}
                 </div>
                 <p style={{ ...bodyStyle, fontSize: '15px', marginTop: '14px', marginBottom: 0 }}>{c.text}</p>
@@ -777,7 +777,7 @@ export default function ClairPage() {
               in one place, instead of clicking neurology, click nutrition,
               click&hellip;&rdquo;
             </p>
-            <footer style={{ fontFamily: jakarta, fontSize: '14px', color: '#888', marginTop: '16px' }}>
+            <footer style={{ fontFamily: jakarta, fontSize: '14px', color: '#8A8377', marginTop: '16px' }}>
               Harvard physician who advised the project, reframing what handoffs
               actually lack
             </footer>
@@ -816,9 +816,9 @@ export default function ClairPage() {
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 style={{
-                  background: '#fff',
+                  background: 'rgba(255,255,255,0.65)',
                   borderRadius: caseStudyRadius,
-                  border: '1px solid #ececec',
+                  border: '1px solid rgba(22,19,14,0.12)',
                   padding: '32px 28px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -849,7 +849,7 @@ export default function ClairPage() {
       </section>
 
       {/* ARCHITECTURE */}
-      <section id="build" style={{ padding: '10vh 7vw', background: '#ffffff', scrollMarginTop: '60px' }}>
+      <section id="build" style={{ padding: '10vh 7vw', background: '#F5F0E8', scrollMarginTop: '60px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <Eyebrow>How It&apos;s Built</Eyebrow>
           <motion.h2 {...reveal} style={{ ...h2Style, maxWidth: '760px' }}>
@@ -882,8 +882,8 @@ export default function ClairPage() {
                 <div
                   style={{
                     flex: 1,
-                    background: '#fafafa',
-                    border: '1px solid #ececec',
+                    background: '#F5F0E8',
+                    border: '1px solid rgba(22,19,14,0.12)',
                     borderRadius: caseStudyRadius,
                     padding: '20px 16px',
                     textAlign: 'center',
@@ -892,7 +892,7 @@ export default function ClairPage() {
                   <div style={{ fontFamily: jakarta, fontSize: '15px', fontWeight: 600, color: INK }}>
                     {node.title}
                   </div>
-                  <div style={{ fontFamily: jakarta, fontSize: '12px', color: '#999', marginTop: '6px' }}>
+                  <div style={{ fontFamily: jakarta, fontSize: '12px', color: '#8A8377', marginTop: '6px' }}>
                     {node.sub}
                   </div>
                 </div>
@@ -914,8 +914,8 @@ export default function ClairPage() {
             <motion.div
               {...reveal}
               style={{
-                background: '#fafafa',
-                border: '1px solid #ececec',
+                background: '#F5F0E8',
+                border: '1px solid rgba(22,19,14,0.12)',
                 borderRadius: caseStudyRadius,
                 padding: '28px',
               }}
@@ -924,7 +924,7 @@ export default function ClairPage() {
                 LLM CALL 1: EXTRACT
               </div>
               <p style={{ ...bodyStyle, fontSize: '15px', margin: 0 }}>
-                One tool-use call with a strict <code style={{ fontSize: '13px', background: '#f0f0f0', padding: '1px 5px', borderRadius: '3px' }}>input_schema</code>{' '}
+                One tool-use call with a strict <code style={{ fontSize: '13px', background: 'rgba(22,19,14,0.08)', padding: '1px 5px', borderRadius: '3px' }}>input_schema</code>{' '}
                 takes the current state plus the new transcript and returns the full
                 updated SOAP record, carrying unchanged fields forward, refusing to
                 invent clinical facts.
@@ -933,8 +933,8 @@ export default function ClairPage() {
             <motion.div
               {...reveal}
               style={{
-                background: '#fafafa',
-                border: '1px solid #ececec',
+                background: '#F5F0E8',
+                border: '1px solid rgba(22,19,14,0.12)',
                 borderRadius: caseStudyRadius,
                 padding: '28px',
               }}
@@ -974,8 +974,8 @@ export default function ClairPage() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ type: 'spring', stiffness: 110, damping: 20 }}
               style={{
-                background: '#fff',
-                border: '1px solid #ececec',
+                background: 'rgba(255,255,255,0.65)',
+                border: '1px solid rgba(22,19,14,0.12)',
                 borderRadius: caseStudyRadius,
                 padding: '36px 32px',
               }}
@@ -1003,8 +1003,8 @@ export default function ClairPage() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ type: 'spring', stiffness: 110, damping: 20 }}
               style={{
-                background: '#fff',
-                border: '1px solid #ececec',
+                background: 'rgba(255,255,255,0.65)',
+                border: '1px solid rgba(22,19,14,0.12)',
                 borderRadius: caseStudyRadius,
                 padding: '36px 32px',
               }}
@@ -1114,16 +1114,16 @@ export default function ClairPage() {
                   show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
                 }}
                 style={{
-                  background: '#fff',
-                  border: '1px solid #ececec',
+                  background: 'rgba(255,255,255,0.65)',
+                  border: '1px solid rgba(22,19,14,0.12)',
                   borderRadius: caseStudyRadius,
                   padding: '28px 24px',
                 }}
               >
-                <div style={{ fontFamily: jakarta, fontSize: '38px', fontWeight: 700, color: INK, lineHeight: 1 }}>
+                <div style={{ fontFamily: instrument, fontSize: '38px', fontWeight: 400, color: INK, lineHeight: 1 }}>
                   {m.value}
                 </div>
-                <div style={{ fontFamily: jakarta, fontSize: '13px', color: '#888', marginTop: '10px', lineHeight: 1.5 }}>
+                <div style={{ fontFamily: jakarta, fontSize: '13px', color: '#8A8377', marginTop: '10px', lineHeight: 1.5 }}>
                   {m.label}
                 </div>
               </motion.div>
@@ -1151,8 +1151,8 @@ export default function ClairPage() {
                   alignItems: 'baseline',
                   gap: '24px',
                   padding: '22px 0',
-                  borderBottom: '1px solid #e4e4e4',
-                  borderTop: i === 0 ? '1px solid #e4e4e4' : 'none',
+                  borderBottom: '1px solid rgba(22,19,14,0.12)',
+                  borderTop: i === 0 ? '1px solid rgba(22,19,14,0.12)' : 'none',
                   textDecoration: 'none',
                 }}
               >
@@ -1160,7 +1160,7 @@ export default function ClairPage() {
                   <div style={{ fontFamily: jakarta, fontSize: '16px', fontWeight: 600, color: INK }}>
                     {r.title}
                   </div>
-                  <div style={{ fontFamily: jakarta, fontSize: '13.5px', color: '#888', marginTop: '4px' }}>
+                  <div style={{ fontFamily: jakarta, fontSize: '13.5px', color: '#8A8377', marginTop: '4px' }}>
                     {r.sub}
                   </div>
                 </div>
@@ -1181,7 +1181,7 @@ export default function ClairPage() {
               Davis. And thank you to the physician who gave us an hour that changed
               the whole product, the best design review we&apos;ve ever had.
             </p>
-            <p style={{ marginTop: '24px', color: '#666' }}>
+            <p style={{ marginTop: '24px', color: '#8A8377' }}>
               Reach out at{' '}
               <a href="mailto:leowuhacohen@gmail.com" style={{ color: ACCENT, textDecoration: 'none' }}>
                 leowuhacohen@gmail.com
