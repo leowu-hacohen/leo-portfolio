@@ -28,13 +28,15 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
 }
 
-/** Little app-style logo tile for the proof strip (Brian Yang-style chip). */
-function LogoChip({ src, label }: { src: string; label: string }) {
+/** Little app-style logo tile for the proof strip (Brian Yang-style chip).
+    Clicks through to the matching case study. */
+function LogoChip({ src, label, href }: { src: string; label: string; href: string }) {
   return (
-    <span
-      role="img"
+    <Link
+      href={href}
       aria-label={label}
       title={label}
+      data-cursor-pill={label}
       style={{
         display: 'inline-flex',
         alignItems: 'center',
@@ -45,6 +47,7 @@ function LogoChip({ src, label }: { src: string; label: string }) {
         borderRadius: '7px',
         verticalAlign: 'middle',
         flexShrink: 0,
+        textDecoration: 'none',
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -53,7 +56,7 @@ function LogoChip({ src, label }: { src: string; label: string }) {
         alt={label}
         style={{ width: '16px', height: '16px', objectFit: 'contain', display: 'block' }}
       />
-    </span>
+    </Link>
   )
 }
 
@@ -480,11 +483,11 @@ export default function Hero() {
             }}
           >
             <span>ambassador @</span>
-            <LogoChip src="/logos/google-g.svg" label="Google" />
+            <LogoChip src="/logos/google-g.svg" label="Google" href="/work/google" />
             <span>, prev pm @</span>
-            <LogoChip src="/icons/iheart.png" label="iHeartMedia" />
+            <LogoChip src="/icons/iheart.png" label="iHeartMedia" href="/work/iheart" />
             <span>,</span>
-            <LogoChip src="/logos/claude.svg" label="Anthropic" />
+            <LogoChip src="/logos/claude.svg" label="Clair, the Anthropic win" href="/work/clair" />
             <span>hackathon winner</span>
           </motion.div>
         </motion.div>
