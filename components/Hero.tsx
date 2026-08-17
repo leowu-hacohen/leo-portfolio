@@ -70,10 +70,12 @@ const displayStyle: React.CSSProperties = {
 }
 
 const NAV_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Work', href: '#work' },
-  { label: 'Playground', href: '/playground' },
+  { label: 'Home', href: '/', external: false },
+  { label: 'About', href: '/about', external: false },
+  { label: 'Work', href: '#work', external: false },
+  { label: 'Playground', href: '/playground', external: false },
+  // Opens the PDF in a new tab so visitors don't lose the site.
+  { label: 'Resume', href: '/resume', external: true },
 ] as const
 
 const SCROLL_PILL_AT = 48
@@ -312,24 +314,34 @@ export default function Hero() {
             WebkitBackdropFilter: navPill ? 'blur(14px) saturate(1.2)' : 'none',
           }}
         >
-          {NAV_LINKS.map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              data-cursor-pill={label}
-              style={{
-                fontFamily: 'var(--font-jakarta), sans-serif',
-                fontSize: '13px',
-                fontWeight: 400,
-                color: '#111',
-                textDecoration: 'none',
-                letterSpacing: '0.02em',
-                transition: 'color 0.25s ease',
-              }}
-            >
-              {label}
-            </Link>
-          ))}
+          {NAV_LINKS.map(({ label, href, external }) => {
+            const navLinkStyle: React.CSSProperties = {
+              fontFamily: 'var(--font-jakarta), sans-serif',
+              fontSize: '13px',
+              fontWeight: 400,
+              color: '#111',
+              textDecoration: 'none',
+              letterSpacing: '0.02em',
+              transition: 'color 0.25s ease',
+            }
+            return external ? (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener"
+                aria-label={`Open ${label.toLowerCase()} PDF in a new tab`}
+                data-cursor-pill={label}
+                style={navLinkStyle}
+              >
+                {label}
+              </a>
+            ) : (
+              <Link key={label} href={href} data-cursor-pill={label} style={navLinkStyle}>
+                {label}
+              </Link>
+            )
+          })}
         </motion.nav>
       </div>
 
