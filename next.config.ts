@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The download-ping API reads gallery manifests at runtime.
+  outputFileTracingIncludes: {
+    '/api/photos/notify': ['./data/photos/**'],
+  },
   async redirects() {
     return [
       {

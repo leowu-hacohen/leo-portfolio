@@ -51,6 +51,7 @@ export default async function PhotoSetPage({ params }: Params) {
     <div style={{ background: '#F4F4F4', minHeight: '100vh' }}>
       <PhotosNav back="/photos" />
       <Gallery
+        slug={set.slug}
         artist={set.artist}
         kicker={kicker}
         credit={set.credit}

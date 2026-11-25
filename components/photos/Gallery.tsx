@@ -18,6 +18,7 @@ export type GalleryPhoto = {
 }
 
 type Props = {
+  slug: string
   artist: string
   kicker: string
   credit: string
@@ -33,10 +34,37 @@ function DownloadIcon({ size = 15 }: { size?: number }) {
   )
 }
 
-export default function Gallery({ artist, kicker, credit, photos, zip }: Props) {
+export default function Gallery({ slug, artist, kicker, credit, photos, zip }: Props) {
   const [open, setOpen] = useState<number | null>(null)
   const [copied, setCopied] = useState(false)
   const touchX = useRef<number | null>(null)
+
+  // Download pings: one email per burst of downloads, not one per photo.
+  const pending = useRef<Set<string>>(new Set())
+  const flushTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const flush = useCallback(() => {
+    if (flushTimer.current) clearTimeout(flushTimer.current)
+    if (pending.current.size === 0) return
+    const body = JSON.stringify({ slug, items: [...pending.current] })
+    pending.current.clear()
+    const sent = navigator.sendBeacon?.('/api/photos/notify', new Blob([body], { type: 'application/json' }))
+    if (!sent) fetch('/api/photos/notify', { method: 'POST', body, keepalive: true, headers: { 'Content-Type': 'application/json' } }).catch(() => {})
+  }, [slug])
+  const track = (item: string) => {
+    pending.current.add(item)
+    if (flushTimer.current) clearTimeout(flushTimer.current)
+    if (item === 'zip') flush()
+    else flushTimer.current = setTimeout(flush, 15_000)
+  }
+  useEffect(() => {
+    const onHide = () => document.visibilityState === 'hidden' && flush()
+    document.addEventListener('visibilitychange', onHide)
+    window.addEventListener('pagehide', flush)
+    return () => {
+      document.removeEventListener('visibilitychange', onHide)
+      window.removeEventListener('pagehide', flush)
+    }
+  }, [flush])
 
   const go = useCallback(
     (delta: number) => setOpen((i) => (i === null ? i : (i + delta + photos.length) % photos.length)),
@@ -127,6 +155,7 @@ export default function Gallery({ artist, kicker, credit, photos, zip }: Props) 
               <a
                 href={zip.href}
                 download
+                onClick={() => track('zip')}
                 className="pg-btn"
                 data-cursor-pill="Download all"
                 aria-label={`Download all ${photos.length} photos as a zip, ${zip.size}`}
@@ -180,6 +209,7 @@ export default function Gallery({ artist, kicker, credit, photos, zip }: Props) 
                 <a
                   href={p.full}
                   download={p.fullName}
+                  onClick={() => track(p.n)}
                   className="pg-dl"
                   aria-label={`Download photo ${i + 1} at full resolution, ${p.size}`}
                   data-cursor-pill={`Download · ${p.size}`}
@@ -227,6 +257,7 @@ export default function Gallery({ artist, kicker, credit, photos, zip }: Props) 
                 <a
                   href={current.full}
                   download={current.fullName}
+                  onClick={() => track(current.n)}
                   aria-label={`Download this photo at full resolution, ${current.size}`}
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#fff', color: '#111', borderRadius: '999px', padding: '8px 14px', fontWeight: 600, textDecoration: 'none' }}
                 >
