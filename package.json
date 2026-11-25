@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "tint-work-cards": "node scripts/tint-work-card-backgrounds.mjs"
+    "tint-work-cards": "node scripts/tint-work-card-backgrounds.mjs",
+    "photos": "node scripts/add-photos.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",

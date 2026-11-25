@@ -26,6 +26,23 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Full-res originals always download (even if someone opens the
+        // link directly), and re-runs of the import script show up within
+        // the hour.
+        source: '/photos/:slug/full/:file',
+        headers: [
+          { key: 'Content-Disposition', value: 'attachment' },
+          { key: 'Cache-Control', value: 'public, max-age=3600' },
+        ],
+      },
+      {
+        source: '/photos/:slug/:file.zip',
+        headers: [
+          { key: 'Content-Disposition', value: 'attachment' },
+          { key: 'Cache-Control', value: 'public, max-age=3600' },
+        ],
+      },
+      {
         source: '/Leo-Wu-Hacohen-Resume.pdf',
         headers: [
           // Preview in the browser's PDF viewer instead of force-downloading.
