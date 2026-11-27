@@ -20,6 +20,8 @@ export type PhotoSet = {
   /** ISO date, e.g. 2026-11-20 */
   date: string | null
   credit: string
+  /** Where the photographer credit links, e.g. a photo portfolio. */
+  creditUrl?: string | null
   /** Outlet the set was shot for, e.g. KUCI 88.9 FM. Shown as "Shot by X for Y". */
   publication?: { name: string; url: string | null } | null
   /** Hidden from /photos and from search engines; reachable by direct link only. */

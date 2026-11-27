@@ -110,6 +110,7 @@ const manifest = {
   city: pick('city'),
   date: pick('date'),
   credit: prev.credit ?? CREDIT,
+  creditUrl: args["credit-url"] !== undefined ? String(args["credit-url"]) : (prev.creditUrl ?? "https://wuhaworld.myportfolio.com"),
   publication:
     args.publication !== undefined
       ? { name: String(args.publication), url: args["publication-url"] ? String(args["publication-url"]) : null }

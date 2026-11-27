@@ -74,7 +74,6 @@ const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Work', href: '#work' },
   { label: 'Playground', href: '/playground' },
-  { label: 'Photos', href: '/photos' },
 ] as const
 
 const SCROLL_PILL_AT = 48

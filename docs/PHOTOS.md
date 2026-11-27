@@ -24,6 +24,7 @@ Rerunning replaces the whole set. Flags you leave out keep their last value.
 
 - **Download all**: one zip of every original, named `LeoWuHacohen_SteveLacy.zip`.
 - **Per photo download**: the original, named `LeoWuHacohen_SteveLacy_07.jpg`.
+- **Standalone page**: no site nav, and nothing on leowuhacohen.com links to it. Share the URL directly.
 - **Numbered photos** and deep links (`/photos/stevelacy#7`), so a manager can
   say "we want 7 and 12" without screenshots.
 - **Copy photo credit** button.

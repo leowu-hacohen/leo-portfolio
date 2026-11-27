@@ -22,6 +22,7 @@ type Props = {
   artist: string
   kicker: string | null
   credit: string
+  creditUrl: string | null
   publication: { name: string; url: string | null } | null
   photos: GalleryPhoto[]
   zip: { href: string; size: string } | null
@@ -35,7 +36,7 @@ function DownloadIcon({ size = 15 }: { size?: number }) {
   )
 }
 
-export default function Gallery({ slug, artist, kicker, credit, publication, photos, zip }: Props) {
+export default function Gallery({ slug, artist, kicker, credit, creditUrl, publication, photos, zip }: Props) {
   const [open, setOpen] = useState<number | null>(null)
   const touchX = useRef<number | null>(null)
 
@@ -130,7 +131,7 @@ export default function Gallery({ slug, artist, kicker, credit, publication, pho
 
       {/* Header */}
       <header
-        style={{ padding: '84px max(16px, 4vw) 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}
+        style={{ padding: '48px max(16px, 4vw) 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}
       >
         <div>
           {kicker && <div style={{ fontFamily: instrument, fontSize: '14px', color: '#777', marginBottom: '14px' }}>{kicker}</div>}
@@ -139,7 +140,14 @@ export default function Gallery({ slug, artist, kicker, credit, publication, pho
               {artist}
             </h1>
             <span style={{ fontFamily: instrument, fontSize: '19px', color: '#777' }}>
-              Shot by {credit}
+              Shot by{' '}
+              {creditUrl ? (
+                <a href={creditUrl} target='_blank' rel='noopener noreferrer' data-cursor-pill='Portfolio' style={{ color: 'inherit', textDecoration: 'underline', textDecorationColor: '#c4c4c4', textUnderlineOffset: '3px' }}>
+                  {credit}
+                </a>
+              ) : (
+                credit
+              )}
               {publication && (
                 <>
                   {" for "}

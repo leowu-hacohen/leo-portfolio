@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Gallery, { type GalleryPhoto } from '../../../components/photos/Gallery'
-import PhotosNav from '../../../components/photos/PhotosNav'
 import { formatBytes, formatShowDate, getAllPhotoSets, getPhotoSet, photoUrls, zipUrl } from '../../../lib/photos'
 
 export const dynamicParams = false
@@ -50,12 +49,12 @@ export default async function PhotoSetPage({ params }: Params) {
 
   return (
     <div style={{ background: '#F4F4F4', minHeight: '100vh' }}>
-      <PhotosNav back="/photos" />
       <Gallery
         slug={set.slug}
         artist={set.artist}
         kicker={kicker}
         credit={set.credit}
+        creditUrl={set.creditUrl ?? null}
         publication={set.publication ?? null}
         photos={photos}
         zip={zipHref && set.zip ? { href: zipHref, size: formatBytes(set.zip.bytes) } : null}
