@@ -15,11 +15,12 @@ type Params = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const set = getPhotoSet((await params).slug)
   if (!set) return {}
-  const title = `${set.artist} · Photos by ${set.credit}`
+  const by = `${set.credit}${set.publication ? ` for ${set.publication.name}` : ""}`
+  const title = `${set.artist} · Photos by ${by}`
   const where = [set.venue, formatShowDate(set.date)].filter(Boolean).join(', ')
   const description = set.photos.length
     ? `${set.photos.length} photos${where ? ` from ${where}` : ''}. Download one or all of them in a click.`
-    : `Photos by ${set.credit}, coming soon.`
+    : `Photos by ${by}, coming soon.`
   const cover = set.photos[set.cover - 1]
   const image = cover ? photoUrls(set, cover).large : undefined
   return {
@@ -55,6 +56,7 @@ export default async function PhotoSetPage({ params }: Params) {
         artist={set.artist}
         kicker={kicker}
         credit={set.credit}
+        publication={set.publication ?? null}
         photos={photos}
         zip={zipHref && set.zip ? { href: zipHref, size: formatBytes(set.zip.bytes) } : null}
       />

@@ -12,7 +12,8 @@ Every gallery lives at `leowuhacohen.com/photos/<slug>` and is listed on `/photo
    npm run photos -- --slug stevelacy --artist "Steve Lacy" --dir ~/Pictures/exports/stevelacy --venue "The Observatory" --city "Santa Ana, CA" --date 2026-11-20
    ```
 
-   Optional flags: `--event "Tour name"`, `--cover 7` (which photo is the cover
+   Optional flags: `--publication "KUCI 88.9 FM" --publication-url https://kuci.org`
+   (credit reads "Shot by Leo Wu-Hacohen for KUCI 88.9 FM"), `--event "Tour name"`, `--cover 7` (which photo is the cover
    and the link-preview image), `--unlisted true` (hidden from /photos and
    search engines, still reachable by direct link).
 3. Check `http://localhost:3000/photos/stevelacy`, then commit and push.

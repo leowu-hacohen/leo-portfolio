@@ -6,6 +6,10 @@
   "city": null,
   "date": null,
   "credit": "Leo Wu-Hacohen",
+  "publication": {
+    "name": "KUCI 88.9 FM",
+    "url": "https://kuci.org"
+  },
   "unlisted": false,
   "cover": 1,
   "zip": {

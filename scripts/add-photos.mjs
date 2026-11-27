@@ -4,7 +4,8 @@
  *
  *   node scripts/add-photos.mjs --slug stevelacy --artist "Steve Lacy" \
  *     --dir ~/Pictures/exports/stevelacy --venue "The Observatory" \
- *     --city "Santa Ana, CA" --date 2026-11-20
+ *     --city "Santa Ana, CA" --date 2026-11-20 \
+ *     --publication "KUCI 88.9 FM" --publication-url https://kuci.org
  *
  * Output:
  *   public/photos/<slug>/grid/NN.jpg        900px, for the grid
@@ -109,6 +110,10 @@ const manifest = {
   city: pick('city'),
   date: pick('date'),
   credit: prev.credit ?? CREDIT,
+  publication:
+    args.publication !== undefined
+      ? { name: String(args.publication), url: args["publication-url"] ? String(args["publication-url"]) : null }
+      : (prev.publication ?? null),
   unlisted: args.unlisted !== undefined ? args.unlisted === true || args.unlisted === 'true' : (prev.unlisted ?? false),
   cover,
   zip: { file: zipName, bytes: zipBytes },
