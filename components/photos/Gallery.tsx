@@ -21,7 +21,6 @@ type Props = {
   slug: string
   artist: string
   kicker: string
-  credit: string
   photos: GalleryPhoto[]
   zip: { href: string; size: string } | null
 }
@@ -34,9 +33,8 @@ function DownloadIcon({ size = 15 }: { size?: number }) {
   )
 }
 
-export default function Gallery({ slug, artist, kicker, credit, photos, zip }: Props) {
+export default function Gallery({ slug, artist, kicker, photos, zip }: Props) {
   const [open, setOpen] = useState<number | null>(null)
-  const [copied, setCopied] = useState(false)
   const touchX = useRef<number | null>(null)
 
   // Download pings: one email per burst of downloads, not one per photo.
@@ -95,16 +93,6 @@ export default function Gallery({ slug, artist, kicker, credit, photos, zip }: P
     }
   }, [open, go])
 
-  const copyCredit = async () => {
-    try {
-      await navigator.clipboard.writeText(`Photos by ${credit}`)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1800)
-    } catch {
-      /* clipboard blocked: the credit is visible on the page anyway */
-    }
-  }
-
   // Masonry that reads left to right: each photo goes to the currently
   // shortest column, so 01 02 03 run across the top and columns stay balanced.
   const [cols, setCols] = useState(3)
@@ -139,47 +127,34 @@ export default function Gallery({ slug, artist, kicker, credit, photos, zip }: P
       `}</style>
 
       {/* Header */}
-      <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 5vw 0' }}>
-        <div style={{ fontFamily: instrument, fontSize: '14px', color: '#777', marginBottom: '14px' }}>{kicker}</div>
-        <h1 style={{ fontFamily: jakarta, fontSize: 'clamp(34px, 4.4vw, 52px)', fontWeight: 700, letterSpacing: '-0.025em', lineHeight: 1.08, margin: 0, color: '#111' }}>
-          {artist}
-        </h1>
-        <p style={{ fontFamily: jakarta, fontSize: '15px', color: '#666', margin: '14px 0 0' }}>
-          Photos by {credit}
-          {photos.length > 0 && ` · ${photos.length} photos`}
-        </p>
+      <header
+        style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 5vw 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '20px', flexWrap: 'wrap' }}
+      >
+        <div>
+          <div style={{ fontFamily: instrument, fontSize: '14px', color: '#777', marginBottom: '14px' }}>{kicker}</div>
+          <h1 style={{ fontFamily: jakarta, fontSize: 'clamp(34px, 4.4vw, 52px)', fontWeight: 700, letterSpacing: '-0.025em', lineHeight: 1.08, margin: 0, color: '#111' }}>
+            {artist}
+          </h1>
+        </div>
 
-        {photos.length > 0 && (
-          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '28px' }}>
-            {zip && (
-              <a
-                href={zip.href}
-                download
-                onClick={() => track('zip')}
-                className="pg-btn"
-                data-cursor-pill="Download all"
-                aria-label={`Download all ${photos.length} photos as a zip, ${zip.size}`}
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '9px', background: '#111', color: '#fff', borderRadius: '999px', padding: '12px 20px', fontFamily: jakarta, fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}
-              >
-                <DownloadIcon /> Download all
-                <span style={{ fontWeight: 400, opacity: 0.6 }}>{zip.size}</span>
-              </a>
-            )}
-            <button
-              type="button"
-              onClick={copyCredit}
-              className="pg-btn"
-              aria-label={`Copy photo credit: Photos by ${credit}`}
-              style={{ background: '#fff', color: '#111', border: '1px solid #e2e2e2', borderRadius: '999px', padding: '12px 20px', fontFamily: jakarta, fontSize: '14px', fontWeight: 500, cursor: 'pointer' }}
-            >
-              {copied ? 'Copied ✓' : 'Copy photo credit'}
-            </button>
-          </div>
+        {photos.length > 0 && zip && (
+          <a
+            href={zip.href}
+            download
+            onClick={() => track('zip')}
+            className="pg-btn"
+            data-cursor-pill="Download all"
+            aria-label={`Download all ${photos.length} photos as a zip, ${zip.size}`}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '9px', background: '#111', color: '#fff', borderRadius: '999px', padding: '12px 20px', fontFamily: jakarta, fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}
+          >
+            <DownloadIcon /> Download all
+            <span style={{ fontWeight: 400, opacity: 0.6 }}>{zip.size}</span>
+          </a>
         )}
       </header>
 
       {/* Grid */}
-      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '44px 5vw 120px' }}>
+      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px 5vw 120px' }}>
         {photos.length === 0 ? (
           <p style={{ fontFamily: jakarta, fontSize: '17px', color: '#888', margin: '40px 0' }}>
             Photos are on their way, check back soon.
