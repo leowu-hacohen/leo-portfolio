@@ -17,7 +17,7 @@ export default function PhotosIndex() {
   return (
     <div style={{ background: '#F4F4F4', minHeight: '100vh' }}>
       <PhotosNav />
-      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 5vw 120px' }}>
+      <main style={{ padding: '120px max(16px, 4vw) 120px' }}>
         <div style={{ fontFamily: instrument, fontSize: '14px', color: '#777', marginBottom: '14px' }}>Photos</div>
         <h1 style={{ fontFamily: jakarta, fontSize: 'clamp(30px, 3.6vw, 42px)', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.15, margin: 0, color: '#111', maxWidth: '720px' }}>
           Concerts and artists I&apos;ve photographed.

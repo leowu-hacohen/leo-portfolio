@@ -128,7 +128,7 @@ export default function Gallery({ slug, artist, kicker, photos, zip }: Props) {
 
       {/* Header */}
       <header
-        style={{ maxWidth: '1200px', margin: '0 auto', padding: '84px 5vw 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}
+        style={{ padding: '84px max(16px, 4vw) 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}
       >
         <div>
           {kicker && <div style={{ fontFamily: instrument, fontSize: '14px', color: '#777', marginBottom: '14px' }}>{kicker}</div>}
@@ -154,7 +154,7 @@ export default function Gallery({ slug, artist, kicker, photos, zip }: Props) {
       </header>
 
       {/* Grid */}
-      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px 5vw 120px' }}>
+      <main style={{ padding: '32px max(16px, 4vw) 120px' }}>
         {photos.length === 0 ? (
           <p style={{ fontFamily: jakarta, fontSize: '17px', color: '#888', margin: '40px 0' }}>
             Photos are on their way, check back soon.

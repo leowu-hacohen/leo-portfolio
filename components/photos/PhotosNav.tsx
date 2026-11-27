@@ -22,7 +22,7 @@ export default function PhotosNav({ back = '/' }: { back?: string }) {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '20px 5vw',
+        padding: '20px max(16px, 4vw)',
         background: 'rgba(244,244,244,0.7)',
         backdropFilter: 'blur(18px) saturate(140%)',
         WebkitBackdropFilter: 'blur(18px) saturate(140%)',
