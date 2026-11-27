@@ -36,7 +36,7 @@ export default async function PhotoSetPage({ params }: Params) {
   const set = getPhotoSet((await params).slug)
   if (!set) notFound()
 
-  const kicker = [set.event, set.venue, set.city, formatShowDate(set.date)].filter(Boolean).join(' · ') || 'Photos'
+  const kicker = [set.event, set.venue, set.city, formatShowDate(set.date)].filter(Boolean).join(' · ') || null
   const photos: GalleryPhoto[] = set.photos.map((p) => ({
     n: p.n,
     w: p.w,

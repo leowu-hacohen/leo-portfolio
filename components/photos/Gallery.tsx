@@ -20,7 +20,7 @@ export type GalleryPhoto = {
 type Props = {
   slug: string
   artist: string
-  kicker: string
+  kicker: string | null
   photos: GalleryPhoto[]
   zip: { href: string; size: string } | null
 }
@@ -128,10 +128,10 @@ export default function Gallery({ slug, artist, kicker, photos, zip }: Props) {
 
       {/* Header */}
       <header
-        style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 5vw 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '20px', flexWrap: 'wrap' }}
+        style={{ maxWidth: '1200px', margin: '0 auto', padding: '84px 5vw 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}
       >
         <div>
-          <div style={{ fontFamily: instrument, fontSize: '14px', color: '#777', marginBottom: '14px' }}>{kicker}</div>
+          {kicker && <div style={{ fontFamily: instrument, fontSize: '14px', color: '#777', marginBottom: '14px' }}>{kicker}</div>}
           <h1 style={{ fontFamily: jakarta, fontSize: 'clamp(34px, 4.4vw, 52px)', fontWeight: 700, letterSpacing: '-0.025em', lineHeight: 1.08, margin: 0, color: '#111' }}>
             {artist}
           </h1>
