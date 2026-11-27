@@ -8,6 +8,164 @@
   "credit": "Leo Wu-Hacohen",
   "unlisted": false,
   "cover": 1,
-  "zip": null,
-  "photos": []
+  "zip": {
+    "file": "LeoWuHacohen_SteveLacy.zip",
+    "bytes": 16774000
+  },
+  "photos": [
+    {
+      "n": "01",
+      "full": "LeoWuHacohen_SteveLacy_01.jpg",
+      "w": 2243,
+      "h": 2804,
+      "bytes": 706175
+    },
+    {
+      "n": "02",
+      "full": "LeoWuHacohen_SteveLacy_02.jpg",
+      "w": 2336,
+      "h": 3504,
+      "bytes": 1085076
+    },
+    {
+      "n": "03",
+      "full": "LeoWuHacohen_SteveLacy_03.jpg",
+      "w": 2336,
+      "h": 2920,
+      "bytes": 1012772
+    },
+    {
+      "n": "04",
+      "full": "LeoWuHacohen_SteveLacy_04.jpg",
+      "w": 2336,
+      "h": 2920,
+      "bytes": 729530
+    },
+    {
+      "n": "05",
+      "full": "LeoWuHacohen_SteveLacy_05.jpg",
+      "w": 2048,
+      "h": 2560,
+      "bytes": 732189
+    },
+    {
+      "n": "06",
+      "full": "LeoWuHacohen_SteveLacy_06.jpg",
+      "w": 2336,
+      "h": 2920,
+      "bytes": 1695716
+    },
+    {
+      "n": "07",
+      "full": "LeoWuHacohen_SteveLacy_07.jpg",
+      "w": 3504,
+      "h": 2336,
+      "bytes": 1153074
+    },
+    {
+      "n": "08",
+      "full": "LeoWuHacohen_SteveLacy_08.jpg",
+      "w": 2100,
+      "h": 2625,
+      "bytes": 624079
+    },
+    {
+      "n": "09",
+      "full": "LeoWuHacohen_SteveLacy_09.jpg",
+      "w": 2184,
+      "h": 2730,
+      "bytes": 1003965
+    },
+    {
+      "n": "10",
+      "full": "LeoWuHacohen_SteveLacy_10.jpg",
+      "w": 2336,
+      "h": 3504,
+      "bytes": 1235339
+    },
+    {
+      "n": "11",
+      "full": "LeoWuHacohen_SteveLacy_11.jpg",
+      "w": 2820,
+      "h": 1880,
+      "bytes": 544558
+    },
+    {
+      "n": "12",
+      "full": "LeoWuHacohen_SteveLacy_12.jpg",
+      "w": 2210,
+      "h": 3315,
+      "bytes": 1182818
+    },
+    {
+      "n": "13",
+      "full": "LeoWuHacohen_SteveLacy_13.jpg",
+      "w": 1771,
+      "h": 2656,
+      "bytes": 336186
+    },
+    {
+      "n": "14",
+      "full": "LeoWuHacohen_SteveLacy_14.jpg",
+      "w": 2336,
+      "h": 3504,
+      "bytes": 691129
+    },
+    {
+      "n": "15",
+      "full": "LeoWuHacohen_SteveLacy_15.jpg",
+      "w": 2905,
+      "h": 1937,
+      "bytes": 413858
+    },
+    {
+      "n": "16",
+      "full": "LeoWuHacohen_SteveLacy_16.jpg",
+      "w": 2102,
+      "h": 2628,
+      "bytes": 1128593
+    },
+    {
+      "n": "17",
+      "full": "LeoWuHacohen_SteveLacy_17.jpg",
+      "w": 1766,
+      "h": 2208,
+      "bytes": 286470
+    },
+    {
+      "n": "18",
+      "full": "LeoWuHacohen_SteveLacy_18.jpg",
+      "w": 3102,
+      "h": 2068,
+      "bytes": 392522
+    },
+    {
+      "n": "19",
+      "full": "LeoWuHacohen_SteveLacy_19.jpg",
+      "w": 2336,
+      "h": 2920,
+      "bytes": 500650
+    },
+    {
+      "n": "20",
+      "full": "LeoWuHacohen_SteveLacy_20.jpg",
+      "w": 2336,
+      "h": 2920,
+      "bytes": 466571
+    },
+    {
+      "n": "21",
+      "full": "LeoWuHacohen_SteveLacy_21.jpg",
+      "w": 2134,
+      "h": 2668,
+      "bytes": 375422
+    },
+    {
+      "n": "22",
+      "full": "LeoWuHacohen_SteveLacy_22.jpg",
+      "w": 2336,
+      "h": 2920,
+      "bytes": 473194
+    }
+  ]
 }
