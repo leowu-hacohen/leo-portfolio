@@ -21,6 +21,7 @@ type Props = {
   slug: string
   artist: string
   kicker: string | null
+  credit: string
   photos: GalleryPhoto[]
   zip: { href: string; size: string } | null
 }
@@ -33,7 +34,7 @@ function DownloadIcon({ size = 15 }: { size?: number }) {
   )
 }
 
-export default function Gallery({ slug, artist, kicker, photos, zip }: Props) {
+export default function Gallery({ slug, artist, kicker, credit, photos, zip }: Props) {
   const [open, setOpen] = useState<number | null>(null)
   const touchX = useRef<number | null>(null)
 
@@ -132,9 +133,12 @@ export default function Gallery({ slug, artist, kicker, photos, zip }: Props) {
       >
         <div>
           {kicker && <div style={{ fontFamily: instrument, fontSize: '14px', color: '#777', marginBottom: '14px' }}>{kicker}</div>}
-          <h1 style={{ fontFamily: jakarta, fontSize: 'clamp(34px, 4.4vw, 52px)', fontWeight: 700, letterSpacing: '-0.025em', lineHeight: 1.08, margin: 0, color: '#111' }}>
-            {artist}
-          </h1>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px 16px', flexWrap: 'wrap' }}>
+            <h1 style={{ fontFamily: jakarta, fontSize: 'clamp(34px, 4.4vw, 52px)', fontWeight: 700, letterSpacing: '-0.025em', lineHeight: 1.08, margin: 0, color: '#111' }}>
+              {artist}
+            </h1>
+            <span style={{ fontFamily: instrument, fontSize: '19px', color: '#777' }}>Shot by {credit}</span>
+          </div>
         </div>
 
         {photos.length > 0 && zip && (
@@ -226,7 +230,7 @@ export default function Gallery({ slug, artist, kicker, photos, zip }: Props) {
           >
             <div onClick={(e) => e.stopPropagation()} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 20px', color: '#fff', fontFamily: jakarta, fontSize: '13px' }}>
               <span style={{ opacity: 0.7 }}>
-                {open + 1} / {photos.length}
+                {open + 1} / {photos.length} · Shot by {credit}
               </span>
               <div style={{ display: 'flex', gap: '10px' }}>
                 <a

@@ -54,6 +54,7 @@ export default async function PhotoSetPage({ params }: Params) {
         slug={set.slug}
         artist={set.artist}
         kicker={kicker}
+        credit={set.credit}
         photos={photos}
         zip={zipHref && set.zip ? { href: zipHref, size: formatBytes(set.zip.bytes) } : null}
       />
