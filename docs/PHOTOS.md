@@ -27,7 +27,8 @@ Rerunning replaces the whole set. Flags you leave out keep their last value.
 - **Standalone page**: no site nav, and nothing on leowuhacohen.com links to it. Share the URL directly.
 - **Numbered photos** and deep links (`/photos/stevelacy#7`), so a manager can
   say "we want 7 and 12" without screenshots.
-- **Copy photo credit** button.
+- **Credit line** beside the artist name: "Shot by Leo Wu-Hacohen for KUCI 88.9 FM",
+  linking to wuhaworld.myportfolio.com and the outlet (`--credit-url`, `--publication`).
 - A link preview with the cover photo when the URL is pasted in iMessage,
   Slack, or email.
 
